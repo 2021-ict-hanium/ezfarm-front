@@ -1,7 +1,7 @@
 import Layout from '../layout/Layout';
 
-const Home = () => (
-    <Layout title="HOME">
+const MyFarmHouse = () => (
+    <Layout title="MyFarm">
         <>
             <div>hi</div>
             <div>hi</div>
@@ -9,4 +9,4 @@ const Home = () => (
     </Layout>
 );
 
-export default Home;
+export default MyFarmHouse;
