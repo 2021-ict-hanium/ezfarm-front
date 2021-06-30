@@ -1,10 +1,12 @@
+import RecentNotification from '../components/RecentNotification';
+import UserCurrentDashboard from '../components/UserCurrentDashboard';
 import Layout from '../layout/Layout';
 
 const Home = () => (
     <Layout title="HOME">
         <>
-            <div>hi</div>
-            <div>hi</div>
+            <RecentNotification />
+            <UserCurrentDashboard />
         </>
     </Layout>
 );

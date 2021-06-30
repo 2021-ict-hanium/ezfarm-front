@@ -37,7 +37,7 @@ const Header = () => {
 const Wrapper = styled.div`
     // border: 1px solid black;
     position: relative;
-    height: 4rem;
+    min-height: 60px;
     width: 100%;
     display: flex;
     justify-content: space-between;
