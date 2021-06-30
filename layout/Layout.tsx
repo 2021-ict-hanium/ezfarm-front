@@ -69,15 +69,22 @@ const CoverImg = styled.img.attrs({
     top: 0;
     width: 100%;
     height: 100%;
+    min-height: 800px;
     z-index: -50;
 `;
 
 const MainComponent = styled.div`
+    padding: 3rem 5rem;
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    padding: 5rem;
-    flex-grow: 1;
-    div {
-        max-width: 1200px;
+    max-width: 1200px;
+    height: 100%;
+    & > div {
+        flex: 1;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
     }
 `;
 export default Layout;

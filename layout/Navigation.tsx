@@ -37,7 +37,7 @@ const Navigation = ({ page }: Props) => (
 const Wrapper = styled.div`
     // border: 1px solid black;
     width: 300px;
-    height: 60vh;
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -63,6 +63,7 @@ const Tap = styled.div<{ selected?: string; name?: string }>`
         border-radius: 15px;
         text-align: center;
         line-height: 60px;
+        font-weight: 600;
         transform: ${(props) => props.selected === props.name && 'translateX(30px)'};
         cursor: pointer;
         &:hover {
