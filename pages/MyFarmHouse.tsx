@@ -1,10 +1,10 @@
+import RealtimeView from '../components/RealtimeView';
 import Layout from '../layout/Layout';
 
 const MyFarmHouse = () => (
     <Layout title="MyFarm">
         <>
-            <div>hi</div>
-            <div>hi</div>
+            <RealtimeView />
         </>
     </Layout>
 );
