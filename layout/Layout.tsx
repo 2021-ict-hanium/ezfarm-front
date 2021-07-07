@@ -7,31 +7,21 @@ import Navigation from './Navigation';
 const Global = createGlobalStyle`
   html,
   body {
+    width: 100%;
     padding: 0;
     margin: 0;
     color: #1c140d;
     }
-
-  #__next {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  main{
+  main {
     display:flex;
     width: 100%;
-    height: 100%;
+    min-height: calc(100vh - 80px);
     position: relative;
   }
-
   a {
     color: inherit;
     text-decoration: none;
   }
-
   * {
     box-sizing: border-box;
     letter-spacing: -1px;
@@ -70,16 +60,18 @@ const CoverImg = styled.img.attrs({
     top: 0;
     width: 100%;
     height: 100%;
-    min-height: 800px;
     z-index: -50;
 `;
 
 const MainComponent = styled.div`
+    /* border: 1px solid gray; */
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 1200px;
     height: 100%;
+    padding: 0 25px;
+    align-items: center;
     & > div {
         flex: 1;
         overflow: visible;

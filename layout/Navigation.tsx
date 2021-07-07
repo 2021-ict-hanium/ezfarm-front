@@ -15,19 +15,19 @@ const Navigation = ({ page }: Props) => (
         </Tap>
         <Tap name="MyFarm" selected={page}>
             <span />
-            <Link href="/MyFarmHouse">
+            <Link href="/myFarmHouse">
                 <div>My farmhouse</div>
             </Link>
         </Tap>
         <Tap name="OtherFarm" selected={page}>
             <span />
-            <Link href="/OtherFarmHouse">
+            <Link href="/otherFarmHouse">
                 <div>Other farmhouse</div>
             </Link>
         </Tap>
         <Tap name="Notification" selected={page}>
             <span />
-            <Link href="/Notification">
+            <Link href="/notification">
                 <div>Notification</div>
             </Link>
         </Tap>
@@ -35,8 +35,8 @@ const Navigation = ({ page }: Props) => (
 );
 
 const Wrapper = styled.div`
-    // border: 1px solid black;
-    width: 500px;
+    /* border: 1px solid black; */
+    min-width: 330px;
     height: 500px;
     display: flex;
     flex-direction: column;
@@ -49,7 +49,7 @@ const Wrapper = styled.div`
 `;
 
 const Tap = styled.div<{ selected?: string; name?: string }>`
-    // border: 1px solid black;
+    /* border: 1px solid black; */
     position: relative;
     cursor: pointer;
     span {
