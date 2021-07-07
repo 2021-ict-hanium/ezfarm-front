@@ -36,39 +36,46 @@ const Navigation = ({ page }: Props) => (
 
 const Wrapper = styled.div`
     // border: 1px solid black;
-    width: 300px;
+    width: 500px;
     height: 500px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    & > div:first-child {
+        margin-top: 105px;
+    }
+    & > div {
+        margin-bottom: 70px;
+    }
 `;
 
 const Tap = styled.div<{ selected?: string; name?: string }>`
     // border: 1px solid black;
     position: relative;
+    cursor: pointer;
     span {
         position: absolute;
         top: 25px;
-        background-color: white;
-        width: 185px;
+        width: 200px;
         height: 10px;
+        background-color: #ffffff;
         z-index: -1;
     }
     div {
-        // border: 1px solid black;
-        margin-left: 30px;
-        background-color: white;
-        width: 185px;
-        height: 55px;
+        width: 184px;
+        height: 60px;
         border-radius: 15px;
+        background-color: #ffffff;
+        margin-left: 34px;
+        font-size: 18px;
+        font-weight: 600;
         text-align: center;
         line-height: 60px;
-        font-weight: 600;
-        transform: ${(props) => props.selected === props.name && 'translateX(30px)'};
-        cursor: pointer;
-        &:hover {
-            transform: translateX(30px);
-            transition: all 0.6s ease-in-out;
+        transform: ${(props) => props.selected === props.name && 'translateX(85px)'};
+    }
+    &:hover {
+        div {
+            transform: translateX(85px);
+            transition: all 0.9s ease-in-out;
         }
     }
 `;

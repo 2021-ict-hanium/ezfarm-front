@@ -9,8 +9,7 @@ const Global = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    color: #1c140d;
     }
 
   #__next {
@@ -35,6 +34,8 @@ const Global = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+    letter-spacing: -1px;
+    font-family: 'Noto Sans';
   }
 `;
 
@@ -74,7 +75,6 @@ const CoverImg = styled.img.attrs({
 `;
 
 const MainComponent = styled.div`
-    padding: 3rem 5rem;
     display: flex;
     flex-direction: column;
     width: 100%;

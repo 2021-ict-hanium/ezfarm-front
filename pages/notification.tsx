@@ -4,7 +4,6 @@ const Notification = () => (
     <Layout title="Notification">
         <>
             <div>hi</div>
-            <div>hi</div>
         </>
     </Layout>
 );
