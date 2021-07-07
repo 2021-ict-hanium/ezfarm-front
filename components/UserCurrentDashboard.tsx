@@ -1,7 +1,14 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import styled from 'styled-components';
 import DashboardItem from './DashboardItem';
 
-const UserCurrentDashboard = () => (
+type Props = {
+    onOpenControlModal: () => void;
+    onOpenViewModal: () => void;
+};
+
+const UserCurrentDashboard = ({ onOpenControlModal, onOpenViewModal }: Props) => (
     <Wrapper>
         <Title>
             <div>User Current</div>
@@ -21,8 +28,8 @@ const UserCurrentDashboard = () => (
                 </div>
             </Dashboard>
             <ButtonTap>
-                <div>실시간 제어</div>
-                <div>실시간 화면</div>
+                <div onClick={onOpenControlModal}>실시간 제어</div>
+                <div onClick={onOpenViewModal}>실시간 화면</div>
                 <div>농가 선택</div>
             </ButtonTap>
         </div>
