@@ -36,14 +36,16 @@ const Header = () => {
 
 const Wrapper = styled.div`
     // border: 1px solid black;
-    position: relative;
-    min-height: 60px;
     width: 100%;
+    height: 80px;
+    filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.1));
+    background-color: #ffffff;
+    border: 1px solid #e2e2e2;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 50px;
-    border-bottom: 2px solid rgba(128, 128, 128, 0.3);
+    padding: 0 100px;
 `;
 
 const Logo = styled.div`

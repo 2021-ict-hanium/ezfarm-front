@@ -14,7 +14,7 @@ const RecentNotification = () => {
 
     return (
         <Wrapper>
-            <h3>Recent notifications</h3>
+            <div className="title">Recent notifications</div>
             {notifications.map((ele) => (
                 <div key={ele.id}>🔔 {ele.msg}</div>
             ))}
@@ -24,12 +24,17 @@ const RecentNotification = () => {
 
 const Wrapper = styled.div`
     position: relative;
-    // height: 100px;
-    background: white;
-    border-radius: 20px;
-    padding: 15px;
+    width: 1055px;
+    height: 146px;
+    border-radius: 30px;
+    background-color: #ffffff;
+    padding: 26px;
     margin-bottom: 50px;
-    &: after {
+    .title {
+        font-size: 22px;
+        font-weight: 700;
+    }
+    &:after {
         content: '';
         position: absolute;
         bottom: -20px;

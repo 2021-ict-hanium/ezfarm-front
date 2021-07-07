@@ -4,7 +4,6 @@ const OtherFarmHouse = () => (
     <Layout title="OtherFarm">
         <>
             <div>hi</div>
-            <div>hi</div>
         </>
     </Layout>
 );
