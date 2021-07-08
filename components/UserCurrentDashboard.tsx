@@ -1,39 +1,48 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { controlModalOpen, viewModalOpen } from '../actions/modal';
 import DashboardItem from './DashboardItem';
 
-type Props = {
-    onOpenControlModal: () => void;
-    onOpenViewModal: () => void;
-};
+const UserCurrentDashboard = () => {
+    const dispatch = useDispatch();
 
-const UserCurrentDashboard = ({ onOpenControlModal, onOpenViewModal }: Props) => (
-    <Wrapper>
-        <div className="title1">User Current</div>
-        <div className="title2">Dashboard</div>
-        <div className="container">
-            <Dashboard>
-                {/* <DashboardItem eng="Temperature" kor="온도" value="35.8°C" /> */}
-                <div>
-                    <DashboardItem eng="Temperature" kor="온도" value="35.8°C" />
-                    <DashboardItem eng="Illuminance" kor="조도" value="1800lx" />
-                    <DashboardItem eng="Humidity" kor="습도" value="45%" />
-                </div>
-                <div>
-                    <DashboardItem eng="CO2" kor="이산화탄소" value="550ppm" />
-                    <DashboardItem eng="pH" kor="급액" value="5.98" />
-                    <DashboardItem eng="EC" kor="토양수분" value="2.63%" />
-                </div>
-            </Dashboard>
-            <ButtonTap>
-                <div onClick={onOpenControlModal}>실시간 제어</div>
-                <div onClick={onOpenViewModal}>실시간 화면</div>
-                <div>농가 선택</div>
-            </ButtonTap>
-        </div>
-    </Wrapper>
-);
+    const onOpenControlModal = () => {
+        dispatch(controlModalOpen());
+    };
+
+    const onOpenViewModal = () => {
+        dispatch(viewModalOpen());
+    };
+
+    return (
+        <Wrapper>
+            <div className="title1">User Current</div>
+            <div className="title2">Dashboard</div>
+            <div className="container">
+                <Dashboard>
+                    {/* <DashboardItem eng="Temperature" kor="온도" value="35.8°C" /> */}
+                    <div>
+                        <DashboardItem eng="Temperature" kor="온도" value="35.8°C" />
+                        <DashboardItem eng="Illuminance" kor="조도" value="1800lx" />
+                        <DashboardItem eng="Humidity" kor="습도" value="45%" />
+                    </div>
+                    <div>
+                        <DashboardItem eng="CO2" kor="이산화탄소" value="550ppm" />
+                        <DashboardItem eng="pH" kor="급액" value="5.98" />
+                        <DashboardItem eng="EC" kor="토양수분" value="2.63%" />
+                    </div>
+                </Dashboard>
+                <ButtonTap>
+                    <div onClick={onOpenControlModal}>실시간 제어</div>
+                    <div onClick={onOpenViewModal}>실시간 화면</div>
+                    <div>농가 선택</div>
+                </ButtonTap>
+            </div>
+        </Wrapper>
+    );
+};
 
 const Wrapper = styled.div`
     /* border: 1px solid gray; */

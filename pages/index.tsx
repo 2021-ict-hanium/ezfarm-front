@@ -1,29 +1,32 @@
-import { useState } from 'react';
-import RealtimeControl from '../components/RealtimeControl';
-import RealtimeView from '../components/RealtimeView';
+import { useRouter } from 'next/dist/client/router';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import ControlModal from '../components/ControlModal';
+import ViewModal from '../components/ViewModal';
 import RecentNotification from '../components/RecentNotification';
 import UserCurrentDashboard from '../components/UserCurrentDashboard';
 import Layout from '../layout/Layout';
+import { RootState } from '../reducers';
 
 const Home = () => {
-    const [showControlModal, setShowControlModal] = useState(false);
-    const [showViewModal, setShowViewModal] = useState(false);
+    const dispatch = useDispatch();
+    const router = useRouter();
+    const { me } = useSelector((state: RootState) => state.user);
+    const { showControlModal, showViewModal } = useSelector((state: RootState) => state.modal);
 
-    const onClickControlModal = () => {
-        setShowControlModal((prev) => !prev);
-    };
-
-    const onClickViewModal = () => {
-        setShowViewModal((prev) => !prev);
-    };
+    useEffect(() => {
+        if (!me) {
+            router.push('/login');
+        }
+    }, [router, me]);
 
     return (
         <Layout title="HOME">
             <>
                 <RecentNotification />
-                <UserCurrentDashboard onOpenControlModal={onClickControlModal} onOpenViewModal={onClickViewModal} />
-                {showControlModal && <RealtimeControl onClose={onClickControlModal} />}
-                {showViewModal && <RealtimeView onClose={onClickViewModal} />}
+                <UserCurrentDashboard />
+                {showControlModal && <ControlModal />}
+                {showViewModal && <ViewModal />}
             </>
         </Layout>
     );

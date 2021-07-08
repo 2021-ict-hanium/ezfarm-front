@@ -1,19 +1,26 @@
 import { FormEvent, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { signupModalOpen } from '../actions/modal';
+import { loginRequest } from '../actions/user';
 import useInput from '../hooks/useInput';
 
 const SigninForm = () => {
+    const dispatch = useDispatch();
     const [email, onChangeEmail] = useInput('');
     const [password, onChangePassword] = useInput('');
 
     const onsubmit = useCallback(
         (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
-            console.log(email);
-            console.log(password);
+            dispatch(loginRequest(email, password));
         },
-        [email, password],
+        [dispatch, email, password],
     );
+
+    const handleSignupBtn = () => {
+        dispatch(signupModalOpen());
+    };
 
     return (
         <>
@@ -38,13 +45,17 @@ const SigninForm = () => {
                         <input type="checkbox" />
                         로그인상태유지
                     </label>
-                    <div>이메일/비밀번호 찾기</div>
+                    <SignupBtn onClick={handleSignupBtn}>회원가입</SignupBtn>
                 </div>
                 <FormBtn>로그인</FormBtn>
             </Form>
         </>
     );
 };
+
+const SignupBtn = styled.div`
+    cursor: pointer;
+`;
 
 const FormBtn = styled.button.attrs({
     type: 'submit',
@@ -78,11 +89,11 @@ const Form = styled.form`
     }
     .options {
         display: flex;
+        align-items: center;
         margin: -15px 0 28px auto;
         & > * {
             margin-left: 30px;
             font-weight: 500;
-            font-size: 12px;
         }
     }
     margin-top: 120px;

@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 import { Switch } from 'antd';
 import { useState, useCallback, FormEvent } from 'react';
+import { useDispatch } from 'react-redux';
 import useInput from '../hooks/useInput';
 import { ModalOverlay, CloseBtn, ModalTitle } from '../styles/styles';
+import { controlModalClose } from '../actions/modal';
 
-type Props = {
-    onClose: () => void;
-};
-
-const RealtimeControl = ({ onClose }: Props) => {
+const ControlModal = () => {
+    const dispatch = useDispatch();
     const [BOD, setBOD] = useState(false);
     const [temperature, onChangeTemperature] = useInput('30');
     const [illuminance, setIlluminance] = useState(false);
@@ -28,16 +27,16 @@ const RealtimeControl = ({ onClose }: Props) => {
 
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('BOD : ', BOD);
-        console.log('temperature : ', temperature);
-        console.log('illuminance : ', illuminance);
-        console.log('CO2 : ', CO2);
         onClose();
+    };
+
+    const onClose = () => {
+        dispatch(controlModalClose());
     };
 
     return (
         <ModalOverlay>
-            <ControlModal>
+            <Modal>
                 <CloseBtn onClick={onClose}>x</CloseBtn>
                 <ModalTitle>실시간 제어</ModalTitle>
                 <ControlForm onSubmit={onSubmit}>
@@ -72,7 +71,7 @@ const RealtimeControl = ({ onClose }: Props) => {
                     </div>
                     <Btn type="submit">완료</Btn>
                 </ControlForm>
-            </ControlModal>
+            </Modal>
         </ModalOverlay>
     );
 };
@@ -123,7 +122,7 @@ const ControlForm = styled.form`
     }
 `;
 
-const ControlModal = styled.div`
+const Modal = styled.div`
     background: white;
     border-radius: 30px;
     padding: 10px 30px;
@@ -135,4 +134,4 @@ const ControlModal = styled.div`
     justify-content: center;
 `;
 
-export default RealtimeControl;
+export default ControlModal;
