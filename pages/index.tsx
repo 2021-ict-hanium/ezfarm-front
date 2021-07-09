@@ -1,29 +1,32 @@
-import { useState } from 'react';
-import RealtimeControl from '../components/RealtimeControl';
-import RealtimeView from '../components/RealtimeView';
-import RecentNotification from '../components/RecentNotification';
-import UserCurrentDashboard from '../components/UserCurrentDashboard';
+import { useRouter } from 'next/dist/client/router';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import ControlModal from '../components/home/ControlModal';
+import ViewModal from '../components/home/ViewModal';
+import RecentNotification from '../components/home/RecentNotification';
+import UserCurrentDashboard from '../components/home/UserCurrentDashboard';
 import Layout from '../layout/Layout';
+import { RootState } from '../reducers';
 
 const Home = () => {
-    const [showControlModal, setShowControlModal] = useState(false);
-    const [showViewModal, setShowViewModal] = useState(false);
+    const dispatch = useDispatch();
+    const router = useRouter();
+    const { me } = useSelector((state: RootState) => state.user);
+    const { isControlModalVisible, isViewModalVisible } = useSelector((state: RootState) => state.modal);
 
-    const onClickControlModal = () => {
-        setShowControlModal((prev) => !prev);
-    };
-
-    const onClickViewModal = () => {
-        setShowViewModal((prev) => !prev);
-    };
+    useEffect(() => {
+        if (!me) {
+            router.push('/login');
+        }
+    }, [router, me]);
 
     return (
         <Layout title="HOME">
             <>
                 <RecentNotification />
-                <UserCurrentDashboard onOpenControlModal={onClickControlModal} onOpenViewModal={onClickViewModal} />
-                {showControlModal && <RealtimeControl onClose={onClickControlModal} />}
-                {showViewModal && <RealtimeView onClose={onClickViewModal} />}
+                <UserCurrentDashboard />
+                <ControlModal visible={isControlModalVisible} />
+                <ViewModal visible={isViewModalVisible} />
             </>
         </Layout>
     );

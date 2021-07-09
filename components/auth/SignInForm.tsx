@@ -1,19 +1,31 @@
-import { FormEvent, useCallback } from 'react';
+import React, { FormEvent, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import useInput from '../hooks/useInput';
+import { signUpModalOpen } from '../../actions/modal';
+import { logInRequest } from '../../actions/user';
+import useInput from '../../hooks/useInput';
+import { RootState } from '../../reducers';
+import { InputWrapper } from '../../styles/styles';
+import Loading from '../Loading';
 
-const SigninForm = () => {
+const SignInForm = () => {
+    const dispatch = useDispatch();
+    const { logInLoading } = useSelector((state: RootState) => state.user);
+
     const [email, onChangeEmail] = useInput('');
     const [password, onChangePassword] = useInput('');
 
     const onsubmit = useCallback(
         (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
-            console.log(email);
-            console.log(password);
+            dispatch(logInRequest(email, password));
         },
-        [email, password],
+        [dispatch, email, password],
     );
+
+    const handleSignupBtn = () => {
+        dispatch(signUpModalOpen());
+    };
 
     return (
         <>
@@ -21,7 +33,7 @@ const SigninForm = () => {
                 <div className="title">로그인</div>
                 <InputWrapper>
                     <label htmlFor="user-email">이메일</label>
-                    <input name="user-email" type="email" value={email} onChange={onChangeEmail} />
+                    <input name="user-email" type="email" value={email} onChange={onChangeEmail} required />
                 </InputWrapper>
                 <InputWrapper>
                     <label htmlFor="user-password">비밀번호</label>
@@ -31,6 +43,7 @@ const SigninForm = () => {
                         onChange={onChangePassword}
                         value={password}
                         minLength={6}
+                        required
                     />
                 </InputWrapper>
                 <div className="options">
@@ -38,15 +51,22 @@ const SigninForm = () => {
                         <input type="checkbox" />
                         로그인상태유지
                     </label>
-                    <div>이메일/비밀번호 찾기</div>
+                    <SignupBtn onClick={handleSignupBtn}>회원가입</SignupBtn>
                 </div>
-                <FormBtn>로그인</FormBtn>
+                <LogInBtn>로그인</LogInBtn>
             </Form>
+            {logInLoading && <Loading />}
         </>
     );
 };
 
-const FormBtn = styled.button.attrs({
+const SignupBtn = styled.div`
+    &:hover {
+        color: #1c140d;
+    }
+`;
+
+const LogInBtn = styled.button.attrs({
     type: 'submit',
 })`
     border: none;
@@ -58,6 +78,10 @@ const FormBtn = styled.button.attrs({
     cursor: pointer;
     &:focus {
         outline: none;
+    }
+    &:hover {
+        background-color: #f16b6f;
+        color: #ffffff;
     }
 `;
 
@@ -78,37 +102,15 @@ const Form = styled.form`
     }
     .options {
         display: flex;
+        align-items: center;
         margin: -15px 0 28px auto;
         & > * {
             margin-left: 30px;
             font-weight: 500;
-            font-size: 12px;
+            cursor: pointer;
         }
     }
     margin-top: 120px;
 `;
 
-const InputWrapper = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    label {
-        font-size: 16px;
-        font-weight: 500;
-    }
-    input {
-        border: 1px solid #e5e5e5;
-        width: 295px;
-        height: 45px;
-        border-radius: 22px;
-        padding: 0 10px;
-        &:focus {
-            outline: none;
-        }
-    }
-    margin-bottom: 32px;
-`;
-
-export default SigninForm;
+export default SignInForm;

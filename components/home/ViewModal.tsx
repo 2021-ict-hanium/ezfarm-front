@@ -1,37 +1,49 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { ModalOverlay, CloseBtn, ModalTitle } from '../styles/styles';
-import { ViewListData } from '../utils/data';
+import { ViewListData } from '../../utils/data';
 
 type Props = {
-    onClose: () => void;
+    visible: boolean;
 };
 
-const RealtimeView = ({ onClose }: Props) => (
-    <ModalOverlay>
-        <ViewModal>
-            <LeftSection>
-                <ViewList>
-                    {ViewListData.map((ele) => (
-                        <div key={ele.id}>
-                            <img src={ele.url} alt="이미지" />
-                            <ImgTime>{ele.time}:00</ImgTime>
-                        </div>
-                    ))}
-                </ViewList>
-            </LeftSection>
-            <RightSection>
-                <CloseBtn onClick={onClose}>x</CloseBtn>
-                <Container>
-                    <ModalTitle>실시간 화면</ModalTitle>
-                    <img src="https://placeimg.com/300/200/any" alt="이미지" />
-                    <ImgTime>12:00</ImgTime>
-                </Container>
-            </RightSection>
-        </ViewModal>
-    </ModalOverlay>
-);
+const ViewModal = ({ visible }: Props) => {
+    const dispatch = useDispatch();
+
+    const onClose = () => {
+        dispatch(viewModalClose());
+    };
+
+    return (
+        <>
+            {visible && (
+                <ModalOverlay>
+                    <Modal>
+                        <LeftSection>
+                            <ViewList>
+                                {ViewListData.map((ele) => (
+                                    <div key={ele.id}>
+                                        <img src={ele.url} alt="이미지" />
+                                        <ImgTime>{ele.time}:00</ImgTime>
+                                    </div>
+                                ))}
+                            </ViewList>
+                        </LeftSection>
+                        <RightSection>
+                            <CloseBtn onClick={onClose}>x</CloseBtn>
+                            <Container>
+                                <ModalTitle>실시간 화면</ModalTitle>
+                                <img src="https://placeimg.com/300/200/any" alt="이미지" />
+                                <ImgTime>12:00</ImgTime>
+                            </Container>
+                        </RightSection>
+                    </Modal>
+                </ModalOverlay>
+            )}
+        </>
+    );
+};
 
 const LeftSection = styled.div`
     width: 30%;
@@ -92,7 +104,7 @@ const Container = styled.div`
     }
 `;
 
-const ViewModal = styled.div`
+const Modal = styled.div`
     background: white;
     border-radius: 30px;
     display: flex;
@@ -102,4 +114,4 @@ const ViewModal = styled.div`
     max-height: 800px;
 `;
 
-export default RealtimeView;
+export default ViewModal;

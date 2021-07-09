@@ -32,9 +32,10 @@ const Global = createGlobalStyle`
 type Props = {
     children: ReactChild;
     title: string;
+    isNavigation?: boolean;
 };
 
-const Layout = ({ children, title }: Props) => (
+const Layout = ({ children, title, isNavigation }: Props) => (
     <>
         <Global />
         <Head>
@@ -45,13 +46,17 @@ const Layout = ({ children, title }: Props) => (
         <Header />
         <main>
             <CoverImg />
-            <Navigation page={title} />
+            {isNavigation && <Navigation page={title} />}
             <MainComponent>
                 <div>{children}</div>
             </MainComponent>
         </main>
     </>
 );
+
+Layout.defaultProps = {
+    isNavigation: true,
+};
 
 const CoverImg = styled.img.attrs({
     src: '/images/ezfarm_bg.png',

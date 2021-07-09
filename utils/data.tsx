@@ -61,3 +61,12 @@ export const ViewListData = [
         time: 12,
     },
 ];
+
+export const SampleUser = {
+    id: 123456,
+    email: 'test@test.com',
+    name: 'test',
+    mobile: '010-1234-5678',
+    image: '',
+    address: '',
+};
