@@ -13,31 +13,31 @@ import { ModalState } from '../interfaces/data/modal';
 
 // initial state
 export const initialState: ModalState = {
-    showControlModal: false,
-    showViewModal: false,
-    showSignupModal: false,
+    isControlModalVisible: false,
+    isViewModalVisible: false,
+    isSignUpModalVisible: false,
 };
 
 const reducer = (state = initialState, action: ModalAction) =>
     produce(state, (draft: ModalState) => {
         switch (action.type) {
             case CONTROL_MODAL_OPEN:
-                draft.showControlModal = true;
+                draft.isControlModalVisible = true;
                 break;
             case CONTROL_MODAL_CLOSE:
-                draft.showControlModal = false;
+                draft.isControlModalVisible = false;
                 break;
             case VIEW_MODAL_OPEN:
-                draft.showViewModal = true;
+                draft.isViewModalVisible = true;
                 break;
             case VIEW_MODAL_CLOSE:
-                draft.showViewModal = false;
+                draft.isViewModalVisible = false;
                 break;
             case SIGN_UP_MODAL_OPEN:
-                draft.showSignupModal = true;
+                draft.isSignUpModalVisible = true;
                 break;
             case SIGN_UP_MODAL_CLOSE:
-                draft.showSignupModal = false;
+                draft.isSignUpModalVisible = false;
                 break;
             default:
                 break;

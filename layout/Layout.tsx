@@ -1,10 +1,8 @@
 import { ReactChild } from 'react';
 import Head from 'next/head';
 import styled, { createGlobalStyle } from 'styled-components';
-import { useSelector } from 'react-redux';
 import Header from './Header';
 import Navigation from './Navigation';
-import { RootState } from '../reducers';
 
 const Global = createGlobalStyle`
   html,
@@ -34,28 +32,30 @@ const Global = createGlobalStyle`
 type Props = {
     children: ReactChild;
     title: string;
+    isNavigation?: boolean;
 };
 
-const Layout = ({ children, title }: Props) => {
-    const { me } = useSelector((state: RootState) => state.user);
-    return (
-        <>
-            <Global />
-            <Head>
-                <title>{title}</title>
-                <meta charSet="utf-8" />
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
-            <Header />
-            <main>
-                <CoverImg />
-                {me && <Navigation page={title} />}
-                <MainComponent>
-                    <div>{children}</div>
-                </MainComponent>
-            </main>
-        </>
-    );
+const Layout = ({ children, title, isNavigation }: Props) => (
+    <>
+        <Global />
+        <Head>
+            <title>{title}</title>
+            <meta charSet="utf-8" />
+            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
+        <Header />
+        <main>
+            <CoverImg />
+            {isNavigation && <Navigation page={title} />}
+            <MainComponent>
+                <div>{children}</div>
+            </MainComponent>
+        </main>
+    </>
+);
+
+Layout.defaultProps = {
+    isNavigation: true,
 };
 
 const CoverImg = styled.img.attrs({

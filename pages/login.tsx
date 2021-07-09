@@ -1,30 +1,27 @@
 import { useRouter } from 'next/dist/client/router';
-import { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import LoginForm from '../components/LoginForm';
 import Layout from '../layout/Layout';
 import { RootState } from '../reducers';
+import SignUpModal from '../components/auth/SignUpModal';
+import SignInForm from '../components/auth/SignInForm';
 
 const Login = () => {
     const router = useRouter();
     const { me } = useSelector((state: RootState) => state.user);
-
-    const [showSignupModal, setShowSignupModal] = useState(false);
-
-    const handleSignupModal = () => {
-        setShowSignupModal((prev) => !prev);
-    };
+    const { isSignUpModalVisible } = useSelector((state: RootState) => state.modal);
 
     useEffect(() => {
         if (me) {
             router.push('/');
         }
     }, [router, me]);
+
     return (
-        <Layout title="HOME">
+        <Layout title="HOME" isNavigation={false}>
             <>
-                <LoginForm />
-                {/* {showSignUpModal && <SignupForm>} */}
+                <SignInForm />
+                {isSignUpModalVisible && <SignUpModal />}
             </>
         </Layout>
     );

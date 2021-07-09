@@ -14,10 +14,13 @@ export interface Me {
 
 export type UserState = {
     me: null | Me;
-    logInLoading: boolean; // 로그인
+    logInLoading: boolean;
     logInDone: boolean;
     logInError: null | string;
-    logOutLoading: boolean; // 로그아웃
+    logOutLoading: boolean;
     logOutDone: boolean;
     logOutError: null | string;
+    signUpLoading: boolean;
+    signUpDone: boolean;
+    signUpError: null | string;
 };

@@ -1,10 +1,10 @@
 import { useRouter } from 'next/dist/client/router';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ControlModal from '../components/ControlModal';
-import ViewModal from '../components/ViewModal';
-import RecentNotification from '../components/RecentNotification';
-import UserCurrentDashboard from '../components/UserCurrentDashboard';
+import ControlModal from '../components/home/ControlModal';
+import ViewModal from '../components/home/ViewModal';
+import RecentNotification from '../components/home/RecentNotification';
+import UserCurrentDashboard from '../components/home/UserCurrentDashboard';
 import Layout from '../layout/Layout';
 import { RootState } from '../reducers';
 
@@ -12,7 +12,7 @@ const Home = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const { me } = useSelector((state: RootState) => state.user);
-    const { showControlModal, showViewModal } = useSelector((state: RootState) => state.modal);
+    const { isControlModalVisible, isViewModalVisible } = useSelector((state: RootState) => state.modal);
 
     useEffect(() => {
         if (!me) {
@@ -25,8 +25,8 @@ const Home = () => {
             <>
                 <RecentNotification />
                 <UserCurrentDashboard />
-                {showControlModal && <ControlModal />}
-                {showViewModal && <ViewModal />}
+                <ControlModal visible={isControlModalVisible} />
+                <ViewModal visible={isViewModalVisible} />
             </>
         </Layout>
     );

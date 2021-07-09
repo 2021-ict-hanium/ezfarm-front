@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { controlModalOpen, viewModalOpen } from '../actions/modal';
+import { controlModalOpen, viewModalOpen } from '../../actions/modal';
 import DashboardItem from './DashboardItem';
 
 const UserCurrentDashboard = () => {

@@ -7,6 +7,10 @@ import {
     LOG_OUT_REQUEST,
     LOG_OUT_SUCCESS,
     LOG_OUT_FAILURE,
+    SIGN_UP_FAILURE,
+    SIGN_UP_REQUEST,
+    SIGN_UP_SUCCESS,
+    SIGN_UP_CLEAR,
 } from '../actions/user';
 import { UserAction } from '../interfaces/act/user';
 import { UserState } from '../interfaces/data/user';
@@ -14,12 +18,15 @@ import { UserState } from '../interfaces/data/user';
 // initial state
 export const initialState: UserState = {
     me: null,
-    logInLoading: false, // 로그인
+    logInLoading: false,
     logInDone: false,
     logInError: null,
-    logOutLoading: false, // 로그아웃
+    logOutLoading: false,
     logOutDone: false,
     logOutError: null,
+    signUpLoading: false,
+    signUpDone: false,
+    signUpError: null,
 };
 
 const reducer = (state = initialState, action: UserAction) =>
@@ -52,6 +59,24 @@ const reducer = (state = initialState, action: UserAction) =>
             case LOG_OUT_FAILURE:
                 draft.logOutLoading = false;
                 draft.logOutError = action.error;
+                break;
+            case SIGN_UP_REQUEST:
+                draft.signUpLoading = true;
+                draft.signUpDone = false;
+                draft.signUpError = null;
+                break;
+            case SIGN_UP_SUCCESS:
+                draft.signUpLoading = false;
+                draft.signUpDone = true;
+                break;
+            case SIGN_UP_FAILURE:
+                draft.signUpLoading = false;
+                draft.signUpError = action.error;
+                break;
+            case SIGN_UP_CLEAR:
+                draft.signUpLoading = false;
+                draft.signUpDone = false;
+                draft.signUpError = null;
                 break;
             default:
                 break;

@@ -2,11 +2,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { viewModalClose } from '../actions/modal';
-import { ModalOverlay, CloseBtn, ModalTitle } from '../styles/styles';
-import { ViewListData } from '../utils/data';
+import { ViewListData } from '../../utils/data';
 
-const ViewModal = () => {
+type Props = {
+    visible: boolean;
+};
+
+const ViewModal = ({ visible }: Props) => {
     const dispatch = useDispatch();
 
     const onClose = () => {
@@ -14,28 +16,32 @@ const ViewModal = () => {
     };
 
     return (
-        <ModalOverlay>
-            <Modal>
-                <LeftSection>
-                    <ViewList>
-                        {ViewListData.map((ele) => (
-                            <div key={ele.id}>
-                                <img src={ele.url} alt="이미지" />
-                                <ImgTime>{ele.time}:00</ImgTime>
-                            </div>
-                        ))}
-                    </ViewList>
-                </LeftSection>
-                <RightSection>
-                    <CloseBtn onClick={onClose}>x</CloseBtn>
-                    <Container>
-                        <ModalTitle>실시간 화면</ModalTitle>
-                        <img src="https://placeimg.com/300/200/any" alt="이미지" />
-                        <ImgTime>12:00</ImgTime>
-                    </Container>
-                </RightSection>
-            </Modal>
-        </ModalOverlay>
+        <>
+            {visible && (
+                <ModalOverlay>
+                    <Modal>
+                        <LeftSection>
+                            <ViewList>
+                                {ViewListData.map((ele) => (
+                                    <div key={ele.id}>
+                                        <img src={ele.url} alt="이미지" />
+                                        <ImgTime>{ele.time}:00</ImgTime>
+                                    </div>
+                                ))}
+                            </ViewList>
+                        </LeftSection>
+                        <RightSection>
+                            <CloseBtn onClick={onClose}>x</CloseBtn>
+                            <Container>
+                                <ModalTitle>실시간 화면</ModalTitle>
+                                <img src="https://placeimg.com/300/200/any" alt="이미지" />
+                                <ImgTime>12:00</ImgTime>
+                            </Container>
+                        </RightSection>
+                    </Modal>
+                </ModalOverlay>
+            )}
+        </>
     );
 };
 

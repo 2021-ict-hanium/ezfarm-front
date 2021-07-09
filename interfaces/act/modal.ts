@@ -1,16 +1,16 @@
 import {
-    realtimeControlModalOpen,
-    realtimeControlModalClose,
-    realtimeViewModalOpen,
-    realtimeViewModalClose,
-    signupModalOpen,
-    signupModalClose,
+    controlModalOpen,
+    controlModalClose,
+    viewModalOpen,
+    viewModalClose,
+    signUpModalClose,
+    signUpModalOpen,
 } from '../../actions/modal';
 
 export type ModalAction =
-    | ReturnType<typeof realtimeControlModalOpen>
-    | ReturnType<typeof realtimeControlModalClose>
-    | ReturnType<typeof realtimeViewModalOpen>
-    | ReturnType<typeof realtimeViewModalClose>
-    | ReturnType<typeof signupModalOpen>
-    | ReturnType<typeof signupModalClose>;
+    | ReturnType<typeof controlModalOpen>
+    | ReturnType<typeof controlModalClose>
+    | ReturnType<typeof viewModalOpen>
+    | ReturnType<typeof viewModalClose>
+    | ReturnType<typeof signUpModalOpen>
+    | ReturnType<typeof signUpModalClose>;

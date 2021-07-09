@@ -25,10 +25,10 @@ export const viewModalClose = () => ({
     type: VIEW_MODAL_CLOSE,
 });
 
-export const signupModalOpen = () => ({
+export const signUpModalOpen = () => ({
     type: SIGN_UP_MODAL_OPEN,
 });
 
-export const signupModalClose = () => ({
+export const signUpModalClose = () => ({
     type: SIGN_UP_MODAL_CLOSE,
 });

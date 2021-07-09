@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../reducers';
-import { logoutRequest } from '../actions/user';
+import { logOutRequest } from '../actions/user';
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const Header = () => {
     };
 
     const handleLogOut = () => {
-        dispatch(logoutRequest());
+        dispatch(logOutRequest());
     };
 
     const menu = (

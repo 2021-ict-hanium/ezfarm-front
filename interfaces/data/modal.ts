@@ -1,5 +1,5 @@
 export type ModalState = {
-    showControlModal: boolean;
-    showViewModal: boolean;
-    showSignupModal: boolean;
+    isControlModalVisible: boolean;
+    isViewModalVisible: boolean;
+    isSignUpModalVisible: boolean;
 };
