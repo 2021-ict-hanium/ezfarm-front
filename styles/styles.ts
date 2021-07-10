@@ -48,6 +48,25 @@ export const StyledModal = styled.div`
     }
 `;
 
+export const StyledModalCloseBtn = styled.button`
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #999;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+    &:hover {
+        color: #505050;
+    }
+`;
+
 export const CompleteBtn = styled.button`
     /* border: 1px solid gray; */
     width: 120px;

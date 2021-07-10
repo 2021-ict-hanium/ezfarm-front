@@ -23,9 +23,9 @@ const SignInForm = () => {
         [dispatch, email, password],
     );
 
-    const handleSignupBtn = () => {
+    const handleSignupBtn = useCallback(() => {
         dispatch(signUpModalOpen());
-    };
+    }, [dispatch]);
 
     return (
         <>
