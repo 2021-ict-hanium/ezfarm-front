@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { signUpRequest } from '../../actions/user';
 import { RootState } from '../../reducers';
-import { CompleteBtn, InputWrapper } from '../../styles/styles';
+import { CompleteBtn, Inputwrapper } from '../../styles/styles';
 import ErrorMessage from '../ErrorMessage';
 import Loading from '../Loading';
 
@@ -109,13 +109,17 @@ const SignUpForm = () => {
                         {passwordCheckError && <ErrorMessage message="비밀번호가 일치하지 않습니다." />}
                     </InputError>
                 </InputWrapper>
-                <CompleteBtn type="submit">완료</CompleteBtn>
+                <CompleteBtn>완료</CompleteBtn>
                 {signUpError && <ErrorMessage message="이미 존재하는 이메일입니다." />}
             </Form>
             {signUpLoading && <Loading />}
         </>
     );
 };
+
+const InputWrapper = styled(Inputwrapper)`
+    justify-content: space-between;
+`;
 
 const InputError = styled.div`
     position: absolute;
@@ -128,6 +132,7 @@ const Form = styled.form`
     width: 400px;
     display: flex;
     flex-direction: column;
+    margin: 0 30px;
 `;
 
 export default SignUpForm;

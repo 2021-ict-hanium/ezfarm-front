@@ -62,6 +62,17 @@ const Content = styled.div`
         font-size: 48px;
         font-weight: 700;
     }
+    div {
+        animation: animation-opacity 2s;
+    }
+    @keyframes animation-opacity {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
 `;
 
 const Wave = styled.div<{ type: string }>`

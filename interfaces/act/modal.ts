@@ -5,6 +5,8 @@ import {
     viewModalClose,
     signUpModalClose,
     signUpModalOpen,
+    profileModifyModalOpen,
+    profileModifyModalClose,
 } from '../../actions/modal';
 
 export type ModalAction =
@@ -13,4 +15,6 @@ export type ModalAction =
     | ReturnType<typeof viewModalOpen>
     | ReturnType<typeof viewModalClose>
     | ReturnType<typeof signUpModalOpen>
-    | ReturnType<typeof signUpModalClose>;
+    | ReturnType<typeof signUpModalClose>
+    | ReturnType<typeof profileModifyModalOpen>
+    | ReturnType<typeof profileModifyModalClose>;

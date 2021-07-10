@@ -14,11 +14,11 @@ const Home = () => {
     const { me } = useSelector((state: RootState) => state.user);
     const { isControlModalVisible, isViewModalVisible } = useSelector((state: RootState) => state.modal);
 
-    // useEffect(() => {
-    //     if (!me) {
-    //         router.push('/login');
-    //     }
-    // }, [router, me]);
+    useEffect(() => {
+        if (!me) {
+            router.push('/login');
+        }
+    }, [router, me]);
 
     return (
         <Layout title="HOME">

@@ -1,33 +1,9 @@
 import { ReactChild } from 'react';
 import Head from 'next/head';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import Header from './Header';
 import Navigation from './Navigation';
-
-const Global = createGlobalStyle`
-  html,
-  body {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    color: #1c140d;
-    }
-  main {
-    display:flex;
-    width: 100%;
-    min-height: calc(100vh - 80px);
-    position: relative;
-  }
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-  * {
-    box-sizing: border-box;
-    letter-spacing: -1px;
-    font-family: 'Noto Sans';
-  }
-`;
+import Global from '../styles/Global';
 
 type Props = {
     children: ReactChild;
@@ -46,7 +22,14 @@ const Layout = ({ children, title, isNavigation }: Props) => (
         <Header />
         <main>
             <CoverImg />
-            {isNavigation && <Navigation page={title} />}
+            {isNavigation ? (
+                <Navigation page={title} />
+            ) : (
+                <Hr>
+                    <span className="line" />
+                    <span className="circle" />
+                </Hr>
+            )}
             <MainComponent>
                 <div>{children}</div>
             </MainComponent>
@@ -58,12 +41,35 @@ Layout.defaultProps = {
     isNavigation: true,
 };
 
+const Hr = styled.div`
+    position: relative;
+    margin-top: 127px;
+    .line {
+        position: absolute;
+        top: 10px;
+        width: 330px;
+        height: 10px;
+        background-color: #ffffff;
+        animation: login-page-line 0.9s;
+    }
+    .circle {
+        position: absolute;
+        left: 320px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        animation: login-page-circle 0.9s;
+    }
+`;
+
 const CoverImg = styled.img.attrs({
     src: '/images/ezfarm_bg.png',
 })`
     position: absolute;
     top: 0;
     width: 100%;
+    min-width: 1200px;
     height: 100%;
     z-index: -50;
 `;

@@ -9,6 +9,9 @@ import {
     logOutSuccess,
     LOG_IN_REQUEST,
     LOG_OUT_REQUEST,
+    profileModifyFailure,
+    profileModifySuccess,
+    PROFILE_MODIFY_REQUEST,
     signUpFailure,
     signUpSuccess,
     SIGN_UP_REQUEST,
@@ -59,6 +62,15 @@ function* signUp() {
     }
 }
 
+function* profileModify() {
+    try {
+        yield delay(3000);
+        yield put(profileModifySuccess());
+    } catch (err) {
+        yield put(profileModifyFailure(err.message));
+    }
+}
+
 function* watchLogIn() {
     yield takeLatest(LOG_IN_REQUEST, logIn);
 }
@@ -71,6 +83,10 @@ function* watchSignUp() {
     yield takeLatest(SIGN_UP_REQUEST, signUp);
 }
 
+function* watchProfileModify() {
+    yield takeLatest(PROFILE_MODIFY_REQUEST, profileModify);
+}
+
 export default function* userSaga() {
-    yield all([fork(watchLogIn), fork(watchLogOut), fork(watchSignUp)]);
+    yield all([fork(watchLogIn), fork(watchLogOut), fork(watchSignUp), fork(watchProfileModify)]);
 }

@@ -26,7 +26,7 @@ export const StyledModal = styled.div`
     margin: auto;
     background: #ffffff;
     border-radius: 30px;
-    padding: 30px;
+    padding: 30px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -88,17 +88,15 @@ export const CompleteBtn = styled.button`
     }
 `;
 
-export const InputWrapper = styled.div`
+export const Inputwrapper = styled.div`
     /* border: 1px solid black; */
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
     position: relative;
     label {
         font-size: 16px;
         font-weight: 500;
-        /* color: black; */
     }
     input {
         border: 1px solid #e5e5e5;

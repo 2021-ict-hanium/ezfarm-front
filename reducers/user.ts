@@ -11,9 +11,14 @@ import {
     SIGN_UP_REQUEST,
     SIGN_UP_SUCCESS,
     SIGN_UP_CLEAR,
+    PROFILE_MODIFY_CLEAR,
+    PROFILE_MODIFY_FAILURE,
+    PROFILE_MODIFY_REQUEST,
+    PROFILE_MODIFY_SUCCESS,
 } from '../actions/user';
 import { UserAction } from '../interfaces/act/user';
 import { UserState } from '../interfaces/data/user';
+import { SampleUser } from '../utils/data';
 
 // initial state
 export const initialState: UserState = {
@@ -27,6 +32,9 @@ export const initialState: UserState = {
     signUpLoading: false,
     signUpDone: false,
     signUpError: null,
+    profileModifyLoading: false,
+    profileModifyDone: false,
+    profileModifyError: null,
 };
 
 const reducer = (state = initialState, action: UserAction) =>
@@ -77,6 +85,24 @@ const reducer = (state = initialState, action: UserAction) =>
                 draft.signUpLoading = false;
                 draft.signUpDone = false;
                 draft.signUpError = null;
+                break;
+            case PROFILE_MODIFY_REQUEST:
+                draft.profileModifyLoading = true;
+                draft.profileModifyDone = false;
+                draft.profileModifyError = null;
+                break;
+            case PROFILE_MODIFY_SUCCESS:
+                draft.profileModifyLoading = false;
+                draft.profileModifyDone = true;
+                break;
+            case PROFILE_MODIFY_FAILURE:
+                draft.profileModifyLoading = false;
+                draft.profileModifyError = action.error;
+                break;
+            case PROFILE_MODIFY_CLEAR:
+                draft.profileModifyLoading = false;
+                draft.profileModifyDone = false;
+                draft.profileModifyError = null;
                 break;
             default:
                 break;

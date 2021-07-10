@@ -8,6 +8,9 @@ export const VIEW_MODAL_CLOSE = 'VIEW_MODAL_CLOSE' as const;
 export const SIGN_UP_MODAL_OPEN = 'SIGN_UP_MODAL_OPEN' as const;
 export const SIGN_UP_MODAL_CLOSE = 'SIGN_UP_MODAL_CLOSE' as const;
 
+export const PROFILE_MODIFY_MODAL_OPEN = 'PROFILE_MODIFY_MODAL_OPEN' as const;
+export const PROFILE_MODIFY_MODAL_CLOSE = 'PROFILE_MODIFY_MODAL_CLOSE' as const;
+
 // 액션 크리에이터
 export const controlModalOpen = () => ({
     type: CONTROL_MODAL_OPEN,
@@ -31,4 +34,12 @@ export const signUpModalOpen = () => ({
 
 export const signUpModalClose = () => ({
     type: SIGN_UP_MODAL_CLOSE,
+});
+
+export const profileModifyModalOpen = () => ({
+    type: PROFILE_MODIFY_MODAL_OPEN,
+});
+
+export const profileModifyModalClose = () => ({
+    type: PROFILE_MODIFY_MODAL_CLOSE,
 });

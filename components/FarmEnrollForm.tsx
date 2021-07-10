@@ -1,40 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
-import { InputWrapper, CompleteBtn } from '../styles/styles';
+import { Inputwrapper, CompleteBtn } from '../styles/styles';
 
 const FarmEnrollForm = () => (
     <>
         <Wrapper>
             <Form>
                 <div className="title">농가 등록</div>
-                <FarmEnrollInputWrapper>
+                <InputWrapper>
                     <label htmlFor="farm-name">농가 이름</label>
                     <input name="farm-name" placeholder="농가명에 표시될 이름을 작성해주세요." />
-                </FarmEnrollInputWrapper>
-                <FarmEnrollInputWrapper>
+                </InputWrapper>
+                <InputWrapper>
                     <label htmlFor="farm-address">농가 주소</label>
                     <input name="farm-address" placeholder="주소를 입력해 주세요." />
-                </FarmEnrollInputWrapper>
-                <FarmEnrollInputWrapper>
+                </InputWrapper>
+                <InputWrapper>
                     <label htmlFor="farm-phonenumber">농가 전화번호</label>
                     <input name="farm-phonenumber" placeholder="ex) 02-1234-5678" />
-                </FarmEnrollInputWrapper>
-                <FarmEnrollInputWrapper>
+                </InputWrapper>
+                <InputWrapper>
                     <label htmlFor="farm-kind">농가 종류</label>
                     <input name="farm-kind" placeholder="ex) 비닐" />
-                </FarmEnrollInputWrapper>
-                <FarmEnrollInputWrapper>
+                </InputWrapper>
+                <InputWrapper>
                     <label htmlFor="crop-kind">작물 종류</label>
                     <input name="crop-kind" placeholder="ex) 토마토,파프리카" />
-                </FarmEnrollInputWrapper>
-                <FarmEnrollInputWrapper>
+                </InputWrapper>
+                <InputWrapper>
                     <label htmlFor="farm-area">농가 면적</label>
                     <input name="farm-area" placeholder="(단위:ha)" />
-                </FarmEnrollInputWrapper>
-                <FarmEnrollInputWrapper>
+                </InputWrapper>
+                <InputWrapper>
                     <label htmlFor="farm-startdate">농가 생산 시작일</label>
                     <input name="farm-startdate" placeholder="ex) 2021.01.01" />
-                </FarmEnrollInputWrapper>
+                </InputWrapper>
                 <CompleteBtn type="submit">등록하기</CompleteBtn>
             </Form>
         </Wrapper>
@@ -50,7 +50,7 @@ const Wrapper = styled.div`
 `;
 
 const Form = styled.form`
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
     flex-direction: column;
     width: 900px;
@@ -61,9 +61,8 @@ const Form = styled.form`
     }
 `;
 
-const FarmEnrollInputWrapper = styled(InputWrapper)`
+const InputWrapper = styled(Inputwrapper)`
     /* border: 1px solid black; */
-    justify-content: flex-start;
     label {
         width: 120px;
         font-weight: 600;

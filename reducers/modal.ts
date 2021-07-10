@@ -7,6 +7,8 @@ import {
     VIEW_MODAL_CLOSE,
     SIGN_UP_MODAL_OPEN,
     SIGN_UP_MODAL_CLOSE,
+    PROFILE_MODIFY_MODAL_CLOSE,
+    PROFILE_MODIFY_MODAL_OPEN,
 } from '../actions/modal';
 import { ModalAction } from '../interfaces/act/modal';
 import { ModalState } from '../interfaces/data/modal';
@@ -16,6 +18,7 @@ export const initialState: ModalState = {
     isControlModalVisible: false,
     isViewModalVisible: false,
     isSignUpModalVisible: false,
+    isProfileModifyModalVisible: false,
 };
 
 const reducer = (state = initialState, action: ModalAction) =>
@@ -38,6 +41,12 @@ const reducer = (state = initialState, action: ModalAction) =>
                 break;
             case SIGN_UP_MODAL_CLOSE:
                 draft.isSignUpModalVisible = false;
+                break;
+            case PROFILE_MODIFY_MODAL_OPEN:
+                draft.isProfileModifyModalVisible = true;
+                break;
+            case PROFILE_MODIFY_MODAL_CLOSE:
+                draft.isProfileModifyModalVisible = false;
                 break;
             default:
                 break;

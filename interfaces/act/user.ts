@@ -9,6 +9,10 @@ import {
     signUpSuccess,
     signUpFailure,
     signUpClear,
+    profileModifyClear,
+    profileModifyFailure,
+    profileModifyRequest,
+    profileModifySuccess,
 } from '../../actions/user';
 
 export type UserAction =
@@ -21,4 +25,8 @@ export type UserAction =
     | ReturnType<typeof signUpRequest>
     | ReturnType<typeof signUpSuccess>
     | ReturnType<typeof signUpFailure>
-    | ReturnType<typeof signUpClear>;
+    | ReturnType<typeof signUpClear>
+    | ReturnType<typeof profileModifyRequest>
+    | ReturnType<typeof profileModifySuccess>
+    | ReturnType<typeof profileModifyFailure>
+    | ReturnType<typeof profileModifyClear>;

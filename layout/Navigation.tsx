@@ -37,15 +37,9 @@ const Navigation = ({ page }: Props) => (
 const Wrapper = styled.div`
     /* border: 1px solid black; */
     min-width: 330px;
-    height: 500px;
     display: flex;
     flex-direction: column;
-    & > div:first-child {
-        margin-top: 105px;
-    }
-    & > div {
-        margin-bottom: 70px;
-    }
+    margin-top: 105px;
 `;
 
 const Tap = styled.div<{ selected?: string; name?: string }>`
@@ -59,18 +53,21 @@ const Tap = styled.div<{ selected?: string; name?: string }>`
         height: 10px;
         background-color: #ffffff;
         z-index: -1;
+        animation: login-page-line 1s;
     }
     div {
+        position: absolute;
         width: 184px;
         height: 60px;
         border-radius: 15px;
         background-color: #ffffff;
-        margin-left: 34px;
+        left: 34px;
         font-size: 18px;
         font-weight: 600;
         text-align: center;
         line-height: 60px;
         transform: ${(props) => props.selected === props.name && 'translateX(85px)'};
+        animation: navigation-tap 1s;
     }
     &:hover {
         div {
@@ -78,6 +75,7 @@ const Tap = styled.div<{ selected?: string; name?: string }>`
             transition: all 0.9s ease-in-out;
         }
     }
+    margin-bottom: 120px;
 `;
 
 export default Navigation;
