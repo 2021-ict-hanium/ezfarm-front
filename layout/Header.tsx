@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../reducers';
 import { logOutRequest } from '../actions/user';
+import { profileModifyModalOpen } from '../actions/modal';
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -23,9 +24,15 @@ const Header = () => {
         dispatch(logOutRequest());
     }, [dispatch]);
 
+    const profileMoidfy = useCallback(() => {
+        dispatch(profileModifyModalOpen());
+    }, [dispatch]);
+
     const menu = (
         <Menu>
-            <Menu.Item key="1">회원정보 수정</Menu.Item>
+            <Menu.Item key="1" onClick={profileMoidfy}>
+                회원정보 수정
+            </Menu.Item>
             <Menu.Item key="2" onClick={handleLogOut}>
                 로그아웃
             </Menu.Item>

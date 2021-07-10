@@ -23,4 +23,7 @@ export interface UserState {
     signUpLoading: boolean;
     signUpDone: boolean;
     signUpError: null | string;
+    profileModifyLoading: boolean;
+    profileModifyDone: boolean;
+    profileModifyError: null | string;
 }

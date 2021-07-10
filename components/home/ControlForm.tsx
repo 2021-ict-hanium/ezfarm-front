@@ -3,7 +3,7 @@ import { Switch } from 'antd';
 import { FormEvent, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useInput from '../../hooks/useInput';
-import { CompleteBtn, InputWrapper } from '../../styles/styles';
+import { CompleteBtn, Inputwrapper } from '../../styles/styles';
 import useSwitch from '../../hooks/useSwitch';
 import { RootState } from '../../reducers';
 import ErrorMessage from '../ErrorMessage';
@@ -68,11 +68,15 @@ const ControlForm = () => {
     );
 };
 
+const InputWrapper = styled(Inputwrapper)`
+    justify-content: space-between;
+`;
+
 const Form = styled.form`
     /* border: 1px solid gray; */
     display: flex;
     flex-direction: column;
-    padding: 0 20px;
+    margin: 0 30px;
     width: 300px;
     span:first-child {
         font-size: 15px;

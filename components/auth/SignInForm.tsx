@@ -5,7 +5,7 @@ import { signUpModalOpen } from '../../actions/modal';
 import { logInRequest } from '../../actions/user';
 import useInput from '../../hooks/useInput';
 import { RootState } from '../../reducers';
-import { InputWrapper } from '../../styles/styles';
+import { Inputwrapper } from '../../styles/styles';
 import Loading from '../Loading';
 
 const SignInForm = () => {
@@ -15,7 +15,7 @@ const SignInForm = () => {
     const [email, onChangeEmail] = useInput('');
     const [password, onChangePassword] = useInput('');
 
-    const onsubmit = useCallback(
+    const onSubmit = useCallback(
         (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             dispatch(logInRequest(email, password));
@@ -29,7 +29,7 @@ const SignInForm = () => {
 
     return (
         <>
-            <Form onSubmit={onsubmit}>
+            <Form onSubmit={onSubmit}>
                 <div className="title">로그인</div>
                 <InputWrapper>
                     <label htmlFor="user-email">이메일</label>
@@ -59,6 +59,10 @@ const SignInForm = () => {
         </>
     );
 };
+
+const InputWrapper = styled(Inputwrapper)`
+    justify-content: space-between;
+`;
 
 const SignupBtn = styled.div`
     &:hover {

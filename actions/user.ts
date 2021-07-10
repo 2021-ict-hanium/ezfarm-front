@@ -14,6 +14,11 @@ export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS' as const;
 export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE' as const;
 export const SIGN_UP_CLEAR = 'SIGN_UP_CLEAR' as const;
 
+export const PROFILE_MODIFY_REQUEST = 'PROFILE_MODIFY_REQUEST' as const;
+export const PROFILE_MODIFY_SUCCESS = 'PROFILE_MODIFY_SUCCESS' as const;
+export const PROFILE_MODIFY_FAILURE = 'PROFILE_MODIFY_FAILURE' as const;
+export const PROFILE_MODIFY_CLEAR = 'PROFILE_MODIFY_CLEAR' as const;
+
 // 액션 크리에이터
 export const logInRequest = (email: string, password: string) => ({
     type: LOG_IN_REQUEST,
@@ -66,4 +71,21 @@ export const signUpFailure = (error: string) => ({
 
 export const signUpClear = () => ({
     type: SIGN_UP_CLEAR,
+});
+
+export const profileModifyRequest = () => ({
+    type: PROFILE_MODIFY_REQUEST,
+});
+
+export const profileModifySuccess = () => ({
+    type: PROFILE_MODIFY_SUCCESS,
+});
+
+export const profileModifyFailure = (error: string) => ({
+    type: PROFILE_MODIFY_FAILURE,
+    error,
+});
+
+export const profileModifyClear = () => ({
+    type: PROFILE_MODIFY_CLEAR,
 });

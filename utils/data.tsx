@@ -42,6 +42,6 @@ export const SampleUser = {
     email: 'test@test.com',
     name: 'test',
     mobile: '010-1234-5678',
-    image: '',
+    image: '/images/avatar_default.png',
     address: '',
 };
