@@ -1,7 +1,7 @@
-export type LoginFormData = {
+export interface LoginFormData {
     email: string;
     password: string;
-};
+}
 
 export interface Me {
     id: number;
@@ -12,7 +12,7 @@ export interface Me {
     address?: string;
 }
 
-export type UserState = {
+export interface UserState {
     me: null | Me;
     logInLoading: boolean;
     logInDone: boolean;
@@ -23,4 +23,4 @@ export type UserState = {
     signUpLoading: boolean;
     signUpDone: boolean;
     signUpError: null | string;
-};
+}

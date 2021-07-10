@@ -47,25 +47,28 @@ const SignUpForm = () => {
         [password],
     );
 
-    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (!name || !email || !password || !passwordCheck) {
-            if (!name) {
-                setNameError(true);
+    const onSubmit = useCallback(
+        (e: FormEvent<HTMLFormElement>) => {
+            e.preventDefault();
+            if (!name || !email || !password || !passwordCheck) {
+                if (!name) {
+                    setNameError(true);
+                }
+                if (!email) {
+                    setEmailError(true);
+                }
+                if (!password) {
+                    setPasswordError(true);
+                }
+                if (!passwordCheck) {
+                    setPasswordCheckError(true);
+                }
+                return;
             }
-            if (!email) {
-                setEmailError(true);
-            }
-            if (!password) {
-                setPasswordError(true);
-            }
-            if (!passwordCheck) {
-                setPasswordCheckError(true);
-            }
-            return;
-        }
-        dispatch(signUpRequest(name, email, password));
-    };
+            dispatch(signUpRequest(name, email, password));
+        },
+        [dispatch, name, email, password, passwordCheck],
+    );
 
     return (
         <>

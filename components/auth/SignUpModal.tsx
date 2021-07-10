@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpModalClose } from '../../actions/modal';
 import { signUpClear } from '../../actions/user';
@@ -12,13 +12,15 @@ const SignUpModal = () => {
 
     const { signUpDone } = useSelector((state: RootState) => state.user);
 
-    const onClose = () => {
+    const onClose = useCallback(() => {
         dispatch(signUpModalClose());
-    };
-    const onOk = () => {
+    }, [dispatch]);
+
+    const onOk = useCallback(() => {
         dispatch(signUpClear());
         dispatch(signUpModalClose());
-    };
+    }, [dispatch]);
+
     return (
         <>
             {signUpDone ? (

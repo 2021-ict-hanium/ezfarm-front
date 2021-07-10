@@ -3,7 +3,7 @@
 import { Avatar, Menu, Dropdown } from 'antd';
 import { UserOutlined, DownOutlined } from '@ant-design/icons';
 
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../reducers';
@@ -12,15 +12,16 @@ import { logOutRequest } from '../actions/user';
 const Header = () => {
     const dispatch = useDispatch();
     const { me } = useSelector((state: RootState) => state.user);
+
     const [visible, setVisible] = useState(false);
 
-    const handleVisibleChange = (flag: boolean) => {
+    const handleVisibleChange = useCallback((flag: boolean) => {
         setVisible(flag);
-    };
+    }, []);
 
-    const handleLogOut = () => {
+    const handleLogOut = useCallback(() => {
         dispatch(logOutRequest());
-    };
+    }, [dispatch]);
 
     const menu = (
         <Menu>
@@ -30,6 +31,7 @@ const Header = () => {
             </Menu.Item>
         </Menu>
     );
+
     return (
         <Wrapper>
             <Logo>Ezfarm</Logo>

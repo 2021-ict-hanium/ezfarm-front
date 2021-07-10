@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { controlModalOpen, viewModalOpen } from '../../actions/modal';
@@ -8,13 +9,13 @@ import DashboardItem from './DashboardItem';
 const UserCurrentDashboard = () => {
     const dispatch = useDispatch();
 
-    const onOpenControlModal = () => {
+    const onOpenControlModal = useCallback(() => {
         dispatch(controlModalOpen());
-    };
+    }, [dispatch]);
 
-    const onOpenViewModal = () => {
+    const onOpenViewModal = useCallback(() => {
         dispatch(viewModalOpen());
-    };
+    }, [dispatch]);
 
     return (
         <Wrapper>
@@ -22,7 +23,6 @@ const UserCurrentDashboard = () => {
             <div className="title2">Dashboard</div>
             <div className="container">
                 <Dashboard>
-                    {/* <DashboardItem eng="Temperature" kor="온도" value="35.8°C" /> */}
                     <div>
                         <DashboardItem eng="Temperature" kor="온도" value="35.8°C" />
                         <DashboardItem eng="Illuminance" kor="조도" value="1800lx" />
@@ -105,6 +105,9 @@ const ButtonTap = styled.div`
         cursor: pointer;
         &:active {
             transform: scale(0.95);
+        }
+        &:hover {
+            background: rgba(153, 198, 68);
         }
     }
 `;
