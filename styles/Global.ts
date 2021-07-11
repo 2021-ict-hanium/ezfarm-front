@@ -48,6 +48,14 @@ const Global = createGlobalStyle`
           left: 34px;
         }
     }
+    @keyframes animation-opacity {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
 `;
 
 export default Global;
