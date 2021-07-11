@@ -15,7 +15,7 @@ const ViewModal = () => {
     const dispatch = useDispatch();
     const scrollRef = useRef<HTMLDivElement>(null);
 
-    const { viewList, viewListLoading, viewListDone, viewListError } = useSelector((state: RootState) => state.farm);
+    const { viewList, viewListLoading, viewListDone } = useSelector((state: RootState) => state.farm);
 
     const [currentImage, setCurrentImage] = useState<View | null>(null);
     const [init, setInit] = useState(false);
@@ -114,21 +114,6 @@ const LeftSection = styled.div`
         &::-webkit-scrollbar-track {
             background-color: inherit;
         }
-    }
-`;
-
-const ViewList = styled.div`
-    /* border: 1px solid gray; */
-    height: 100%;
-    overflow-y: scroll;
-    &::-webkit-scrollbar {
-        width: 10px;
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: #f16b6f;
-    }
-    &::-webkit-scrollbar-track {
-        background-color: inherit;
     }
 `;
 

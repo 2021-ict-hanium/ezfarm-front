@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { StyledModalOverlay, StyledModal, StyledModalCloseBtn } from '../styles/styles';
 
 type Props = {

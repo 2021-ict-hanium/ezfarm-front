@@ -1,4 +1,4 @@
-import React, { useState, useCallback, ChangeEvent, FormEvent, useEffect } from 'react';
+import React, { useState, useCallback, ChangeEvent, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { signUpRequest } from '../../actions/user';

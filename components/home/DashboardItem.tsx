@@ -12,7 +12,7 @@ const DashboardItem = ({ eng, kor, value }: Props) => (
             <div className="eng">{eng}</div>
             <div className="kor">{kor}</div>
             <div className="value">{value}</div>
-            {/* <Wave type={eng} /> */}
+            <Wave type={eng} />
         </Content>
     </Wrapper>
 );
