@@ -13,3 +13,12 @@ export interface FarmState {
     viewListError: null | string;
     viewList: Array<View> | null;
 }
+
+export interface IMyFarmListData {
+    key: number;
+    type: string;
+    farmName: string;
+    cropType: string;
+    createdAt: string;
+    selected: boolean;
+}

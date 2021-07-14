@@ -1,4 +1,6 @@
+/* eslint-disable react/display-name */
 /* eslint-disable import/prefer-default-export */
+
 export const ViewListData = [
     {
         id: 1,
@@ -45,3 +47,12 @@ export const SampleUser = {
     image: '/images/avatar_default.png',
     address: '',
 };
+
+export const MyFarmListData = Array.from({ length: 9 }, (idx: number) => ({
+    key: idx,
+    type: '',
+    farmName: '',
+    cropType: '',
+    createdAt: '',
+    selected: false,
+}));
