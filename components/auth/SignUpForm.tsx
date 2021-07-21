@@ -65,7 +65,7 @@ const SignUpForm = () => {
                 }
                 return;
             }
-            dispatch(signUpRequest(name, email, password));
+            dispatch(signUpRequest({ name, email, password }));
         },
         [dispatch, name, email, password, passwordCheck],
     );

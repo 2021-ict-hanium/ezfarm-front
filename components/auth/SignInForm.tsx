@@ -1,10 +1,9 @@
-import React, { FormEvent, useCallback, useState } from 'react';
+import React, { FormEvent, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { signUpModalOpen } from '../../actions/modal';
 import { logInRequest } from '../../actions/user';
 import useInput from '../../hooks/useInput';
-import useSwitch from '../../hooks/useSwitch';
 import { RootState } from '../../reducers';
 import { Inputwrapper } from '../../styles/styles';
 import ErrorMessage from '../ErrorMessage';

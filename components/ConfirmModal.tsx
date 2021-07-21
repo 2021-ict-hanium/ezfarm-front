@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CompleteBtn, StyledModalOverlay, StyledModal } from '../styles/styles';
+import { StyledModalOverlay, StyledModal } from '../styles/styles';
 
 type Props = {
     text: string;

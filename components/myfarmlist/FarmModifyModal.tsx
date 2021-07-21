@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadAllMyfarmRequest, modifyControllerClear, modifyMyfarmClear } from '../../actions/farm';
-import { controlModalClose, farmModifyModalClose } from '../../actions/modal';
+import { loadAllMyfarmRequest, modifyMyfarmClear } from '../../actions/farm';
+import { farmModifyModalClose } from '../../actions/modal';
 import { MyFarmInfo } from '../../interfaces/data/farm';
 import { RootState } from '../../reducers';
 import { getToken } from '../../sagas';

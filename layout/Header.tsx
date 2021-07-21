@@ -45,7 +45,7 @@ const Header = () => {
             <UserTap>
                 {me && (
                     <>
-                        <Avatar icon={<UserOutlined />} />
+                        {me.imageUrl ? <Avatar src={me.imageUrl} /> : <Avatar icon={<UserOutlined />} />}
                         <Dropdown overlay={menu} onVisibleChange={handleVisibleChange} visible={visible}>
                             <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
                                 {me.name}
