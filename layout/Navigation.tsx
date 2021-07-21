@@ -6,35 +6,37 @@ type Props = {
 };
 
 const Navigation = ({ page }: Props) => (
-    <Wrapper>
-        <Tap name="HOME" selected={page}>
-            <span />
-            <Link href="/">
-                <div>Home</div>
-            </Link>
-        </Tap>
-        <Tap name="MyFarm" selected={page}>
-            <span />
-            <Link href="/myFarmHouse">
-                <div>My farmhouse</div>
-            </Link>
-        </Tap>
-        <Tap name="OtherFarm" selected={page}>
-            <span />
-            <Link href="/otherFarmHouse">
-                <div>Other farmhouse</div>
-            </Link>
-        </Tap>
-        <Tap name="Notification" selected={page}>
-            <span />
-            <Link href="/notification">
-                <div>Notification</div>
-            </Link>
-        </Tap>
-    </Wrapper>
+    <nav>
+        <Wrapper>
+            <Tap name="HOME" selected={page}>
+                <span />
+                <Link href="/">
+                    <div>Home</div>
+                </Link>
+            </Tap>
+            <Tap name="MyFarm" selected={page}>
+                <span />
+                <Link href="/myFarmHouse">
+                    <div>My farmhouse</div>
+                </Link>
+            </Tap>
+            <Tap name="OtherFarm" selected={page}>
+                <span />
+                <Link href="/otherFarmHouse">
+                    <div>Other farmhouse</div>
+                </Link>
+            </Tap>
+            <Tap name="Notification" selected={page}>
+                <span />
+                <Link href="/notification">
+                    <div>Notification</div>
+                </Link>
+            </Tap>
+        </Wrapper>
+    </nav>
 );
 
-const Wrapper = styled.div`
+const Wrapper = styled.ul`
     /* border: 1px solid black; */
     min-width: 330px;
     display: flex;
@@ -42,7 +44,7 @@ const Wrapper = styled.div`
     margin-top: 105px;
 `;
 
-const Tap = styled.div<{ selected?: string; name?: string }>`
+const Tap = styled.li<{ selected?: string; name?: string }>`
     /* border: 1px solid black; */
     position: relative;
     cursor: pointer;
@@ -53,7 +55,6 @@ const Tap = styled.div<{ selected?: string; name?: string }>`
         height: 10px;
         background-color: #ffffff;
         z-index: -1;
-        animation: login-page-line 1s;
     }
     div {
         position: absolute;
@@ -67,7 +68,6 @@ const Tap = styled.div<{ selected?: string; name?: string }>`
         text-align: center;
         line-height: 60px;
         transform: ${(props) => props.selected === props.name && 'translateX(85px)'};
-        animation: navigation-tap 1s;
     }
     &:hover {
         div {
@@ -75,7 +75,18 @@ const Tap = styled.div<{ selected?: string; name?: string }>`
             transition: all 0.9s ease-in-out;
         }
     }
+    left: -330px;
+    animation: left-to-right-slide 1s forwards;
     margin-bottom: 120px;
+    &:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    &:nth-child(3) {
+        animation-delay: 0.5s;
+    }
+    &:last-child {
+        animation-delay: 0.8s;
+    }
 `;
 
 export default Navigation;

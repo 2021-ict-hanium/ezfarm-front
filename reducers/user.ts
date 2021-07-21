@@ -11,14 +11,16 @@ import {
     SIGN_UP_REQUEST,
     SIGN_UP_SUCCESS,
     SIGN_UP_CLEAR,
-    PROFILE_MODIFY_CLEAR,
-    PROFILE_MODIFY_FAILURE,
-    PROFILE_MODIFY_REQUEST,
-    PROFILE_MODIFY_SUCCESS,
+    LOAD_PROFILE_FAILURE,
+    LOAD_PROFILE_REQUEST,
+    LOAD_PROFILE_SUCCESS,
+    MODIFY_PROFILE_CLEAR,
+    MODIFY_PROFILE_FAILURE,
+    MODIFY_PROFILE_REQUEST,
+    MODIFY_PROFILE_SUCCESS,
 } from '../actions/user';
 import { UserAction } from '../interfaces/act/user';
-import { UserState } from '../interfaces/data/user';
-import { SampleUser } from '../utils/data';
+import { Me, UserState } from '../interfaces/data/user';
 
 // initial state
 export const initialState: UserState = {
@@ -32,9 +34,12 @@ export const initialState: UserState = {
     signUpLoading: false,
     signUpDone: false,
     signUpError: null,
-    profileModifyLoading: false,
-    profileModifyDone: false,
-    profileModifyError: null,
+    loadProfileLoading: false,
+    loadProfileDone: false,
+    loadProfileError: null,
+    modifyProfileLoading: false,
+    modifyProfileDone: false,
+    modifyProfileError: null,
 };
 
 const reducer = (state = initialState, action: UserAction) =>
@@ -48,7 +53,6 @@ const reducer = (state = initialState, action: UserAction) =>
             case LOG_IN_SUCCESS:
                 draft.logInLoading = false;
                 draft.logInDone = true;
-                draft.me = action.me;
                 break;
             case LOG_IN_FAILURE:
                 draft.logInLoading = false;
@@ -86,23 +90,38 @@ const reducer = (state = initialState, action: UserAction) =>
                 draft.signUpDone = false;
                 draft.signUpError = null;
                 break;
-            case PROFILE_MODIFY_REQUEST:
-                draft.profileModifyLoading = true;
-                draft.profileModifyDone = false;
-                draft.profileModifyError = null;
+            case LOAD_PROFILE_REQUEST:
+                draft.loadProfileLoading = true;
+                draft.loadProfileDone = false;
+                draft.loadProfileError = null;
                 break;
-            case PROFILE_MODIFY_SUCCESS:
-                draft.profileModifyLoading = false;
-                draft.profileModifyDone = true;
+            case LOAD_PROFILE_SUCCESS:
+                draft.loadProfileLoading = false;
+                draft.loadProfileDone = true;
+                draft.me = action.data;
                 break;
-            case PROFILE_MODIFY_FAILURE:
-                draft.profileModifyLoading = false;
-                draft.profileModifyError = action.error;
+            case LOAD_PROFILE_FAILURE:
+                draft.loadProfileLoading = false;
+                draft.loadProfileError = action.error;
                 break;
-            case PROFILE_MODIFY_CLEAR:
-                draft.profileModifyLoading = false;
-                draft.profileModifyDone = false;
-                draft.profileModifyError = null;
+            case MODIFY_PROFILE_REQUEST:
+                draft.modifyProfileLoading = true;
+                draft.modifyProfileDone = false;
+                draft.modifyProfileError = null;
+                break;
+            case MODIFY_PROFILE_SUCCESS:
+                draft.modifyProfileLoading = false;
+                draft.modifyProfileDone = true;
+                draft.me = { ...(draft.me as Me), ...action.data };
+                break;
+            case MODIFY_PROFILE_FAILURE:
+                draft.modifyProfileLoading = false;
+                draft.modifyProfileError = action.error;
+                break;
+            case MODIFY_PROFILE_CLEAR:
+                draft.modifyProfileLoading = false;
+                draft.modifyProfileDone = false;
+                draft.modifyProfileError = null;
                 break;
             default:
                 break;

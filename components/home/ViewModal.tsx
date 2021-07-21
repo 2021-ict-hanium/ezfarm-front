@@ -7,17 +7,17 @@ import { ViewListData } from '../../utils/data';
 import { StyledModalOverlay, StyledModalCloseBtn } from '../../styles/styles';
 import { viewModalClose } from '../../actions/modal';
 import { RootState } from '../../reducers';
-import { View } from '../../interfaces/data/farm';
-import { viewListRequest } from '../../actions/farm';
 import Loading from '../Loading';
+import { FarmView } from '../../interfaces/data/farm';
+import { loadViewRequest } from '../../actions/farm';
 
 const ViewModal = () => {
     const dispatch = useDispatch();
     const scrollRef = useRef<HTMLDivElement>(null);
 
-    const { viewList, viewListLoading, viewListDone, viewListError } = useSelector((state: RootState) => state.farm);
+    const { viewList, loadViewLoading, loadViewDone } = useSelector((state: RootState) => state.farm);
 
-    const [currentImage, setCurrentImage] = useState<View | null>(null);
+    const [currentImage, setCurrentImage] = useState<FarmView | null>(null);
     const [init, setInit] = useState(false);
 
     const onClickImage = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -34,17 +34,17 @@ const ViewModal = () => {
     // 이미지 로딩
     useEffect(() => {
         if (viewList === null) {
-            dispatch(viewListRequest());
+            dispatch(loadViewRequest(1));
         }
     }, [dispatch, viewList]);
 
     // 현재 이미지 설정
     useEffect(() => {
-        if (viewListDone) {
+        if (loadViewDone) {
             setCurrentImage(viewList[viewList.length - 1]);
             setInit(true);
         }
-    }, [viewListDone, viewList]);
+    }, [loadViewDone, viewList]);
 
     useEffect(() => {
         if (init && scrollRef.current) {
@@ -60,10 +60,10 @@ const ViewModal = () => {
                         <LeftSection>
                             <div className="viewList" ref={scrollRef}>
                                 {init &&
-                                    viewList.map((ele: View) => (
+                                    viewList.map((ele: FarmView) => (
                                         <ImageBox
                                             id={String(ele.id)}
-                                            selected={(currentImage as View).id}
+                                            selected={(currentImage as FarmView).id}
                                             key={ele.id}
                                             onClick={onClickImage}
                                         >
@@ -79,8 +79,8 @@ const ViewModal = () => {
                                 <header>실시간 화면</header>
                                 {init && (
                                     <>
-                                        <img src={(currentImage as View).url} alt="이미지" />
-                                        <ImgTime>{(currentImage as View).time}:00</ImgTime>
+                                        <img src={(currentImage as FarmView).url} alt="이미지" />
+                                        <ImgTime>{(currentImage as FarmView).time}:00</ImgTime>
                                     </>
                                 )}
                             </Container>
@@ -88,7 +88,7 @@ const ViewModal = () => {
                     </div>
                 </Modal>
             </StyledModalOverlay>
-            {viewListLoading && <Loading />}
+            {loadViewLoading && <Loading />}
         </>
     );
 };
@@ -114,21 +114,6 @@ const LeftSection = styled.div`
         &::-webkit-scrollbar-track {
             background-color: inherit;
         }
-    }
-`;
-
-const ViewList = styled.div`
-    /* border: 1px solid gray; */
-    height: 100%;
-    overflow-y: scroll;
-    &::-webkit-scrollbar {
-        width: 10px;
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: #f16b6f;
-    }
-    &::-webkit-scrollbar-track {
-        background-color: inherit;
     }
 `;
 

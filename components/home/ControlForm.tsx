@@ -8,24 +8,38 @@ import useSwitch from '../../hooks/useSwitch';
 import { RootState } from '../../reducers';
 import ErrorMessage from '../ErrorMessage';
 import Loading from '../Loading';
-import { controlRequest } from '../../actions/farm';
+import { modifyControllerRequest } from '../../actions/farm';
 
 const ControlForm = () => {
     const dispatch = useDispatch();
 
-    const { controlLoading, controlError } = useSelector((state: RootState) => state.farm);
+    const { myFarmId, controlLoading, controlError } = useSelector((state: RootState) => state.farm);
 
-    const [BOD, setBOD] = useSwitch(false);
+    const [water, setWater] = useSwitch(false);
     const [temperature, onChangeTemperature] = useInput('');
     const [illuminance, setIlluminance] = useSwitch(false);
-    const [CO2, setCO2] = useSwitch(false);
+    const [co2, setCo2] = useSwitch(false);
+
+    const onoffValue = (value: boolean) => {
+        if (value) {
+            return 'ON';
+        }
+        return 'OFF';
+    };
 
     const onSubmit = useCallback(
         (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
-            dispatch(controlRequest(BOD, temperature, illuminance, CO2));
+            const data = {
+                remoteId: myFarmId,
+                water: onoffValue(water),
+                temperature: Number(temperature),
+                illuminance: onoffValue(illuminance),
+                co2: onoffValue(co2),
+            };
+            dispatch(modifyControllerRequest(data));
         },
-        [dispatch, BOD, temperature, illuminance, CO2],
+        [dispatch, myFarmId, water, temperature, illuminance, co2],
     );
 
     return (
@@ -33,7 +47,7 @@ const ControlForm = () => {
             <Form onSubmit={onSubmit}>
                 <InputWrapper>
                     <span>급수 제어</span>
-                    <Switch checkedChildren="ON" unCheckedChildren="OFF" checked={BOD} onChange={setBOD} />
+                    <Switch checkedChildren="ON" unCheckedChildren="OFF" checked={water} onChange={setWater} />
                 </InputWrapper>
                 <InputWrapper>
                     <span>온도 제어</span>
@@ -58,7 +72,7 @@ const ControlForm = () => {
                 </InputWrapper>
                 <InputWrapper>
                     <span>CO2 제어</span>
-                    <Switch checkedChildren="ON" unCheckedChildren="OFF" checked={CO2} onChange={setCO2} />
+                    <Switch checkedChildren="ON" unCheckedChildren="OFF" checked={co2} onChange={setCo2} />
                 </InputWrapper>
                 <CompleteBtn type="submit">완료</CompleteBtn>
                 {controlError && <ErrorMessage message="제어에 실패하였습니다." />}

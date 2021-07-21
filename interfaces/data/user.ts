@@ -3,13 +3,24 @@ export interface LoginFormData {
     password: string;
 }
 
+export interface SignUpFormData extends LoginFormData {
+    name: string;
+}
+
+export interface ProfileModifyFormData {
+    imageUrl: string;
+    phoneNumber: string;
+    address: string;
+    isDefaultImage: boolean;
+}
+
 export interface Me {
     id: number;
     email: string;
     name: string;
-    mobile: string;
-    image?: string;
-    address?: string;
+    imageUrl: string;
+    phoneNumber: string;
+    address: string;
 }
 
 export interface UserState {
@@ -23,7 +34,10 @@ export interface UserState {
     signUpLoading: boolean;
     signUpDone: boolean;
     signUpError: null | string;
-    profileModifyLoading: boolean;
-    profileModifyDone: boolean;
-    profileModifyError: null | string;
+    loadProfileLoading: boolean;
+    loadProfileDone: boolean;
+    loadProfileError: null | string;
+    modifyProfileLoading: boolean;
+    modifyProfileDone: boolean;
+    modifyProfileError: null | string;
 }

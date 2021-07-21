@@ -5,7 +5,8 @@ import { RootState } from '../reducers';
 import { profileModifyModalClose } from '../actions/modal';
 import SuccessModal from './SuccessModal';
 import ProfileModifyForm from './ProfileModifyForm';
-import { profileModifyClear } from '../actions/user';
+import { loadProfileRequest, modifyProfileClear } from '../actions/user';
+import { getToken } from '../sagas';
 
 const ProfileModifyModal = () => {
     const dispatch = useDispatch();
@@ -16,7 +17,8 @@ const ProfileModifyModal = () => {
     }, [dispatch]);
 
     const onOk = useCallback(() => {
-        dispatch(profileModifyClear());
+        dispatch(modifyProfileClear());
+        dispatch(loadProfileRequest(getToken()));
         dispatch(profileModifyModalClose());
     }, [dispatch]);
 

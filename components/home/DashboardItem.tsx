@@ -9,10 +9,10 @@ type Props = {
 const DashboardItem = ({ eng, kor, value }: Props) => (
     <Wrapper>
         <Content>
-            <div className="eng">{eng}</div>
-            <div className="kor">{kor}</div>
-            <div className="value">{value}</div>
-            {/* <Wave type={eng} /> */}
+            <span className="eng">{eng}</span>
+            <span className="kor">{kor}</span>
+            <span className="value">{value}</span>
+            <Wave type={eng} />
         </Content>
     </Wrapper>
 );
@@ -49,6 +49,7 @@ const Content = styled.div`
     min-height: 200px;
     max-width: 260px;
     max-height: 260px;
+    overflow: hidden;
     .eng {
         font-size: 18px;
         color: #f16b6f;
@@ -62,16 +63,8 @@ const Content = styled.div`
         font-size: 48px;
         font-weight: 700;
     }
-    div {
+    span {
         animation: animation-opacity 2s;
-    }
-    @keyframes animation-opacity {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
     }
 `;
 
@@ -79,8 +72,8 @@ const Wave = styled.div<{ type: string }>`
     width: 700px;
     height: 700px;
     position: absolute;
-    top: 80%;
-    left: -85%;
+    top: 90%;
+    left: -120%;
     border-radius: 43%;
     @keyframes drift {
         100% {

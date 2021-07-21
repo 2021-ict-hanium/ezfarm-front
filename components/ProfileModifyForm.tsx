@@ -7,15 +7,16 @@ import Loading from './Loading';
 import { CompleteBtn, Inputwrapper } from '../styles/styles';
 import useInput from '../hooks/useInput';
 import { RootState } from '../reducers';
-import { profileModifyRequest } from '../actions/user';
+import { loadProfileRequest, modifyProfileRequest } from '../actions/user';
 import ErrorMessage from './ErrorMessage';
+import { getToken } from '../sagas';
 
 const ProfileModifyForm = () => {
     const dispatch = useDispatch();
     const { me, profileModifyLoading, profileModifyError } = useSelector((state: RootState) => state.user);
 
-    const [image, setImage] = useState<File | null>(null);
-    const [mobile, onChangeMobile] = useInput(me.mobile);
+    const [imageUrl, setImageUrl] = useState<File | null>(null);
+    const [phoneNumber, onChangePhoneNumber] = useInput(me.mobile);
     const [address, onChangeAddress] = useInput(me.address);
     const [isChange, setIsChange] = useState(false);
 
@@ -26,47 +27,48 @@ const ProfileModifyForm = () => {
     }, [imageInput]);
     const onChangeImages = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return;
-        setImage(e.target.files[0]);
+        setImageUrl(e.target.files[0]);
         setIsChange(true);
     }, []);
-    const removeImage = useCallback(() => setImage(null), []);
+    const removeImage = useCallback(() => setImageUrl(null), []);
 
     const onSubmit = useCallback(
         (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             if (isChange) {
                 const data = new FormData();
-                data.append('image', image as File);
-                data.append('mobile', mobile);
+                data.append('imageUrl', imageUrl as File);
+                data.append('phoneNumber', phoneNumber);
                 data.append('address', address);
 
-                dispatch(profileModifyRequest());
+                // dispatch(modifyProfileRequest(data));
+                dispatch(loadProfileRequest(getToken() as string));
             }
         },
-        [dispatch, image, mobile, address, isChange],
+        [dispatch, imageUrl, phoneNumber, address, isChange],
     );
 
     useEffect(() => {
-        if (mobile === me.mobile && image === null && address === me.address) {
+        if (phoneNumber === me.phoneNumber && imageUrl === null && address === me.address) {
             setIsChange(false);
         } else {
             setIsChange(true);
         }
-    }, [image, mobile, address, me]);
+    }, [imageUrl, phoneNumber, address, me]);
 
     return (
         <>
             <Form onSubmit={onSubmit}>
                 <ImageWrapper>
-                    {image ? (
+                    {imageUrl ? (
                         <>
-                            <Avatar src={URL.createObjectURL(image)} alt="avatar" />
+                            <Avatar src={URL.createObjectURL(imageUrl)} alt="avatar" />
                             <DeleteBtn onClick={removeImage}>
                                 <CloseOutlined />
                             </DeleteBtn>
                         </>
                     ) : (
-                        <Avatar src={me.image} alt="avatar" />
+                        <Avatar src={me.imageUrl} alt="avatar" />
                     )}
                 </ImageWrapper>
                 <ImageWrapper>
@@ -81,7 +83,7 @@ const ProfileModifyForm = () => {
                         <span className="circle" />
                     </Hr>
                     <label>이메일</label>
-                    <span>test@test.com</span>
+                    <span>{me.email}</span>
                 </InputWrapper>
                 <InputWrapper>
                     <Hr width={110}>
@@ -89,18 +91,18 @@ const ProfileModifyForm = () => {
                         <span className="circle" />
                     </Hr>
                     <label>이름</label>
-                    <span>김파머</span>
+                    <span>{me.name}</span>
                 </InputWrapper>
                 <InputWrapper>
                     <Hr width={90}>
                         <span className="line" />
                         <span className="circle" />
                     </Hr>
-                    <label htmlFor="mobile">전화번호</label>
+                    <label htmlFor="phoneNumber">전화번호</label>
                     <input
-                        name="mobile"
-                        onChange={onChangeMobile}
-                        value={mobile}
+                        name="phoneNumber"
+                        onChange={onChangePhoneNumber}
+                        value={phoneNumber}
                         placeholder="전화번호를 입력해주세요"
                     />
                 </InputWrapper>

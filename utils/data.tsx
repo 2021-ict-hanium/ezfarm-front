@@ -1,4 +1,8 @@
+/* eslint-disable react/display-name */
 /* eslint-disable import/prefer-default-export */
+
+import { MyfarmFormData } from '../interfaces/data/farm';
+
 export const ViewListData = [
     {
         id: 1,
@@ -38,10 +42,18 @@ export const ViewListData = [
 ];
 
 export const SampleUser = {
-    id: 123456,
-    email: 'test@test.com',
-    name: 'test',
-    mobile: '010-1234-5678',
-    image: '/images/avatar_default.png',
-    address: '',
+    id: 1,
+    email: 'string',
+    name: 'string',
+    imageUrl: 'string',
+    phoneNumber: 'string',
+    address: 'string',
+};
+
+export const Koreanization = (value: string) => {
+    if (value === 'GLASS') return '유리';
+    if (value === 'VINYL') return '비닐';
+    if (value === 'PAPRIKA') return '파프리카';
+    if (value === 'STRAWBERRY') return '딸기';
+    if (value === 'TOMATO') return '토마토';
 };

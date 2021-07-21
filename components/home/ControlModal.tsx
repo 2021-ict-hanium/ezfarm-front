@@ -4,8 +4,8 @@ import Modal from '../Modal';
 import { controlModalClose } from '../../actions/modal';
 import ControlForm from './ControlForm';
 import SuccessModal from '../SuccessModal';
-import { controlClear } from '../../actions/farm';
 import { RootState } from '../../reducers';
+import { modifyControllerClear } from '../../actions/farm';
 
 const ControlModal = () => {
     const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const ControlModal = () => {
     }, [dispatch]);
 
     const onOk = useCallback(() => {
-        dispatch(controlClear());
+        dispatch(modifyControllerClear());
         dispatch(controlModalClose());
     }, [dispatch]);
 

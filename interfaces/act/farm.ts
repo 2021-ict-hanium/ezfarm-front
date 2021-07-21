@@ -1,18 +1,60 @@
 import {
-    controlRequest,
-    controlSuccess,
-    controlFailure,
-    controlClear,
-    viewListFailure,
-    viewListRequest,
-    viewListSuccess,
+    addMyfarmFailure,
+    addMyfarmRequest,
+    addMyfarmSuccess,
+    addMyfarmClear,
+    modifyMyfarmClear,
+    modifyMyfarmFailure,
+    modifyMyfarmRequest,
+    modifyMyfarmSuccess,
+    removeMyfarmFailure,
+    removeMyfarmRequest,
+    removeMyfarmSuccess,
+    loadAllMyfarmFailure,
+    loadAllMyfarmRequest,
+    loadAllMyfarmSuccess,
+    loadControllerFailure,
+    loadControllerRequest,
+    loadControllerSuccess,
+    modifyControllerClear,
+    modifyControllerFailure,
+    modifyControllerRequest,
+    modifyControllerSuccess,
+    loadMyfarmDashboardFailure,
+    loadMyfarmDashboardRequest,
+    loadMyfarmDashboardSuccess,
+    loadViewFailure,
+    loadViewRequest,
+    loadViewSuccess,
+    removeMyfarmClear,
 } from '../../actions/farm';
 
 export type FarmAction =
-    | ReturnType<typeof controlRequest>
-    | ReturnType<typeof controlSuccess>
-    | ReturnType<typeof controlFailure>
-    | ReturnType<typeof controlClear>
-    | ReturnType<typeof viewListRequest>
-    | ReturnType<typeof viewListSuccess>
-    | ReturnType<typeof viewListFailure>;
+    | ReturnType<typeof addMyfarmRequest>
+    | ReturnType<typeof addMyfarmSuccess>
+    | ReturnType<typeof addMyfarmFailure>
+    | ReturnType<typeof addMyfarmClear>
+    | ReturnType<typeof loadAllMyfarmRequest>
+    | ReturnType<typeof loadAllMyfarmSuccess>
+    | ReturnType<typeof loadAllMyfarmFailure>
+    | ReturnType<typeof loadMyfarmDashboardRequest>
+    | ReturnType<typeof loadMyfarmDashboardSuccess>
+    | ReturnType<typeof loadMyfarmDashboardFailure>
+    | ReturnType<typeof modifyMyfarmRequest>
+    | ReturnType<typeof modifyMyfarmSuccess>
+    | ReturnType<typeof modifyMyfarmFailure>
+    | ReturnType<typeof modifyMyfarmClear>
+    | ReturnType<typeof removeMyfarmRequest>
+    | ReturnType<typeof removeMyfarmSuccess>
+    | ReturnType<typeof removeMyfarmFailure>
+    | ReturnType<typeof removeMyfarmClear>
+    | ReturnType<typeof loadControllerRequest>
+    | ReturnType<typeof loadControllerSuccess>
+    | ReturnType<typeof loadControllerFailure>
+    | ReturnType<typeof modifyControllerRequest>
+    | ReturnType<typeof modifyControllerSuccess>
+    | ReturnType<typeof modifyControllerFailure>
+    | ReturnType<typeof modifyControllerClear>
+    | ReturnType<typeof loadViewRequest>
+    | ReturnType<typeof loadViewSuccess>
+    | ReturnType<typeof loadViewFailure>;
