@@ -49,3 +49,11 @@ export const SampleUser = {
     phoneNumber: 'string',
     address: 'string',
 };
+
+export const Koreanization = (value: string) => {
+    if (value === 'GLASS') return '유리';
+    if (value === 'VINYL') return '비닐';
+    if (value === 'PAPRIKA') return '파프리카';
+    if (value === 'STRAWBERRY') return '딸기';
+    if (value === 'TOMATO') return '토마토';
+};

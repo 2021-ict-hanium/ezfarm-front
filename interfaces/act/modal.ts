@@ -11,6 +11,8 @@ import {
     farmListClose,
     farmEnrollModalClose,
     farmEnrollModalOpen,
+    farmModifyModalClose,
+    farmModifyModalOpen,
 } from '../../actions/modal';
 
 export type ModalAction =
@@ -25,4 +27,6 @@ export type ModalAction =
     | ReturnType<typeof farmListOpen>
     | ReturnType<typeof farmListClose>
     | ReturnType<typeof farmEnrollModalOpen>
-    | ReturnType<typeof farmEnrollModalClose>;
+    | ReturnType<typeof farmEnrollModalClose>
+    | ReturnType<typeof farmModifyModalOpen>
+    | ReturnType<typeof farmModifyModalClose>;

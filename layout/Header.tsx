@@ -62,7 +62,7 @@ const Header = () => {
 const Wrapper = styled.div`
     // border: 1px solid black;
     width: 100%;
-    min-width: 1400px;
+    min-width: 1455px;
     height: 80px;
     filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.1));
     background-color: #ffffff;

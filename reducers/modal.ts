@@ -13,6 +13,8 @@ import {
     FARM_LIST_CLOSE,
     FARM_ENROLL_MODAL_OPEN,
     FARM_ENROLL_MODAL_CLOSE,
+    FARM_MODIFY_MODAL_OPEN,
+    FARM_MODIFY_MODAL_CLOSE,
 } from '../actions/modal';
 import { ModalAction } from '../interfaces/act/modal';
 import { ModalState } from '../interfaces/data/modal';
@@ -25,6 +27,7 @@ export const initialState: ModalState = {
     isProfileModifyModalVisible: false,
     isFarmListVisible: false,
     isFarmEnrollModalVisible: false,
+    isFarmModifyModalVisible: false,
 };
 
 const reducer = (state = initialState, action: ModalAction) =>
@@ -65,6 +68,12 @@ const reducer = (state = initialState, action: ModalAction) =>
                 break;
             case FARM_ENROLL_MODAL_CLOSE:
                 draft.isFarmEnrollModalVisible = false;
+                break;
+            case FARM_MODIFY_MODAL_OPEN:
+                draft.isFarmModifyModalVisible = true;
+                break;
+            case FARM_MODIFY_MODAL_CLOSE:
+                draft.isFarmModifyModalVisible = false;
                 break;
             default:
                 break;

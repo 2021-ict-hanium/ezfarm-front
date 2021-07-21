@@ -3,9 +3,10 @@ import React, { useCallback } from 'react';
 import Modal from '../Modal';
 import SuccessModal from '../SuccessModal';
 import { RootState } from '../../reducers';
-import { addMyfarmClear } from '../../actions/farm';
+import { addMyfarmClear, loadAllMyfarmRequest } from '../../actions/farm';
 import FarmEnrollForm from './FarmEnrollForm';
 import { farmEnrollModalClose } from '../../actions/modal';
+import { getToken } from '../../sagas';
 
 const FarmEnrollModal = () => {
     const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const FarmEnrollModal = () => {
     }, [dispatch]);
 
     const onOk = useCallback(() => {
+        dispatch(loadAllMyfarmRequest(getToken()));
         dispatch(addMyfarmClear());
         dispatch(farmEnrollModalClose());
     }, [dispatch]);

@@ -10,12 +10,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CompleteBtn, StyledModal, StyledModalCloseBtn } from '../../styles/styles';
 import { IMyFarmList, MyFarmInfo } from '../../interfaces/data/farm';
 import { RootState } from '../../reducers';
-import { farmEnrollModalOpen, farmListClose } from '../../actions/modal';
+import { farmEnrollModalOpen, farmListClose, farmModifyModalOpen } from '../../actions/modal';
 import FarmEnrollModal from './FarmEnrollModal';
 import { loadAllMyfarmRequest, removeMyfarmClear, removeMyfarmRequest } from '../../actions/farm';
 import ConfirmModal from '../ConfirmModal';
 import { getToken } from '../../sagas';
 import Loading from '../Loading';
+import { Koreanization } from '../../utils/data';
+import FarmModifyModal from './FarmModifyModal';
 
 const MyFarmList = () => {
     const dispatch = useDispatch();
@@ -23,7 +25,7 @@ const MyFarmList = () => {
     const { myFarmList, loadAllMyfarmLoading, loadAllMyfarmDone, removeMyfarmDone } = useSelector(
         (state: RootState) => state.farm,
     );
-    const { isFarmEnrollModalVisible } = useSelector((state: RootState) => state.modal);
+    const { isFarmEnrollModalVisible, isFarmModifyModalVisible } = useSelector((state: RootState) => state.modal);
 
     const [farmList, setFarmList] = useState<Array<IMyFarmList> | null>(null);
     const [farmId, setFarmId] = useState<number | null>(null);
@@ -40,10 +42,11 @@ const MyFarmList = () => {
 
     const handleModify = useCallback((id: number) => {
         setFarmId(id);
+        dispatch(farmModifyModalOpen());
     }, []);
 
-    const removeOk = useCallback(() => {
-        dispatch(removeMyfarmRequest(farmId as number));
+    const removeOk = useCallback((id: number) => {
+        dispatch(removeMyfarmRequest(id));
         setRemoveConfirm(false);
     }, []);
 
@@ -128,14 +131,13 @@ const MyFarmList = () => {
 
     useEffect(() => {
         if (loadAllMyfarmDone) {
-            console.log('update');
             const result: Array<IMyFarmList> = myFarmList.map(
                 ({ id, main, farmType, name, cropType, startDate }: MyFarmInfo) => ({
                     key: String(id),
                     main,
-                    farmType,
+                    farmType: Koreanization(farmType),
                     name,
-                    cropType,
+                    cropType: Koreanization(cropType),
                     startDate,
                 }),
             );
@@ -164,7 +166,16 @@ const MyFarmList = () => {
                 </Container>
             </Wrapper>
             {isFarmEnrollModalVisible && <FarmEnrollModal />}
-            {removeConfirm && <ConfirmModal text="정말로 삭제하시겠습니까?" onOk={removeOk} onCancel={removeCancel} />}
+            {removeConfirm && (
+                <ConfirmModal
+                    text="정말로 삭제하시겠습니까?"
+                    onOk={() => {
+                        removeOk(farmId as number);
+                    }}
+                    onCancel={removeCancel}
+                />
+            )}
+            {isFarmModifyModalVisible && <FarmModifyModal farmId={farmId as number} />}
         </>
     );
 };

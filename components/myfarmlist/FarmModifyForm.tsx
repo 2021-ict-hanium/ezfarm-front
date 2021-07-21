@@ -4,26 +4,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Radio, DatePicker } from 'antd';
 import moment from 'moment';
-import { addMyfarmRequest } from '../../actions/farm';
+import { addMyfarmRequest, modifyMyfarmRequest } from '../../actions/farm';
 import useInput from '../../hooks/useInput';
 import { RootState } from '../../reducers';
 import { CompleteBtn, Inputwrapper } from '../../styles/styles';
 import ErrorMessage from '../ErrorMessage';
 import Loading from '../Loading';
+import { MyFarmInfo } from '../../interfaces/data/farm';
 
-const FarmEnrollForm = () => {
+type Props = {
+    farmInfo: MyFarmInfo;
+};
+
+const FarmModifyForm = ({ farmInfo }: Props) => {
     const dispatch = useDispatch();
 
-    const { addMyfarmLoading, addMyfarmError } = useSelector((state: RootState) => state.farm);
+    const { modifyMyfarmLoading, modifyMyfarmError } = useSelector((state: RootState) => state.farm);
 
-    const [name, changeName] = useInput('');
-    const [address, changeAddress] = useInput('');
-    const [phoneNumber, changePhoneNumber] = useInput('');
-    const [farmType, changeFarmType] = useInput('');
-    const [cropType, changeCropType] = useInput('');
-    const [area, changeArea] = useInput('');
-    const [startDate, setStartDate] = useState('');
-    const [main, setMain] = useState(false);
+    const [name, changeName] = useInput(farmInfo.name);
+    const [address, changeAddress] = useInput(farmInfo.address);
+    const [phoneNumber, changePhoneNumber] = useInput(farmInfo.phoneNumber);
+    const [farmType, changeFarmType] = useInput(farmInfo.farmType);
+    const [cropType, changeCropType] = useInput(farmInfo.cropType);
+    const [area, changeArea] = useInput(farmInfo.area);
+    const [startDate, setStartDate] = useState(farmInfo.startDate);
+    const [main, setMain] = useState(farmInfo.main);
 
     const onChangeStartDate = (_: unknown, dateString: string) => {
         setStartDate(dateString);
@@ -33,14 +38,26 @@ const FarmEnrollForm = () => {
         setMain(e.target.checked);
     };
 
-    const disabledDate = (current: moment.Moment) => current < moment().subtract(1, 'days').endOf('day');
+    const disabledDate = (current: moment.Moment) =>
+        current < moment(farmInfo.createdDate.substring(0, 10), 'YYYY-MM-DD').subtract(1, 'days').endOf('day');
 
     const onSubmit = useCallback(
         (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
-            dispatch(addMyfarmRequest({ name, address, phoneNumber, farmType, cropType, area, startDate, main }));
+            dispatch(
+                modifyMyfarmRequest(farmInfo.id, {
+                    name,
+                    address,
+                    phoneNumber,
+                    farmType,
+                    cropType,
+                    area,
+                    startDate,
+                    main,
+                }),
+            );
         },
-        [dispatch, name, address, phoneNumber, farmType, cropType, area, startDate, main],
+        [dispatch, farmInfo.id, name, address, phoneNumber, farmType, cropType, area, startDate, main],
     );
 
     return (
@@ -94,13 +111,17 @@ const FarmEnrollForm = () => {
                 </InputWrapper>
                 <InputWrapper>
                     <label>농가 생산 시작일</label>
-                    <DatePicker onChange={onChangeStartDate} disabledDate={disabledDate} />
+                    <DatePicker
+                        onChange={onChangeStartDate}
+                        disabledDate={disabledDate}
+                        defaultValue={moment(startDate, 'YYYY-MM-DD')}
+                    />
                 </InputWrapper>
                 <Checkbox onChange={onChangeMain}>메인 농가 설정</Checkbox>
-                <CompleteBtn type="submit">등록하기</CompleteBtn>
-                {addMyfarmError && <ErrorMessage message="농가등록에 실패하였습니다." />}
+                <CompleteBtn type="submit">수정하기</CompleteBtn>
+                {modifyMyfarmError && <ErrorMessage message="농가등록에 실패하였습니다." />}
             </Form>
-            {addMyfarmLoading && <Loading />}
+            {modifyMyfarmLoading && <Loading />}
         </>
     );
 };
@@ -144,4 +165,4 @@ const InputWrapper = styled(Inputwrapper)`
     margin-bottom: 20px;
 `;
 
-export default FarmEnrollForm;
+export default FarmModifyForm;
