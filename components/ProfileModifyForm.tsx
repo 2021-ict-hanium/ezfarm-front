@@ -7,17 +7,18 @@ import Loading from './Loading';
 import { CompleteBtn, Inputwrapper } from '../styles/styles';
 import useInput from '../hooks/useInput';
 import { RootState } from '../reducers';
-import { loadProfileRequest, modifyProfileRequest } from '../actions/user';
+import { modifyProfileRequest } from '../actions/user';
 import ErrorMessage from './ErrorMessage';
-import { getToken } from '../sagas';
 
 const ProfileModifyForm = () => {
     const dispatch = useDispatch();
     const { me, profileModifyLoading, profileModifyError } = useSelector((state: RootState) => state.user);
 
-    const [imageUrl, setImageUrl] = useState<File | null>(null);
-    const [phoneNumber, onChangePhoneNumber] = useInput(me.mobile);
+    const [currentImage, setCurrentImage] = useState(me.imageUrl);
+    const [image, setImage] = useState<File | null>(null);
+    const [phoneNumber, onChangePhoneNumber] = useInput(me.phoneNumber);
     const [address, onChangeAddress] = useInput(me.address);
+    const [isDefaultImage, setIsDefaultImage] = useState('N');
     const [isChange, setIsChange] = useState(false);
 
     const imageInput = useRef<HTMLInputElement>(null);
@@ -27,48 +28,70 @@ const ProfileModifyForm = () => {
     }, [imageInput]);
     const onChangeImages = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return;
-        setImageUrl(e.target.files[0]);
+        setImage(e.target.files[0]);
+        setIsDefaultImage('N');
         setIsChange(true);
     }, []);
-    const removeImage = useCallback(() => setImageUrl(null), []);
+    const removeImage = useCallback(() => {
+        if (currentImage) {
+            setCurrentImage(null);
+        } else {
+            setImage(null);
+        }
+        setIsDefaultImage('Y');
+    }, [currentImage]);
 
     const onSubmit = useCallback(
         (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             if (isChange) {
                 const data = new FormData();
-                data.append('imageUrl', imageUrl as File);
+                console.log(image);
+                console.log(phoneNumber);
+                console.log(address);
+                console.log(isDefaultImage);
+                data.append('image', image as File);
                 data.append('phoneNumber', phoneNumber);
                 data.append('address', address);
-
-                // dispatch(modifyProfileRequest(data));
-                dispatch(loadProfileRequest(getToken() as string));
+                data.append('isDefaultImage', String(isDefaultImage));
+                dispatch(modifyProfileRequest(data));
             }
         },
-        [dispatch, imageUrl, phoneNumber, address, isChange],
+        [dispatch, image, phoneNumber, address, isDefaultImage, isChange],
     );
 
     useEffect(() => {
-        if (phoneNumber === me.phoneNumber && imageUrl === null && address === me.address) {
+        if (phoneNumber === me.phoneNumber && currentImage === me.imageUrl && address === me.address) {
             setIsChange(false);
         } else {
             setIsChange(true);
         }
-    }, [imageUrl, phoneNumber, address, me]);
+    }, [currentImage, image, phoneNumber, address, me]);
 
     return (
         <>
             <Form onSubmit={onSubmit}>
                 <ImageWrapper>
-                    {imageUrl ? (
+                    {image ? (
                         <>
-                            <Avatar src={URL.createObjectURL(imageUrl)} alt="avatar" />
+                            <Avatar src={URL.createObjectURL(image)} alt="avatar" />
                             <DeleteBtn onClick={removeImage}>
                                 <CloseOutlined />
                             </DeleteBtn>
                         </>
                     ) : (
-                        <Avatar src={me.imageUrl} alt="avatar" />
+                        <>
+                            {currentImage ? (
+                                <>
+                                    <Avatar src={currentImage} alt="avatar" />
+                                    <DeleteBtn onClick={removeImage}>
+                                        <CloseOutlined />
+                                    </DeleteBtn>
+                                </>
+                            ) : (
+                                <Avatar src="/images/avatar_default.png" alt="avatar" />
+                            )}
+                        </>
                     )}
                 </ImageWrapper>
                 <ImageWrapper>

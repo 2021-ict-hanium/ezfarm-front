@@ -12,30 +12,21 @@ import { RootState } from '../reducers';
 import wrapper from '../store/configureStore';
 import { loadProfileRequest } from '../actions/user';
 import UserCurrentDashboard from '../components/home/UserCurrentDashboard';
-import { getToken } from '../sagas';
 import { loadAllMyfarmRequest } from '../actions/farm';
 import MyFarmList from '../components/myfarmlist/MyFarmList';
 
 const Home = () => {
-    const dispatch = useDispatch();
     const router = useRouter();
-    const { me, loadProfileDone } = useSelector((state: RootState) => state.user);
+    const { me } = useSelector((state: RootState) => state.user);
     const { isControlModalVisible, isViewModalVisible, isFarmListVisible } = useSelector(
         (state: RootState) => state.modal,
     );
 
     useEffect(() => {
-        if (!localStorage.getItem('accessToken')) {
+        if (!me) {
             router.push('/login');
         }
-    }, [router]);
-
-    useEffect(() => {
-        if (localStorage.getItem('accessToken')) {
-            dispatch(loadProfileRequest(getToken()));
-            dispatch(loadAllMyfarmRequest(getToken()));
-        }
-    }, [dispatch]);
+    }, [router, me]);
 
     return (
         <Layout title="HOME">
@@ -55,13 +46,14 @@ const Home = () => {
     );
 };
 
-// export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
-//     const cookies = nookies.get(context);
-//     if (cookies.accessToken) {
-//         context.store.dispatch(loadProfileRequest(cookies.accessToken));
-//         context.store.dispatch(END);
-//         await context.store.sagaTask?.toPromise();
-//     }
-// });
+export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
+    const cookies = nookies.get(context);
+    if (cookies.accessToken) {
+        context.store.dispatch(loadProfileRequest(cookies.accessToken));
+        context.store.dispatch(loadAllMyfarmRequest(cookies.accessToken));
+        context.store.dispatch(END);
+        await context.store.sagaTask?.toPromise();
+    }
+});
 
 export default Home;

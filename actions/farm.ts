@@ -1,4 +1,4 @@
-import { FarmController, FarmView, MyFarmDashboard, MyfarmFormData, MyFarmInfo, View } from '../interfaces/data/farm';
+import { FarmController, FarmView, MyFarmDashboard, MyfarmFormData, MyFarmInfo } from '../interfaces/data/farm';
 
 export const ADD_MYFARM_REQUEST = 'ADD_MYFARM_REQUEST' as const;
 export const ADD_MYFARM_SUCCESS = 'ADD_MYFARM_SUCCESS' as const;

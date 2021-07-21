@@ -10,7 +10,7 @@ import { getToken } from '../sagas';
 
 const ProfileModifyModal = () => {
     const dispatch = useDispatch();
-    const { profileModifyDone } = useSelector((state: RootState) => state.user);
+    const { modifyProfileDone } = useSelector((state: RootState) => state.user);
 
     const onClose = useCallback(() => {
         dispatch(profileModifyModalClose());
@@ -24,7 +24,7 @@ const ProfileModifyModal = () => {
 
     return (
         <>
-            {profileModifyDone ? (
+            {modifyProfileDone ? (
                 <SuccessModal text="회원정보 수정 완료" onOk={onOk} />
             ) : (
                 <Modal title="회원정보 수정" onCancel={onClose}>
