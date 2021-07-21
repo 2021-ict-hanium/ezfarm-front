@@ -30,9 +30,7 @@ const Layout = ({ children, title, isNavigation }: Props) => (
                     <span className="circle" />
                 </Hr>
             )}
-            <MainComponent>
-                <div>{children}</div>
-            </MainComponent>
+            <MainComponent>{children}</MainComponent>
         </main>
     </>
 );
@@ -50,7 +48,6 @@ const Hr = styled.div`
         width: 330px;
         height: 10px;
         background-color: #ffffff;
-        animation: login-page-line 0.9s;
     }
     .circle {
         position: absolute;
@@ -59,8 +56,8 @@ const Hr = styled.div`
         height: 30px;
         border-radius: 50%;
         background-color: #ffffff;
-        animation: login-page-circle 0.9s;
     }
+    animation: left-to-right-slide 0.9s;
 `;
 
 const CoverImg = styled.img.attrs({
@@ -69,7 +66,7 @@ const CoverImg = styled.img.attrs({
     position: absolute;
     top: 0;
     width: 100%;
-    min-width: 1200px;
+    min-width: 1400px;
     height: 100%;
     z-index: -50;
 `;
@@ -83,11 +80,5 @@ const MainComponent = styled.div`
     height: 100%;
     padding: 0 25px;
     align-items: center;
-    & > div {
-        flex: 1;
-        overflow: visible;
-        display: flex;
-        flex-direction: column;
-    }
 `;
 export default Layout;

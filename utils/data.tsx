@@ -1,6 +1,8 @@
 /* eslint-disable react/display-name */
 /* eslint-disable import/prefer-default-export */
 
+import { MyfarmFormData } from '../interfaces/data/farm';
+
 export const ViewListData = [
     {
         id: 1,
@@ -40,19 +42,10 @@ export const ViewListData = [
 ];
 
 export const SampleUser = {
-    id: 123456,
-    email: 'test@test.com',
-    name: 'test',
-    mobile: '010-1234-5678',
-    image: '/images/avatar_default.png',
-    address: '',
+    id: 1,
+    email: 'string',
+    name: 'string',
+    imageUrl: 'string',
+    phoneNumber: 'string',
+    address: 'string',
 };
-
-export const MyFarmListData = Array.from({ length: 9 }, (idx: number) => ({
-    key: idx,
-    type: '',
-    farmName: '',
-    cropType: '',
-    createdAt: '',
-    selected: false,
-}));

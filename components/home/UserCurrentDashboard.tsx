@@ -3,18 +3,22 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { controlModalOpen, viewModalOpen } from '../../actions/modal';
+import { controlModalOpen, farmListOpen, viewModalOpen } from '../../actions/modal';
 import DashboardItem from './DashboardItem';
 
 const UserCurrentDashboard = () => {
     const dispatch = useDispatch();
 
-    const onOpenControlModal = useCallback(() => {
+    const openControlModal = useCallback(() => {
         dispatch(controlModalOpen());
     }, [dispatch]);
 
-    const onOpenViewModal = useCallback(() => {
+    const openViewModal = useCallback(() => {
         dispatch(viewModalOpen());
+    }, [dispatch]);
+
+    const openFarmList = useCallback(() => {
+        dispatch(farmListOpen());
     }, [dispatch]);
 
     return (
@@ -35,9 +39,9 @@ const UserCurrentDashboard = () => {
                     </div>
                 </Dashboard>
                 <ButtonTap>
-                    <div onClick={onOpenControlModal}>실시간 제어</div>
-                    <div onClick={onOpenViewModal}>실시간 화면</div>
-                    <div>농가 선택</div>
+                    <div onClick={openControlModal}>실시간 제어</div>
+                    <div onClick={openViewModal}>실시간 화면</div>
+                    <div onClick={openFarmList}>농가 선택</div>
                 </ButtonTap>
             </div>
         </Wrapper>
@@ -47,7 +51,6 @@ const UserCurrentDashboard = () => {
 const Wrapper = styled.div`
     /* border: 1px solid gray; */
     margin-top: 70px;
-    max-width: 1056px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;

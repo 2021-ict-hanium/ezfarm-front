@@ -1,18 +1,20 @@
 import { applyMiddleware, createStore, compose, Store } from 'redux';
-import { MakeStore, createWrapper } from 'next-redux-wrapper';
+import { MakeStore, createWrapper, Context } from 'next-redux-wrapper';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import createSagaMiddleware from 'redux-saga';
+import createSagaMiddleware, { Task } from 'redux-saga';
 
 import rootSaga from '../sagas';
 import rootReducer from '../reducers';
 import { UserState } from '../interfaces/data/user';
+import { FarmState } from '../interfaces/data/farm';
 
 export interface CombinedState {
     index: string;
     user: UserState;
+    farm: FarmState;
 }
 
-const configureStore: MakeStore<Store<CombinedState>> = () => {
+const configureStore: MakeStore<CombinedState> = () => {
     const sagaMiddleware = createSagaMiddleware();
     const middlewares = [sagaMiddleware];
     const enhancer =
@@ -24,6 +26,6 @@ const configureStore: MakeStore<Store<CombinedState>> = () => {
     return store;
 };
 
-const wrapper = createWrapper<Store<CombinedState>>(configureStore, { debug: process.env.NODE_ENV === 'development' });
+const wrapper = createWrapper<CombinedState>(configureStore, { debug: process.env.NODE_ENV === 'development' });
 
 export default wrapper;

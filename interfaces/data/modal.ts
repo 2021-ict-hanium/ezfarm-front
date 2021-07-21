@@ -3,4 +3,6 @@ export type ModalState = {
     isViewModalVisible: boolean;
     isSignUpModalVisible: boolean;
     isProfileModifyModalVisible: boolean;
+    isFarmListVisible: boolean;
+    isFarmEnrollModalVisible: boolean;
 };

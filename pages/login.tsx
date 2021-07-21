@@ -8,14 +8,14 @@ import SignInForm from '../components/auth/SignInForm';
 
 const Login = () => {
     const router = useRouter();
-    const { me } = useSelector((state: RootState) => state.user);
+    const { logInDone } = useSelector((state: RootState) => state.user);
     const { isSignUpModalVisible } = useSelector((state: RootState) => state.modal);
 
     useEffect(() => {
-        if (me) {
+        if (logInDone || localStorage.getItem('accessToken')) {
             router.push('/');
         }
-    }, [router, me]);
+    }, [router, logInDone]);
 
     return (
         <Layout title="HOME" isNavigation={false}>

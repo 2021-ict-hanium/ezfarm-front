@@ -48,7 +48,8 @@ const Header = () => {
                         <Avatar icon={<UserOutlined />} />
                         <Dropdown overlay={menu} onVisibleChange={handleVisibleChange} visible={visible}>
                             <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-                                username <DownOutlined />
+                                {me.name}
+                                <DownOutlined />
                             </a>
                         </Dropdown>
                     </>
@@ -61,6 +62,7 @@ const Header = () => {
 const Wrapper = styled.div`
     // border: 1px solid black;
     width: 100%;
+    min-width: 1400px;
     height: 80px;
     filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.1));
     background-color: #ffffff;

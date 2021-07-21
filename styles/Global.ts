@@ -2,7 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 
 const Global = createGlobalStyle`
   html,
-  body {
+  body,
+  ul {
     width: 100%;
     padding: 0;
     margin: 0;
@@ -23,32 +24,24 @@ const Global = createGlobalStyle`
     letter-spacing: -1px;
     font-family: 'Noto Sans';
   }
+  button {
+    border: none;
+    cursor: pointer;
+  }
+  input:focus,
+  button:focus {
+    outline: none;
+  }
 
-  @keyframes login-page-line {
-        from {
+    @keyframes left-to-right-slide {
+      from {
             left: -330px;
         }
         to {
             left: 0;
         }
     }
-    @keyframes login-page-circle {
-        from {
-            left: 0px;
-        }
-        to {
-            left: 320px;
-        }
-    }
-    @keyframes navigation-tap {
-      from {
-        left: -184px;
-        }
-        to {
-          left: 34px;
-        }
-    }
-    @keyframes animation-opacity {
+    @keyframes fadeIn {
         from {
             opacity: 0;
         }

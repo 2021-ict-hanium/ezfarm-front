@@ -1,5 +1,5 @@
 import React from 'react';
-import MyFarmList from '../components/MyFarmList';
+import MyFarmList from '../components/myfarmlist/MyFarmList';
 import Layout from '../layout/Layout';
 
 const MyFarmHouse = () => (

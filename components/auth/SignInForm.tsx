@@ -1,16 +1,18 @@
-import React, { FormEvent, useCallback } from 'react';
+import React, { FormEvent, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { signUpModalOpen } from '../../actions/modal';
 import { logInRequest } from '../../actions/user';
 import useInput from '../../hooks/useInput';
+import useSwitch from '../../hooks/useSwitch';
 import { RootState } from '../../reducers';
 import { Inputwrapper } from '../../styles/styles';
+import ErrorMessage from '../ErrorMessage';
 import Loading from '../Loading';
 
 const SignInForm = () => {
     const dispatch = useDispatch();
-    const { logInLoading } = useSelector((state: RootState) => state.user);
+    const { logInLoading, logInError } = useSelector((state: RootState) => state.user);
 
     const [email, onChangeEmail] = useInput('');
     const [password, onChangePassword] = useInput('');
@@ -18,7 +20,7 @@ const SignInForm = () => {
     const onSubmit = useCallback(
         (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
-            dispatch(logInRequest(email, password));
+            dispatch(logInRequest({ email, password }));
         },
         [dispatch, email, password],
     );
@@ -37,24 +39,17 @@ const SignInForm = () => {
                 </InputWrapper>
                 <InputWrapper>
                     <label htmlFor="user-password">비밀번호</label>
-                    <input
-                        name="user-password"
-                        type="password"
-                        onChange={onChangePassword}
-                        value={password}
-                        minLength={6}
-                        required
-                    />
+                    <input name="user-password" type="password" onChange={onChangePassword} value={password} required />
                 </InputWrapper>
-                <div className="options">
-                    <label>
-                        <input type="checkbox" />
-                        로그인상태유지
-                    </label>
-                    <SignupBtn onClick={handleSignupBtn}>회원가입</SignupBtn>
-                </div>
-                <LogInBtn>로그인</LogInBtn>
+                <button type="submit" className="loginBtn">
+                    로그인
+                </button>
+                <button type="button" className="signupBtn" onClick={handleSignupBtn}>
+                    회원가입
+                </button>
+                {logInError && <ErrorMessage message="아이디 또는 비밀번호를 확인해주세요." />}
             </Form>
+
             {logInLoading && <Loading />}
         </>
     );
@@ -64,57 +59,35 @@ const InputWrapper = styled(Inputwrapper)`
     justify-content: space-between;
 `;
 
-const SignupBtn = styled.div`
-    &:hover {
-        color: #1c140d;
-    }
-`;
-
-const LogInBtn = styled.button.attrs({
-    type: 'submit',
-})`
-    border: none;
-    height: 60px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    font-weight: 600;
-    color: #f16b6f;
-    cursor: pointer;
-    &:focus {
-        outline: none;
-    }
-    &:hover {
-        background-color: #f16b6f;
-        color: #ffffff;
-    }
-`;
-
 const Form = styled.form`
     /* border: 1px solid black; */
     width: 400px;
-    height: 336px;
     display: flex;
     flex-direction: column;
     color: #ffffff;
+    margin-top: 120px;
     input {
         color: #1c140d;
+    }
+    button {
+        height: 60px;
+        border-radius: 10px;
+        font-weight: 600;
+        margin-bottom: 10px;
     }
     .title {
         font-size: 30px;
         font-weight: 800;
         margin-bottom: 20px;
     }
-    .options {
-        display: flex;
-        align-items: center;
-        margin: -15px 0 28px auto;
-        & > * {
-            margin-left: 30px;
-            font-weight: 500;
-            cursor: pointer;
-        }
+    .loginBtn {
+        background-color: #ffffff;
+        color: #f16b6f;
     }
-    margin-top: 120px;
+    .signupBtn {
+        color: #ffffff;
+        background-color: #f16b6f;
+    }
 `;
 
 export default SignInForm;

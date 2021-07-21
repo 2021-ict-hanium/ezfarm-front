@@ -58,10 +58,6 @@ export const StyledModalCloseBtn = styled.button`
     color: #999;
     background-color: transparent;
     border: none;
-    cursor: pointer;
-    &:focus {
-        outline: none;
-    }
     &:hover {
         color: #505050;
     }
@@ -78,11 +74,6 @@ export const CompleteBtn = styled.button`
     color: white;
     font-weight: 600;
     margin: 0 auto;
-    border: none;
-    cursor: pointer;
-    &:focus {
-        outline: none;
-    }
     &:hover {
         background-color: #f16b6f;
     }
@@ -104,9 +95,6 @@ export const Inputwrapper = styled.div`
         height: 45px;
         border-radius: 22px;
         padding: 0 10px;
-        &:focus {
-            outline: none;
-        }
     }
     margin-bottom: 40px;
 `;
