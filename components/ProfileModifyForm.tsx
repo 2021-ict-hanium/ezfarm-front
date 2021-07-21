@@ -12,7 +12,7 @@ import ErrorMessage from './ErrorMessage';
 
 const ProfileModifyForm = () => {
     const dispatch = useDispatch();
-    const { me, profileModifyLoading, profileModifyError } = useSelector((state: RootState) => state.user);
+    const { me, modifyProfileLoading, modifyProfileError } = useSelector((state: RootState) => state.user);
 
     const [currentImage, setCurrentImage] = useState(me.imageUrl);
     const [image, setImage] = useState<File | null>(null);
@@ -143,9 +143,9 @@ const ProfileModifyForm = () => {
                     />
                 </InputWrapper>
                 {isChange && <CompleteBtn>수정완료</CompleteBtn>}
-                {profileModifyError && <ErrorMessage message="회원정보 수정에 실패하였습니다." />}
+                {modifyProfileError && <ErrorMessage message="회원정보 수정에 실패하였습니다." />}
             </Form>
-            {profileModifyLoading && <Loading />}
+            {modifyProfileLoading && <Loading />}
         </>
     );
 };
