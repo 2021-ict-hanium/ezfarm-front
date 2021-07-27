@@ -50,7 +50,9 @@ const ProfileModifyForm = () => {
                 console.log(phoneNumber);
                 console.log(address);
                 console.log(isDefaultImage);
-                data.append('image', image as File);
+                if (image) {
+                    data.append('image', image);
+                }
                 data.append('phoneNumber', phoneNumber);
                 data.append('address', address);
                 data.append('isDefaultImage', String(isDefaultImage));

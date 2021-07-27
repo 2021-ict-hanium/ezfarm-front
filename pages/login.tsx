@@ -11,11 +11,11 @@ const Login = () => {
     const { logInDone } = useSelector((state: RootState) => state.user);
     const { isSignUpModalVisible } = useSelector((state: RootState) => state.modal);
 
-    useEffect(() => {
-        if (logInDone || localStorage.getItem('accessToken')) {
-            router.push('/');
-        }
-    }, [router, logInDone]);
+    // useEffect(() => {
+    //     if (logInDone || localStorage.getItem('accessToken')) {
+    //         router.push('/');
+    //     }
+    // }, [router, logInDone]);
 
     return (
         <Layout title="HOME" isNavigation={false}>

@@ -48,13 +48,13 @@ const Home = () => {
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
     const cookies = nookies.get(context);
-    if (!cookies.accessToken) {
-        context.res.writeHead(302, { Location: '/login' }).end();
+    if (cookies.accessToken) {
+        // context.res.writeHead(302, { Location: '/login' }).end();
+        context.store.dispatch(loadProfileRequest(cookies.accessToken));
+        context.store.dispatch(loadAllMyfarmRequest(cookies.accessToken));
+        context.store.dispatch(END);
+        await context.store.sagaTask?.toPromise();
     }
-    context.store.dispatch(loadProfileRequest(cookies.accessToken));
-    context.store.dispatch(loadAllMyfarmRequest(cookies.accessToken));
-    context.store.dispatch(END);
-    await context.store.sagaTask?.toPromise();
 });
 
 export default Home;
