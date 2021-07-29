@@ -10,10 +10,10 @@ import ChartContainer from './ChartContainer';
 const MyfarmDetail = () => {
     const [currentView, setCurrentView] = useState('chart');
     const { myFarm } = useSelector((state: RootState) => state.farm);
-    const handleClick = (e) => {
+    const handleClick = (e: any) => {
         setCurrentView(e.target.name);
     };
-    const totalDays = (startDate) => {
+    const totalDays = (startDate: string) => {
         let sdt = new Date(startDate);
         let edt = new Date();
         let dateDiff = Math.ceil((edt.getTime() - sdt.getTime()) / (1000 * 3600 * 24));
