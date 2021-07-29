@@ -46,6 +46,7 @@ const FarmEnrollForm = () => {
     return (
         <>
             <Form onSubmit={onSubmit}>
+                <SideImg />
                 <InputWrapper>
                     <label htmlFor="name">농가 이름</label>
                     <input
@@ -109,7 +110,8 @@ const Form = styled.form`
     /* border: 1px solid black; */
     display: flex;
     flex-direction: column;
-    width: 900px;
+    position: relative;
+    width: 1100px;
     padding: 0 30px;
     & > button {
         margin-top: 20px;
@@ -120,6 +122,15 @@ const Form = styled.form`
         border: none;
         box-shadow: none;
     }
+`;
+
+const SideImg = styled.img.attrs({
+    src: '/images/farmer.png',
+})`
+    position: absolute;
+    top: 0;
+    right: -50px;
+    width: 700px;
 `;
 
 const InputWrapper = styled(Inputwrapper)`

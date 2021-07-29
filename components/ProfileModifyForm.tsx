@@ -46,15 +46,15 @@ const ProfileModifyForm = () => {
             e.preventDefault();
             if (isChange) {
                 const data = new FormData();
-                console.log(image);
-                console.log(phoneNumber);
-                console.log(address);
-                console.log(isDefaultImage);
                 if (image) {
                     data.append('image', image);
                 }
-                data.append('phoneNumber', phoneNumber);
-                data.append('address', address);
+                if (phoneNumber) {
+                    data.append('phoneNumber', phoneNumber);
+                }
+                if (address) {
+                    data.append('address', address);
+                }
                 data.append('isDefaultImage', String(isDefaultImage));
                 dispatch(modifyProfileRequest(data));
             }
@@ -63,7 +63,7 @@ const ProfileModifyForm = () => {
     );
 
     useEffect(() => {
-        if (phoneNumber === me.phoneNumber && currentImage === me.imageUrl && address === me.address) {
+        if (phoneNumber === me.phoneNumber && currentImage === me.imageUrl && !image && address === me.address) {
             setIsChange(false);
         } else {
             setIsChange(true);
@@ -125,6 +125,7 @@ const ProfileModifyForm = () => {
                     </Hr>
                     <label htmlFor="phoneNumber">전화번호</label>
                     <input
+                        type="tel"
                         name="phoneNumber"
                         onChange={onChangePhoneNumber}
                         value={phoneNumber}

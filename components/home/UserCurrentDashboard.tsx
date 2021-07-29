@@ -59,6 +59,7 @@ const Wrapper = styled.div`
     .title2 {
         color: #ffffff;
         margin-left: 26px;
+        text-shadow: #f67d6f 1px 0 10px;
     }
     .title1 {
         font-size: 22px;
@@ -104,7 +105,7 @@ const ButtonTap = styled.div`
         line-height: 100px;
         font-size: 14px;
         font-weight: 500;
-        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 0.2rem 0.3rem 0.1rem rgba(85, 85, 85, 0.25);
         cursor: pointer;
         &:active {
             transform: scale(0.95);

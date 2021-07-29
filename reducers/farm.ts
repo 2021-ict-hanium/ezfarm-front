@@ -5,6 +5,7 @@ import {
     ADD_MYFARM_FAILURE,
     ADD_MYFARM_REQUEST,
     ADD_MYFARM_SUCCESS,
+    CHANGE_MYFARM,
     LOAD_ALL_MYFARM_FAILURE,
     LOAD_ALL_MYFARM_REQUEST,
     LOAD_ALL_MYFARM_SUCCESS,
@@ -31,12 +32,12 @@ import {
     REMOVE_MYFARM_SUCCESS,
 } from '../actions/farm';
 import { FarmAction } from '../interfaces/act/farm';
-import { FarmState } from '../interfaces/data/farm';
+import { FarmState, MyFarmInfo } from '../interfaces/data/farm';
 
 export const initialState: FarmState = {
-    myFarmList: null,
-    myFarmId: null,
+    myFarm: null,
     myFarmDashboard: null,
+    myFarmList: null,
     farmController: null,
     viewList: null,
     addMyfarmLoading: false, // 농가 생성
@@ -95,7 +96,7 @@ const reducer = (state = initialState, action: FarmAction) =>
                 draft.loadAllMyfarmLoading = false;
                 draft.loadAllMyfarmDone = true;
                 draft.myFarmList = action.data;
-                draft.myFarmId = action.data.filter((ele) => ele.main)[0]?.id || null;
+                draft.myFarm = action.data.filter((ele) => ele.main)[0] || null;
                 break;
             case LOAD_ALL_MYFARM_FAILURE:
                 draft.loadAllMyfarmLoading = false;
@@ -196,6 +197,9 @@ const reducer = (state = initialState, action: FarmAction) =>
             case LOAD_VIEW_FAILURE:
                 draft.loadViewLoading = false;
                 draft.loadViewError = action.error;
+                break;
+            case CHANGE_MYFARM:
+                draft.myFarm = (draft.myFarmList as Array<MyFarmInfo>).find((ele) => ele.id === action.farmId) || null;
                 break;
             default:
                 break;

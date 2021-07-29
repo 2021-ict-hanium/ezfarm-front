@@ -12,7 +12,7 @@ import { IMyFarmList, MyFarmInfo } from '../../interfaces/data/farm';
 import { RootState } from '../../reducers';
 import { farmEnrollModalOpen, farmListClose, farmModifyModalOpen } from '../../actions/modal';
 import FarmEnrollModal from './FarmEnrollModal';
-import { loadAllMyfarmRequest, removeMyfarmClear, removeMyfarmRequest } from '../../actions/farm';
+import { changeMyfarm, loadAllMyfarmRequest, removeMyfarmClear, removeMyfarmRequest } from '../../actions/farm';
 import ConfirmModal from '../ConfirmModal';
 import { getToken } from '../../sagas';
 import Loading from '../Loading';
@@ -22,7 +22,7 @@ import FarmModifyModal from './FarmModifyModal';
 const MyFarmList = () => {
     const dispatch = useDispatch();
 
-    const { myFarmList, loadAllMyfarmLoading, loadAllMyfarmDone, removeMyfarmDone } = useSelector(
+    const { myFarm, myFarmList, loadAllMyfarmLoading, loadAllMyfarmDone, removeMyfarmDone } = useSelector(
         (state: RootState) => state.farm,
     );
     const { isFarmEnrollModalVisible, isFarmModifyModalVisible } = useSelector((state: RootState) => state.modal);
@@ -87,6 +87,20 @@ const MyFarmList = () => {
             key: 'cropType',
             align: 'center',
         },
+
+        {
+            title: '전화번호',
+            dataIndex: 'phoneNumber',
+            key: 'phoneNumber',
+            align: 'center',
+        },
+        {
+            title: '주소',
+            dataIndex: 'address',
+            key: 'address',
+            align: 'center',
+            width: 200,
+        },
         {
             title: '등록일시',
             dataIndex: 'startDate',
@@ -96,8 +110,7 @@ const MyFarmList = () => {
         {
             title: '',
             key: 'action',
-            align: 'center',
-            width: 200,
+            align: 'left',
             render: (_, { key, name }) => (
                 <Space size="middle">
                     {name && (
@@ -120,6 +133,17 @@ const MyFarmList = () => {
                             삭제
                         </span>
                     )}
+                    {name && Number(key) !== myFarm.id && (
+                        <span
+                            onClick={() => {
+                                dispatch(changeMyfarm(Number(key)));
+                                dispatch(farmListClose());
+                            }}
+                            className="optionBtn"
+                        >
+                            조회
+                        </span>
+                    )}
                 </Space>
             ),
         },
@@ -132,13 +156,15 @@ const MyFarmList = () => {
     useEffect(() => {
         if (loadAllMyfarmDone) {
             const result: Array<IMyFarmList> = myFarmList.map(
-                ({ id, main, farmType, name, cropType, startDate }: MyFarmInfo) => ({
+                ({ id, main, farmType, name, cropType, startDate, address, phoneNumber }: MyFarmInfo) => ({
                     key: String(id),
                     main,
                     farmType: Koreanization(farmType),
                     name,
                     cropType: Koreanization(cropType),
                     startDate,
+                    address,
+                    phoneNumber,
                 }),
             );
             setFarmList(result);
@@ -182,6 +208,7 @@ const MyFarmList = () => {
 
 const Wrapper = styled(StyledModal)`
     margin-top: 80px;
+    box-shadow: 0 0.2rem 0.3rem 0.1rem rgba(85, 85, 85, 0.25);
 `;
 
 const Container = styled.div`

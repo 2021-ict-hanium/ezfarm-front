@@ -4,6 +4,7 @@ import { END } from 'redux-saga';
 import nookies from 'nookies';
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/dist/client/router';
+import styled from 'styled-components';
 import ControlModal from '../components/home/ControlModal';
 import ViewModal from '../components/home/ViewModal';
 import RecentNotification from '../components/home/RecentNotification';
@@ -35,6 +36,7 @@ const Home = () => {
                     <MyFarmList />
                 ) : (
                     <>
+                        <SideImg />
                         <RecentNotification />
                         <UserCurrentDashboard />
                         {isControlModalVisible && <ControlModal />}
@@ -45,6 +47,19 @@ const Home = () => {
         </Layout>
     );
 };
+
+const SideImg = styled.img.attrs({
+    src: 'https://media.giphy.com/media/QBpgbQa08wJ1uPvF6P/giphy.gif',
+    // src: '/images/farmer.png',
+})`
+    position: absolute;
+    top: 200px;
+    right: -400px;
+    z-index: -1;
+    @media screen and (max-width: 1570px) {
+        display: none;
+    }
+`;
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
     const cookies = nookies.get(context);

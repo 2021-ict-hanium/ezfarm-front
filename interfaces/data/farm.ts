@@ -48,7 +48,7 @@ export interface FarmView {
 
 export interface FarmState {
     myFarmList: Array<MyFarmInfo> | null;
-    myFarmId: number | null;
+    myFarm: MyFarmInfo | null;
     myFarmDashboard: MyFarmDashboard | null;
     farmController: FarmController | null;
     viewList: Array<FarmView> | null;

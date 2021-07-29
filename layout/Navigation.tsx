@@ -6,8 +6,8 @@ type Props = {
 };
 
 const Navigation = ({ page }: Props) => (
-    <nav>
-        <Wrapper>
+    <Navbar>
+        <ul>
             <Tap name="HOME" selected={page}>
                 <span />
                 <Link href="/">
@@ -32,11 +32,11 @@ const Navigation = ({ page }: Props) => (
                     <div>Notification</div>
                 </Link>
             </Tap>
-        </Wrapper>
-    </nav>
+        </ul>
+    </Navbar>
 );
 
-const Wrapper = styled.ul`
+const Navbar = styled.nav`
     /* border: 1px solid black; */
     min-width: 330px;
     display: flex;
@@ -55,6 +55,7 @@ const Tap = styled.li<{ selected?: string; name?: string }>`
         height: 10px;
         background-color: #ffffff;
         z-index: -1;
+        box-shadow: 0 0.2rem 0.3rem 0.1rem rgba(85, 85, 85, 0.25);
     }
     div {
         position: absolute;
@@ -67,6 +68,7 @@ const Tap = styled.li<{ selected?: string; name?: string }>`
         font-weight: 600;
         text-align: center;
         line-height: 60px;
+        box-shadow: 0 0.2rem 0.3rem 0.1rem rgba(85, 85, 85, 0.25);
         transform: ${(props) => props.selected === props.name && 'translateX(85px)'};
     }
     &:hover {

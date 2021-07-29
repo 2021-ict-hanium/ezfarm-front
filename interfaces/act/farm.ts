@@ -27,6 +27,7 @@ import {
     loadViewRequest,
     loadViewSuccess,
     removeMyfarmClear,
+    changeMyfarm,
 } from '../../actions/farm';
 
 export type FarmAction =
@@ -57,4 +58,5 @@ export type FarmAction =
     | ReturnType<typeof modifyControllerClear>
     | ReturnType<typeof loadViewRequest>
     | ReturnType<typeof loadViewSuccess>
-    | ReturnType<typeof loadViewFailure>;
+    | ReturnType<typeof loadViewFailure>
+    | ReturnType<typeof changeMyfarm>;

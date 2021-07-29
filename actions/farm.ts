@@ -36,6 +36,8 @@ export const LOAD_VIEW_REQUEST = 'LOAD_VIEW_REQUEST' as const;
 export const LOAD_VIEW_SUCCESS = 'LOAD_VIEW_SUCCESS' as const;
 export const LOAD_VIEW_FAILURE = 'LOAD_VIEW_FAILURE' as const;
 
+export const CHANGE_MYFARM = 'CHANGE_MYFARM' as const;
+
 export const addMyfarmRequest = (data: MyfarmFormData) => ({
     type: ADD_MYFARM_REQUEST,
     data,
@@ -168,4 +170,9 @@ export const loadViewSuccess = (data: Array<FarmView>) => ({
 export const loadViewFailure = (error: string) => ({
     type: LOAD_VIEW_FAILURE,
     error,
+});
+
+export const changeMyfarm = (farmId: number) => ({
+    type: CHANGE_MYFARM,
+    farmId,
 });
