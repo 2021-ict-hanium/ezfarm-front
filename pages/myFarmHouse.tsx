@@ -4,7 +4,7 @@ import nookies from 'nookies';
 import { END } from 'redux-saga';
 import { loadAllMyfarmRequest } from '../actions/farm';
 import { loadProfileRequest } from '../actions/user';
-import MyfarmDetail from '../components/Myfarmhouse/MyfarmDetail';
+import MyfarmDetail from '../components/myfarmhouse/MyfarmDetail';
 import MyFarmList from '../components/myfarmlist/MyFarmList';
 import Layout from '../layout/Layout';
 import { RootState } from '../reducers';
