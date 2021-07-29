@@ -41,6 +41,7 @@ Layout.defaultProps = {
 
 const Hr = styled.div`
     position: relative;
+    min-width: 400px;
     margin-top: 127px;
     .line {
         position: absolute;
@@ -66,7 +67,7 @@ const CoverImg = styled.img.attrs({
     position: absolute;
     top: 0;
     width: 100%;
-    min-width: 1400px;
+    min-width: 1150px;
     height: 100%;
     z-index: -50;
 `;
@@ -75,8 +76,8 @@ const MainComponent = styled.div`
     /* border: 1px solid gray; */
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 1200px;
+    position: relative;
+    /* width: 950px; */
     height: 100%;
     padding: 0 25px;
     align-items: center;

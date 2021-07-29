@@ -50,6 +50,7 @@ const Content = styled.div`
     max-width: 260px;
     max-height: 260px;
     overflow: hidden;
+    box-shadow: 0 0.2rem 0.3rem 0.1rem rgba(85, 85, 85, 0.25);
     .eng {
         font-size: 18px;
         color: #f16b6f;

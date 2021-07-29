@@ -26,6 +26,7 @@ const RecentNotification = () => {
 
 const Wrapper = styled.div`
     /* border: 1px solid gray; */
+    box-shadow: 0 0.2rem 0.3rem 0.1rem rgba(85, 85, 85, 0.25);
     position: relative;
     min-width: 772px;
     max-height: 146px;
@@ -52,6 +53,7 @@ const Wrapper = styled.div`
         border-right: 0;
         border-radius: 0 30px 0;
         transform: rotate(90deg);
+        box-shadow: 0.3rem 0.2rem 0.2rem 0.1rem rgba(85, 85, 85, 0.25);
     }
 `;
 export default RecentNotification;

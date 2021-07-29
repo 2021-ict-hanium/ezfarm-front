@@ -41,7 +41,7 @@ const Header = () => {
 
     return (
         <Wrapper>
-            <Logo>Ezfarm</Logo>
+            <Logo />
             <UserTap>
                 {me && (
                     <>
@@ -55,6 +55,7 @@ const Header = () => {
                     </>
                 )}
             </UserTap>
+            <Gif />
         </Wrapper>
     );
 };
@@ -62,22 +63,42 @@ const Header = () => {
 const Wrapper = styled.div`
     // border: 1px solid black;
     width: 100%;
-    min-width: 1455px;
+    min-width: 1150px;
     height: 80px;
     filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.1));
     background-color: #ffffff;
     border: 1px solid #e2e2e2;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 100px;
+    position: relative;
 `;
 
-const Logo = styled.div`
-    // border: 1px solid black;
-    width: 4rem;
+const Logo = styled.img.attrs({
+    src: '/images/logo.png',
+})`
+    /* border: 1px solid black; */
+    width: 200px;
     cursor: pointer;
+`;
+
+const Gif = styled.img.attrs({
+    src: 'https://media.giphy.com/media/TjeHxgT2F09P71rlhB/giphy.gif',
+})`
+    /* border: 1px solid black; */
+    position: absolute;
+    left: 350px;
+    width: 100px;
+    animation: move 5s linear infinite;
+    @keyframes move {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(400px);
+        }
+    }
 `;
 
 const UserTap = styled.div`
