@@ -24,7 +24,6 @@ import {
     SIGN_UP_REQUEST,
 } from '../actions/user';
 import { LoginFormData, Me, ProfileModifyFormData, SignUpFormData } from '../interfaces/data/user';
-import { SampleUser } from '../utils/utils';
 import { getToken } from '.';
 
 function logInAPI(data: LoginFormData) {

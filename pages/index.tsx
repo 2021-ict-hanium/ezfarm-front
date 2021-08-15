@@ -36,7 +36,7 @@ const Home = () => {
         if (myFarm) {
             dispatch(loadMyfarmDashboardRequest(myFarm.id));
         }
-    }, []);
+    }, [dispatch, myFarm]);
 
     return (
         <Layout title="HOME">

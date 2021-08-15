@@ -4,10 +4,10 @@
 /* eslint-disable react/display-name */
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { addFavoriteFarmRequest, loadFavoriteFarmRequest, removeFavoriteFarmRequest } from '../../actions/otherFarm';
+import { addFavoriteFarmRequest, removeFavoriteFarmRequest } from '../../actions/otherFarm';
 import { IFarmList, IFavoriteFarmList, IOtherFarmList } from '../../interfaces/data/otherFarm';
 import { RootState } from '../../reducers';
 import Loading from '../Loading';
@@ -92,14 +92,23 @@ const OtherFarmList = ({ title, favoritefarmList, farmList }: Props) => {
                     (!loadFavoriteFarmLoading ? (
                         <Table<IFarmList>
                             columns={Columns}
-                            dataSource={favoritefarmList.map((ele) => ele.farmSearchResponse)}
+                            dataSource={favoritefarmList.map((ele) => ({
+                                ...ele.farmSearchResponse,
+                                key: String(ele.farmSearchResponse.farmId),
+                            }))}
                         />
                     ) : (
                         <Loading />
                     ))}
                 {farmList &&
                     (!loadOtherFarmLoading ? (
-                        <Table<IFarmList> columns={Columns} dataSource={farmList} />
+                        <Table<IFarmList>
+                            columns={Columns}
+                            dataSource={farmList.map((ele) => ({
+                                ...ele,
+                                key: String(ele.farmId),
+                            }))}
+                        />
                     ) : (
                         <Loading />
                     ))}

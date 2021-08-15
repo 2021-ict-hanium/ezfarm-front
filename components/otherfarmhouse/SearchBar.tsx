@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Select } from 'antd';
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IFarmSearch, IfarmSearchCond } from '../../interfaces/data/otherFarm';
+import { IfarmSearchCond } from '../../interfaces/data/otherFarm';
 import { loadOtherFarmRequest } from '../../actions/otherFarm';
 import { RootState } from '../../reducers';
 
@@ -52,7 +52,7 @@ const SearchBar = () => {
         if (addFavoriteFarmDone || removeFavoriteFarmDone) {
             onClick();
         }
-    }, [addFavoriteFarmDone, removeFavoriteFarmDone]);
+    }, [addFavoriteFarmDone, removeFavoriteFarmDone, onClick]);
 
     return (
         <Wrapper>

@@ -6,12 +6,14 @@ import createSagaMiddleware, { Task } from 'redux-saga';
 import rootSaga from '../sagas';
 import rootReducer from '../reducers';
 import { UserState } from '../interfaces/data/user';
-import { FarmState } from '../interfaces/data/myFarm';
+import { MyFarmState } from '../interfaces/data/myFarm';
+import { OtherFarmState } from '../interfaces/data/otherFarm';
 
 export interface CombinedState {
     index: string;
     user: UserState;
-    farm: FarmState;
+    myFarm: MyFarmState;
+    otherFarm: OtherFarmState;
 }
 
 const configureStore: MakeStore<CombinedState> = () => {
