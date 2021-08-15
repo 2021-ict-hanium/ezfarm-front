@@ -35,9 +35,8 @@ import {
     REMOVE_MYFARM_REQUEST,
 } from '../actions/myFarm';
 import { getToken } from '.';
-import { FarmController, FarmView, MyFarmDashboard, MyfarmFormData, MyFarmInfo } from '../interfaces/data/myFarm';
-import { ViewListData } from '../utils/utils';
-import { SampleMyfarmDashboard, SampleViewList } from '../utils/sample';
+import { FarmController, MyFarmDashboard, MyfarmFormData, MyFarmInfo } from '../interfaces/data/myFarm';
+import { SampleViewList } from '../utils/sample';
 
 function addMyfarmAPI(data: MyfarmFormData) {
     return axios({

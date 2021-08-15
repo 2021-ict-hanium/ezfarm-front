@@ -3,7 +3,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ViewListData } from '../../utils/utils';
 import { StyledModalOverlay, StyledModalCloseBtn } from '../../styles/styles';
 import { viewModalClose } from '../../actions/modal';
 import { RootState } from '../../reducers';
@@ -20,14 +19,17 @@ const ViewModal = () => {
     const [currentImage, setCurrentImage] = useState<FarmView | null>(null);
     const [init, setInit] = useState(false);
 
-    const onClickImage = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        const selectedImage = viewList.find(
-            (ele: FarmView) => ele.measureTime === parseInt((e.target as Element).id, 10),
-        );
-        if (selectedImage) {
-            setCurrentImage(selectedImage);
-        }
-    }, []);
+    const onClickImage = useCallback(
+        (e: React.MouseEvent<HTMLDivElement>) => {
+            const selectedImage = viewList.find(
+                (ele: FarmView) => ele.measureTime === parseInt((e.target as Element).id, 10),
+            );
+            if (selectedImage) {
+                setCurrentImage(selectedImage);
+            }
+        },
+        [viewList],
+    );
 
     const onClose = useCallback(() => {
         dispatch(viewModalClose());

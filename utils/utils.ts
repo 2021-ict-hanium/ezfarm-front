@@ -1,5 +1,8 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/display-name */
+
+import { IChartData } from '../interfaces/data/myFarm';
+
 /* eslint-disable import/prefer-default-export */
 export const baseURL = 'https://api.hanium-ezfarm.com/';
 
@@ -17,7 +20,7 @@ export const fromDateToNow = (startDate: string) => {
     let dateDiff = Math.ceil((edt.getTime() - sdt.getTime()) / (1000 * 3600 * 24));
     return dateDiff;
 };
-const z2 = (v) => {
+const z2 = (v: number) => {
     const s = `00${String(v)}`;
     return s.substr(s.length - 2, 2);
 };
@@ -53,7 +56,7 @@ export const urlName = (term: string) => {
 };
 
 export const generateChartData = (data: Array<any>) => {
-    const chartData = {
+    const chartData: IChartData = {
         avgCo2: [],
         avgHumidity: [],
         avgIlluminance: [],

@@ -1,5 +1,5 @@
 /* eslint-disable react/button-has-type */
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
@@ -60,7 +60,7 @@ const MyfarmDetail = () => {
                         표
                     </button>
                 </Tab>
-                {currentView === 'chart' && <ChartContainer vaildDate={vaildDate} />}
+                {currentView === 'chart' && <ChartContainer vaildDate={vaildDate as IVaildDate} />}
             </Wrapper>
         </>
     );
