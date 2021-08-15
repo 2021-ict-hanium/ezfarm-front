@@ -3,13 +3,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ViewListData } from '../../utils/data';
+import { ViewListData } from '../../utils/utils';
 import { StyledModalOverlay, StyledModalCloseBtn } from '../../styles/styles';
 import { viewModalClose } from '../../actions/modal';
 import { RootState } from '../../reducers';
 import Loading from '../Loading';
-import { FarmView } from '../../interfaces/data/farm';
-import { loadViewRequest } from '../../actions/farm';
+import { FarmView } from '../../interfaces/data/myFarm';
+import { loadViewRequest } from '../../actions/myFarm';
 
 const ViewModal = () => {
     const dispatch = useDispatch();
@@ -21,7 +21,9 @@ const ViewModal = () => {
     const [init, setInit] = useState(false);
 
     const onClickImage = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        const selectedImage = ViewListData.find((ele) => ele.id === parseInt((e.target as Element).id, 10));
+        const selectedImage = viewList.find(
+            (ele: FarmView) => ele.measureTime === parseInt((e.target as Element).id, 10),
+        );
         if (selectedImage) {
             setCurrentImage(selectedImage);
         }
@@ -62,13 +64,13 @@ const ViewModal = () => {
                                 {init &&
                                     viewList.map((ele: FarmView) => (
                                         <ImageBox
-                                            id={String(ele.id)}
-                                            selected={(currentImage as FarmView).id}
-                                            key={ele.id}
+                                            id={String(ele.measureTime)}
+                                            selected={(currentImage as FarmView).measureTime}
+                                            key={ele.measureTime}
                                             onClick={onClickImage}
                                         >
-                                            <img src={ele.url} alt="이미지" id={String(ele.id)} />
-                                            <ImgTime>{ele.time}:00</ImgTime>
+                                            <img src={ele.imageUrl} alt="이미지" id={String(ele.measureTime)} />
+                                            <ImgTime>{ele.measureTime}:00</ImgTime>
                                         </ImageBox>
                                     ))}
                             </div>
@@ -79,8 +81,12 @@ const ViewModal = () => {
                                 <header>실시간 화면</header>
                                 {init && (
                                     <>
-                                        <img src={(currentImage as FarmView).url} alt="이미지" />
-                                        <ImgTime>{(currentImage as FarmView).time}:00</ImgTime>
+                                        <img src={(currentImage as FarmView).imageUrl} alt="이미지" />
+                                        <ImgTime>{(currentImage as FarmView).measureTime}:00</ImgTime>
+                                        <div>
+                                            <Stick wt={(currentImage as FarmView).cropCondition} />
+                                            <span>숙도 판별 {(currentImage as FarmView).cropCondition}%</span>
+                                        </div>
                                     </>
                                 )}
                             </Container>
@@ -92,6 +98,15 @@ const ViewModal = () => {
         </>
     );
 };
+
+const Stick = styled.span<{ wt: number }>`
+    position: absolute;
+    height: 100%;
+    width: ${(props) => `${props.wt}%`};
+    border-radius: 20px;
+    background-color: #b6da72;
+    left: 0;
+`;
 
 const LeftSection = styled.div`
     /* border: 1px solid gray; */
@@ -151,8 +166,26 @@ const Container = styled.div`
         margin-bottom: 20px;
     }
     img {
-        width: 100%;
-        height: 60%;
+        align-self: center;
+        width: 90%;
+        height: 50%;
+    }
+    & > div {
+        position: relative;
+        align-self: center;
+        width: 90%;
+        height: 40px;
+        border-radius: 20px;
+        border: 1px solid #b6da72;
+
+        & > span:last-child {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 16px;
+            font-weight: 700;
+        }
     }
 `;
 

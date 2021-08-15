@@ -6,7 +6,7 @@ import createSagaMiddleware, { Task } from 'redux-saga';
 import rootSaga from '../sagas';
 import rootReducer from '../reducers';
 import { UserState } from '../interfaces/data/user';
-import { FarmState } from '../interfaces/data/farm';
+import { FarmState } from '../interfaces/data/myFarm';
 
 export interface CombinedState {
     index: string;

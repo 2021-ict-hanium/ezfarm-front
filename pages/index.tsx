@@ -13,12 +13,15 @@ import { RootState } from '../reducers';
 import wrapper from '../store/configureStore';
 import { loadProfileRequest } from '../actions/user';
 import UserCurrentDashboard from '../components/home/UserCurrentDashboard';
-import { loadAllMyfarmRequest } from '../actions/farm';
+import { loadAllMyfarmRequest, loadMyfarmDashboardRequest } from '../actions/myFarm';
 import MyFarmList from '../components/myfarmlist/MyFarmList';
+import Loading from '../components/Loading';
 
 const Home = () => {
     const router = useRouter();
+    const dispatch = useDispatch();
     const { me } = useSelector((state: RootState) => state.user);
+    const { myFarm, viewList } = useSelector((state: RootState) => state.myFarm);
     const { isControlModalVisible, isViewModalVisible, isFarmListVisible } = useSelector(
         (state: RootState) => state.modal,
     );
@@ -28,6 +31,12 @@ const Home = () => {
             router.push('/login');
         }
     }, [router, me]);
+
+    useEffect(() => {
+        if (myFarm) {
+            dispatch(loadMyfarmDashboardRequest(myFarm.id));
+        }
+    }, []);
 
     return (
         <Layout title="HOME">
@@ -40,7 +49,7 @@ const Home = () => {
                         <RecentNotification />
                         <UserCurrentDashboard />
                         {isControlModalVisible && <ControlModal />}
-                        {isViewModalVisible && <ViewModal />}
+                        {isViewModalVisible && (viewList ? <ViewModal /> : <Loading />)}
                     </>
                 )}
             </>

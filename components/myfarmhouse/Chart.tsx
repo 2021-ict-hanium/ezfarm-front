@@ -17,7 +17,7 @@ const Chart = ({ dataKey, data }: Props) => (
                 <YAxis />
                 <Tooltip />
                 {/* <Legend /> */}
-                <Line type="monotone" dataKey="온도" stroke="#f16b6f" activeDot={{ r: 8 }} />
+                <Line type="monotone" dataKey={dataKey} stroke="#f16b6f" activeDot={{ r: 8 }} />
             </LineChart>
         </div>
     </Wrapper>

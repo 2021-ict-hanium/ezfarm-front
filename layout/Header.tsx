@@ -6,6 +6,7 @@ import { UserOutlined, DownOutlined } from '@ant-design/icons';
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
+import Link from 'next/link';
 import { RootState } from '../reducers';
 import { logOutRequest } from '../actions/user';
 import { profileModifyModalOpen } from '../actions/modal';
@@ -41,7 +42,11 @@ const Header = () => {
 
     return (
         <Wrapper>
-            <Logo />
+            <Link href="/">
+                <a>
+                    <Logo />
+                </a>
+            </Link>
             <UserTap>
                 {me && (
                     <>
@@ -55,7 +60,6 @@ const Header = () => {
                     </>
                 )}
             </UserTap>
-            <Gif />
         </Wrapper>
     );
 };
@@ -79,26 +83,8 @@ const Logo = styled.img.attrs({
     src: '/images/logo.png',
 })`
     /* border: 1px solid black; */
-    width: 200px;
+    width: 180px;
     cursor: pointer;
-`;
-
-const Gif = styled.img.attrs({
-    src: 'https://media.giphy.com/media/TjeHxgT2F09P71rlhB/giphy.gif',
-})`
-    /* border: 1px solid black; */
-    position: absolute;
-    left: 350px;
-    width: 100px;
-    animation: move 5s linear infinite;
-    @keyframes move {
-        from {
-            transform: translateX(0);
-        }
-        to {
-            transform: translateX(400px);
-        }
-    }
 `;
 
 const UserTap = styled.div`

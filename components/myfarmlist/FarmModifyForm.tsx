@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Radio, DatePicker } from 'antd';
 import moment from 'moment';
-import { modifyMyfarmRequest } from '../../actions/farm';
+import { modifyMyfarmRequest } from '../../actions/myFarm';
 import useInput from '../../hooks/useInput';
 import { RootState } from '../../reducers';
 import { CompleteBtn, Inputwrapper } from '../../styles/styles';
 import ErrorMessage from '../ErrorMessage';
 import Loading from '../Loading';
-import { MyFarmInfo } from '../../interfaces/data/farm';
+import { MyFarmInfo } from '../../interfaces/data/myFarm';
 
 type Props = {
     farmInfo: MyFarmInfo;
@@ -19,7 +19,7 @@ type Props = {
 const FarmModifyForm = ({ farmInfo }: Props) => {
     const dispatch = useDispatch();
 
-    const { modifyMyfarmLoading, modifyMyfarmError } = useSelector((state: RootState) => state.farm);
+    const { modifyMyfarmLoading, modifyMyfarmError } = useSelector((state: RootState) => state.myFarm);
 
     const [name, changeName] = useInput(farmInfo.name);
     const [address, changeAddress] = useInput(farmInfo.address);

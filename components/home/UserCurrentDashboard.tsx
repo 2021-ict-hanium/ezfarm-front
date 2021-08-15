@@ -1,26 +1,31 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { loadViewRequest } from '../../actions/myFarm';
 import { controlModalOpen, farmListOpen, viewModalOpen } from '../../actions/modal';
+import { RootState } from '../../reducers';
 import DashboardItem from './DashboardItem';
 
 const UserCurrentDashboard = () => {
     const dispatch = useDispatch();
+    const { myFarm, myFarmDashboard, viewList } = useSelector((state: RootState) => state.myFarm);
 
     const openControlModal = useCallback(() => {
         dispatch(controlModalOpen());
     }, [dispatch]);
 
     const openViewModal = useCallback(() => {
+        if (!viewList) {
+            dispatch(loadViewRequest(myFarm.id));
+        }
         dispatch(viewModalOpen());
-    }, [dispatch]);
+    }, [dispatch, myFarm, viewList]);
 
     const openFarmList = useCallback(() => {
         dispatch(farmListOpen());
     }, [dispatch]);
-
     return (
         <Wrapper>
             <div className="title1">User Current</div>
@@ -28,14 +33,34 @@ const UserCurrentDashboard = () => {
             <div className="container">
                 <Dashboard>
                     <div>
-                        <DashboardItem eng="Temperature" kor="온도" value="35.8°C" />
-                        <DashboardItem eng="Illuminance" kor="조도" value="1800lx" />
-                        <DashboardItem eng="Humidity" kor="습도" value="45%" />
+                        <DashboardItem
+                            eng="Temperature"
+                            kor="온도"
+                            value={myFarmDashboard ? `${myFarmDashboard?.tmp}°C` : ''}
+                        />
+                        <DashboardItem
+                            eng="Illuminance"
+                            kor="조도"
+                            value={myFarmDashboard ? `${myFarmDashboard?.illuminance}lx` : ''}
+                        />
+                        <DashboardItem
+                            eng="Humidity"
+                            kor="습도"
+                            value={myFarmDashboard ? `${myFarmDashboard?.humidity}%` : ''}
+                        />
                     </div>
                     <div>
-                        <DashboardItem eng="CO2" kor="이산화탄소" value="550ppm" />
-                        <DashboardItem eng="pH" kor="급액" value="5.98" />
-                        <DashboardItem eng="EC" kor="토양수분" value="2.63%" />
+                        <DashboardItem
+                            eng="CO2"
+                            kor="이산화탄소"
+                            value={myFarmDashboard ? `${myFarmDashboard?.co2}ppm` : ''}
+                        />
+                        <DashboardItem eng="pH" kor="급액" value={myFarmDashboard ? myFarmDashboard?.ph : ''} />
+                        <DashboardItem
+                            eng="EC"
+                            kor="토양수분"
+                            value={myFarmDashboard ? `${myFarmDashboard?.mos}%` : ''}
+                        />
                     </div>
                 </Dashboard>
                 <ButtonTap>

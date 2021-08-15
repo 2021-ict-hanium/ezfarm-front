@@ -8,22 +8,22 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { ColumnsType } from 'antd/lib/table';
 import { useDispatch, useSelector } from 'react-redux';
 import { CompleteBtn, StyledModal, StyledModalCloseBtn } from '../../styles/styles';
-import { IMyFarmList, MyFarmInfo } from '../../interfaces/data/farm';
+import { IMyFarmList, MyFarmInfo } from '../../interfaces/data/myFarm';
 import { RootState } from '../../reducers';
 import { farmEnrollModalOpen, farmListClose, farmModifyModalOpen } from '../../actions/modal';
 import FarmEnrollModal from './FarmEnrollModal';
-import { changeMyfarm, loadAllMyfarmRequest, removeMyfarmClear, removeMyfarmRequest } from '../../actions/farm';
+import { changeMyfarm, loadAllMyfarmRequest, removeMyfarmClear, removeMyfarmRequest } from '../../actions/myFarm';
 import ConfirmModal from '../ConfirmModal';
 import { getToken } from '../../sagas';
 import Loading from '../Loading';
-import { Koreanization } from '../../utils/data';
+import { koreanization } from '../../utils/utils';
 import FarmModifyModal from './FarmModifyModal';
 
 const MyFarmList = () => {
     const dispatch = useDispatch();
 
     const { myFarm, myFarmList, loadAllMyfarmLoading, loadAllMyfarmDone, removeMyfarmDone } = useSelector(
-        (state: RootState) => state.farm,
+        (state: RootState) => state.myFarm,
     );
     const { isFarmEnrollModalVisible, isFarmModifyModalVisible } = useSelector((state: RootState) => state.modal);
 
@@ -159,9 +159,9 @@ const MyFarmList = () => {
                 ({ id, main, farmType, name, cropType, startDate, address, phoneNumber }: MyFarmInfo) => ({
                     key: String(id),
                     main,
-                    farmType: Koreanization(farmType),
+                    farmType: koreanization(farmType),
                     name,
-                    cropType: Koreanization(cropType),
+                    cropType: koreanization(cropType),
                     startDate,
                     address,
                     phoneNumber,

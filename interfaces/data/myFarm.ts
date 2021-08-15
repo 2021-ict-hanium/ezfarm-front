@@ -1,3 +1,12 @@
+export interface IChartData {
+    avgTmp: Array<any>;
+    avgIlluminance: Array<any>;
+    avgHumidity: Array<any>;
+    avgCo2: Array<any>;
+    avgPh: Array<any>;
+    avgMos: Array<any>;
+}
+
 export interface MyfarmFormData {
     name: string;
     address: string;
@@ -15,12 +24,13 @@ export interface MyFarmInfo extends MyfarmFormData {
 }
 
 export interface MyFarmDashboard {
-    Temperature: number;
-    Illuminance: number;
-    Humidity: number;
-    CO2: number;
-    pH: number;
-    EC: number;
+    co2: string;
+    humidity: string;
+    illuminance: string;
+    measureDate: string;
+    mos: string;
+    ph: string;
+    tmp: string;
 }
 
 export interface IMyFarmList {
@@ -41,17 +51,17 @@ export interface FarmController {
 }
 
 export interface FarmView {
-    id: number;
-    url: string;
-    time: number;
+    cropCondition: number;
+    imageUrl: string;
+    measureTime: number;
 }
 
-export interface FarmState {
-    myFarmList: Array<MyFarmInfo> | null;
+export interface MyFarmState {
+    myFarmList: MyFarmInfo[] | null;
     myFarm: MyFarmInfo | null;
     myFarmDashboard: MyFarmDashboard | null;
     farmController: FarmController | null;
-    viewList: Array<FarmView> | null;
+    viewList: FarmView[] | null;
     addMyfarmLoading: boolean; // 농가 생성
     addMyfarmDone: boolean;
     addMyfarmError: null | string;

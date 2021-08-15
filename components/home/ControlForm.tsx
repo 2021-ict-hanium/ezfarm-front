@@ -8,7 +8,7 @@ import useSwitch from '../../hooks/useSwitch';
 import { RootState } from '../../reducers';
 import ErrorMessage from '../ErrorMessage';
 import Loading from '../Loading';
-import { modifyControllerRequest } from '../../actions/farm';
+import { modifyControllerRequest } from '../../actions/myFarm';
 
 const ControlForm = () => {
     const dispatch = useDispatch();

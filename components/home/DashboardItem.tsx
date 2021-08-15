@@ -11,7 +11,7 @@ const DashboardItem = ({ eng, kor, value }: Props) => (
         <Content>
             <span className="eng">{eng}</span>
             <span className="kor">{kor}</span>
-            <span className="value">{value}</span>
+            {value && <span className="value">{value}</span>}
             <Wave type={eng} />
         </Content>
     </Wrapper>

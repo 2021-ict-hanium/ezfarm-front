@@ -33,10 +33,11 @@ import {
     removeMyfarmRequest,
     removeMyfarmSuccess,
     REMOVE_MYFARM_REQUEST,
-} from '../actions/farm';
+} from '../actions/myFarm';
 import { getToken } from '.';
-import { FarmController, MyFarmDashboard, MyfarmFormData, MyFarmInfo } from '../interfaces/data/farm';
-import { ViewListData } from '../utils/data';
+import { FarmController, FarmView, MyFarmDashboard, MyfarmFormData, MyFarmInfo } from '../interfaces/data/myFarm';
+import { ViewListData } from '../utils/utils';
+import { SampleMyfarmDashboard, SampleViewList } from '../utils/sample';
 
 function addMyfarmAPI(data: MyfarmFormData) {
     return axios({
@@ -73,18 +74,20 @@ function* loadAllMyfarm(action: ReturnType<typeof loadAllMyfarmRequest>) {
     }
 }
 
-function loadMyfarmDashboardAPI(token: string, farmId: number) {
+function loadMyfarmDashboardAPI(farmId: number) {
     return axios({
-        method: 'POST',
-        url: `/api/farm/me/${farmId}`,
-        headers: { Authorization: `Bearer ${token}` },
+        method: 'GET',
+        url: `/api/facility/${farmId}`,
+        headers: { Authorization: `Bearer  ${getToken()}` },
     });
 }
 
 function* loadMyfarmDashboard(action: ReturnType<typeof loadMyfarmDashboardRequest>) {
     try {
-        const result: AxiosResponse<MyFarmDashboard> = yield call(loadMyfarmDashboardAPI, action.token, action.farmId);
+        const result: AxiosResponse<MyFarmDashboard> = yield call(loadMyfarmDashboardAPI, action.farmId);
         yield put(loadMyfarmDashboardSuccess(result.data));
+        // yield delay(1000);
+        // yield put(loadMyfarmDashboardSuccess(SampleMyfarmDashboard));
     } catch (err) {
         yield put(loadMyfarmDashboardFailure(err.message));
     }
@@ -161,18 +164,20 @@ function* modifyController(action: ReturnType<typeof modifyControllerRequest>) {
     }
 }
 
-// function loadViewAPI(farmId:number) {
-//     return axios({
-//         method: 'POST',
-//         url: '/api/remote',
-//         headers: { Authorization: `Bearer ${getToken()}` },
-//     });
-// }
+function loadViewAPI(farmId: number) {
+    return axios({
+        method: 'GET',
+        url: `/api/screen/${farmId}`,
+        headers: { Authorization: `Bearer ${getToken()}` },
+    });
+}
 
 function* loadView(action: ReturnType<typeof loadViewRequest>) {
     try {
-        // yield call(modifyControllerAPI, action.data);
-        yield put(loadViewSuccess(ViewListData));
+        // const result: AxiosResponse<FarmView[]> = yield call(loadViewAPI, action.farmId);
+        // yield put(loadViewSuccess(result.data));
+        yield delay(1000);
+        yield put(loadViewSuccess(SampleViewList));
     } catch (err) {
         yield put(loadViewFailure(err.message));
     }
@@ -210,7 +215,7 @@ function* watchLoadView() {
     yield takeLatest(LOAD_VIEW_REQUEST, loadView);
 }
 
-export default function* farmSaga() {
+export default function* myFarmSaga() {
     yield all([
         fork(watchAddMyfarm),
         fork(watchLoadAllMyfarm),

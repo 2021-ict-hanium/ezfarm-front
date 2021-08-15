@@ -1,30 +1,47 @@
 /* eslint-disable react/button-has-type */
-import { useState } from 'react';
+import axios, { AxiosResponse } from 'axios';
+import React, { useState, useEffect } from 'react';
+
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { IVaildDate } from '../../interfaces/data/otherFarm';
 import { RootState } from '../../reducers';
+import { getToken } from '../../sagas';
 import { StyledModal } from '../../styles/styles';
-import { Koreanization } from '../../utils/data';
+import { baseURL, fromDateToNow, koreanization } from '../../utils/utils';
 import ChartContainer from './ChartContainer';
 
 const MyfarmDetail = () => {
+    const { myFarm } = useSelector((state: RootState) => state.myFarm);
     const [currentView, setCurrentView] = useState('chart');
-    const { myFarm } = useSelector((state: RootState) => state.farm);
+    const [vaildDate, setVaildData] = useState<IVaildDate | null>(null);
+
     const handleClick = (e: any) => {
         setCurrentView(e.target.name);
     };
-    const totalDays = (startDate: string) => {
-        let sdt = new Date(startDate);
-        let edt = new Date();
-        let dateDiff = Math.ceil((edt.getTime() - sdt.getTime()) / (1000 * 3600 * 24));
-        return dateDiff;
+
+    const loadVaildDate = async () => {
+        // const res = await axios.get(`${baseURL}//api/facility/search-condition/${myFarm.id}`);
+        const res = await axios({
+            method: 'GET',
+            url: `${baseURL}api/facility/search-condition/102`,
+            headers: { Authorization: `Bearer ${getToken()}` },
+        });
+        setVaildData(res.data);
     };
+
+    useEffect(() => {
+        if (myFarm) {
+            loadVaildDate();
+        }
+    }, [myFarm]);
+
     return (
         <>
-            <FarmInfo>{`농가 이름 : ${myFarm.name}(${Koreanization(myFarm.farmType)}) | 작물 : ${Koreanization(
+            <FarmInfo>{`농가 이름 : ${myFarm.name}(${koreanization(myFarm.farmType)}) | 작물 : ${koreanization(
                 myFarm.cropType,
             )} | 시작일 : ${myFarm.startDate} ${
-                totalDays(myFarm.startDate) > 0 ? `(${totalDays(myFarm.startDate)}일째)` : ''
+                fromDateToNow(myFarm.startDate) > 0 ? `(${fromDateToNow(myFarm.startDate)}일째)` : ''
             }`}</FarmInfo>
             <Wrapper>
                 <Tab>
@@ -43,7 +60,7 @@ const MyfarmDetail = () => {
                         표
                     </button>
                 </Tab>
-                {currentView === 'chart' && <ChartContainer />}
+                {currentView === 'chart' && <ChartContainer vaildDate={vaildDate} />}
             </Wrapper>
         </>
     );

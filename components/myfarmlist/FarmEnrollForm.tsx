@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Radio, DatePicker } from 'antd';
 import moment from 'moment';
-import { addMyfarmRequest } from '../../actions/farm';
+import { addMyfarmRequest } from '../../actions/myFarm';
 import useInput from '../../hooks/useInput';
 import { RootState } from '../../reducers';
 import { CompleteBtn, Inputwrapper } from '../../styles/styles';
