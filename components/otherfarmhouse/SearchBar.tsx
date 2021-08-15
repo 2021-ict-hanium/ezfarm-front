@@ -1,16 +1,22 @@
 import styled from 'styled-components';
 import { Select } from 'antd';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { IFarmSearch, IfarmSearchCond } from '../../interfaces/data/otherFarm';
+import { loadOtherFarmRequest } from '../../actions/otherFarm';
+import { RootState } from '../../reducers';
 
 const SearchBar = () => {
-    const [farmKind, setFarmKind] = useState('');
+    const dispatch = useDispatch();
+    const { addFavoriteFarmDone, removeFavoriteFarmDone } = useSelector((state: RootState) => state.otherFarm);
+    const [farmGroup, setFarmGroup] = useState('');
     const [farmType, setFarmType] = useState('');
     const [cropType, setCropType] = useState('');
-    const onChangeFarmKind = (value: string) => {
+    const onChangeFarmGroup = (value: string) => {
         if (value) {
-            setFarmKind(value);
+            setFarmGroup(value);
         } else {
-            setFarmKind('');
+            setFarmGroup('');
         }
     };
     const onChangeFarmType = (value: string) => {
@@ -28,11 +34,31 @@ const SearchBar = () => {
         }
     };
 
+    const onClick = useCallback(() => {
+        const farmSearchCond: IfarmSearchCond = {};
+        if (farmGroup) {
+            farmSearchCond.farmGroup = farmGroup;
+        }
+        if (farmType) {
+            farmSearchCond.farmType = farmType;
+        }
+        if (cropType) {
+            farmSearchCond.cropType = cropType;
+        }
+        dispatch(loadOtherFarmRequest(farmSearchCond));
+    }, [dispatch, farmGroup, farmType, cropType]);
+
+    useEffect(() => {
+        if (addFavoriteFarmDone || removeFavoriteFarmDone) {
+            onClick();
+        }
+    }, [addFavoriteFarmDone, removeFavoriteFarmDone]);
+
     return (
         <Wrapper>
-            <Select showSearch style={{ width: 150 }} placeholder="농가 선택" onChange={onChangeFarmKind} allowClear>
-                <Select.Option value="best">우수농가</Select.Option>
-                <Select.Option value="normal">일반농가</Select.Option>
+            <Select showSearch style={{ width: 150 }} placeholder="농가 선택" onChange={onChangeFarmGroup} allowClear>
+                <Select.Option value="BEST">우수농가</Select.Option>
+                <Select.Option value="NORMAL">일반농가</Select.Option>
             </Select>
             <Select showSearch style={{ width: 150 }} placeholder="종류 선택" onChange={onChangeFarmType} allowClear>
                 <Select.Option value="VINYL">비닐</Select.Option>
@@ -43,7 +69,7 @@ const SearchBar = () => {
                 <Select.Option value="STRAWBERRY">딸기</Select.Option>
                 <Select.Option value="TOMATO">토마토</Select.Option>
             </Select>
-            <SearchBtn>검색</SearchBtn>
+            <SearchBtn onClick={onClick}>검색</SearchBtn>
         </Wrapper>
     );
 };

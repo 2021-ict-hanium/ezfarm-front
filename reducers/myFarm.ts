@@ -30,11 +30,11 @@ import {
     REMOVE_MYFARM_FAILURE,
     REMOVE_MYFARM_REQUEST,
     REMOVE_MYFARM_SUCCESS,
-} from '../actions/farm';
-import { FarmAction } from '../interfaces/act/farm';
-import { FarmState, MyFarmInfo } from '../interfaces/data/farm';
+} from '../actions/myFarm';
+import { MyFarmAction } from '../interfaces/act/myFarm';
+import { MyFarmState, MyFarmInfo } from '../interfaces/data/myFarm';
 
-export const initialState: FarmState = {
+export const initialState: MyFarmState = {
     myFarm: null,
     myFarmDashboard: null,
     myFarmList: null,
@@ -66,8 +66,8 @@ export const initialState: FarmState = {
     loadViewError: null,
 };
 
-const reducer = (state = initialState, action: FarmAction) =>
-    produce(state, (draft: FarmState) => {
+const reducer = (state = initialState, action: MyFarmAction) =>
+    produce(state, (draft: MyFarmState) => {
         switch (action.type) {
             case ADD_MYFARM_REQUEST:
                 draft.addMyfarmLoading = true;

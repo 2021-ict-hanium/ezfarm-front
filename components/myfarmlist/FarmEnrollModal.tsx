@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import Modal from '../Modal';
 import SuccessModal from '../SuccessModal';
 import { RootState } from '../../reducers';
-import { addMyfarmClear, loadAllMyfarmRequest } from '../../actions/farm';
+import { addMyfarmClear, loadAllMyfarmRequest } from '../../actions/myFarm';
 import FarmEnrollForm from './FarmEnrollForm';
 import { farmEnrollModalClose } from '../../actions/modal';
 import { getToken } from '../../sagas';

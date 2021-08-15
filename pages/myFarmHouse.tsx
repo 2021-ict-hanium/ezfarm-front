@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import nookies from 'nookies';
 import { END } from 'redux-saga';
-import { loadAllMyfarmRequest } from '../actions/farm';
+import { loadAllMyfarmRequest } from '../actions/myFarm';
 import { loadProfileRequest } from '../actions/user';
 import MyfarmDetail from '../components/myfarmhouse/MyfarmDetail';
 import MyFarmList from '../components/myfarmlist/MyFarmList';

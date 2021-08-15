@@ -12,7 +12,7 @@ const Login = () => {
     const { isSignUpModalVisible } = useSelector((state: RootState) => state.modal);
 
     useEffect(() => {
-        if (logInDone || localStorage.getItem('accessToken')) {
+        if (logInDone || sessionStorage.getItem('accessToken')) {
             router.push('/');
         }
     }, [router, logInDone]);

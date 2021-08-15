@@ -3,7 +3,8 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { combineReducers, Reducer, AnyAction } from 'redux';
 import user from './user';
 import modal from './modal';
-import farm from './farm';
+import myFarm from './myFarm';
+import otherFarm from './otherFarm';
 
 const rootReducer: Reducer<any, AnyAction> = (state, action) => {
     switch (action.type) {
@@ -14,7 +15,8 @@ const rootReducer: Reducer<any, AnyAction> = (state, action) => {
             const combinedReducer = combineReducers({
                 user,
                 modal,
-                farm,
+                myFarm,
+                otherFarm,
             });
             return combinedReducer(state, action);
         }

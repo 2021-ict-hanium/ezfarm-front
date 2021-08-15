@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadAllMyfarmRequest, modifyMyfarmClear } from '../../actions/farm';
+import { loadAllMyfarmRequest, modifyMyfarmClear } from '../../actions/myFarm';
 import { farmModifyModalClose } from '../../actions/modal';
-import { MyFarmInfo } from '../../interfaces/data/farm';
+import { MyFarmInfo } from '../../interfaces/data/myFarm';
 import { RootState } from '../../reducers';
 import { getToken } from '../../sagas';
 import Modal from '../Modal';
@@ -15,7 +15,7 @@ type Props = {
 
 const FarmModifyModal = ({ farmId }: Props) => {
     const dispatch = useDispatch();
-    const { myFarmList, modifyMyfarmDone } = useSelector((state: RootState) => state.farm);
+    const { myFarmList, modifyMyfarmDone } = useSelector((state: RootState) => state.myFarm);
 
     const onClose = useCallback(() => {
         dispatch(farmModifyModalClose());

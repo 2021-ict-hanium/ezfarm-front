@@ -5,7 +5,7 @@ import { controlModalClose } from '../../actions/modal';
 import ControlForm from './ControlForm';
 import SuccessModal from '../SuccessModal';
 import { RootState } from '../../reducers';
-import { modifyControllerClear } from '../../actions/farm';
+import { modifyControllerClear } from '../../actions/myFarm';
 
 const ControlModal = () => {
     const dispatch = useDispatch();

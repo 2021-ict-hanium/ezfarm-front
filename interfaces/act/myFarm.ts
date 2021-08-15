@@ -28,9 +28,9 @@ import {
     loadViewSuccess,
     removeMyfarmClear,
     changeMyfarm,
-} from '../../actions/farm';
+} from '../../actions/myFarm';
 
-export type FarmAction =
+export type MyFarmAction =
     | ReturnType<typeof addMyfarmRequest>
     | ReturnType<typeof addMyfarmSuccess>
     | ReturnType<typeof addMyfarmFailure>
