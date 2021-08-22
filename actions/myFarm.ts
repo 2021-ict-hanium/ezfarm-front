@@ -44,12 +44,7 @@ export const addMyfarmRequest = (data: MyfarmFormData) => ({
 });
 
 export const addMyfarmSuccess = () => ({
-    type: ADD_MYFARM_SUCCESS,
-});
-
-export const addMyfarmFailure = (error: string) => ({
-    type: ADD_MYFARM_FAILURE,
-    error,
+    type: ADD_MYFARM,
 });
 
 export const addMyfarmClear = () => ({

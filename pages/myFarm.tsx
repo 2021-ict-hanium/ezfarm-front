@@ -6,14 +6,14 @@ import { loadAllMyfarmRequest } from '../actions/myFarm';
 import { loadProfileRequest } from '../actions/user';
 import MyfarmDetail from '../components/myfarmhouse/MyfarmDetail';
 import MyFarmList from '../components/myfarmlist/MyFarmList';
-import Layout from '../layout/Layout';
+import Layout from '../components/layout/Layout';
 import { RootState } from '../reducers';
 import wrapper from '../store/configureStore';
 
-const MyFarmHouse = () => {
+const MyFarm = () => {
     const { isFarmListVisible } = useSelector((state: RootState) => state.modal);
     return (
-        <Layout title="MyFarm">
+        <Layout title="myFarm">
             {isFarmListVisible ? (
                 <MyFarmList />
             ) : (
@@ -36,4 +36,4 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
     }
 });
 
-export default MyFarmHouse;
+export default MyFarm;

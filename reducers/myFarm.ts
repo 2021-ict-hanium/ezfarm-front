@@ -96,7 +96,7 @@ const reducer = (state = initialState, action: MyFarmAction) =>
                 draft.loadAllMyfarmLoading = false;
                 draft.loadAllMyfarmDone = true;
                 draft.myFarmList = action.data;
-                draft.myFarm = action.data.filter((ele) => ele.main)[0] || null;
+                draft.myFarm = action.data.filter((ele: MyFarmInfo) => ele.main)[0] || null;
                 break;
             case LOAD_ALL_MYFARM_FAILURE:
                 draft.loadAllMyfarmLoading = false;

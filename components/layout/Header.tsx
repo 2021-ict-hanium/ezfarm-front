@@ -7,9 +7,9 @@ import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
-import { RootState } from '../reducers';
-import { logOutRequest } from '../actions/user';
-import { profileModifyModalOpen } from '../actions/modal';
+import { RootState } from '../../reducers';
+import { logOutRequest } from '../../actions/user';
+import { profileModifyModalOpen } from '../../actions/modal';
 
 const Header = () => {
     const dispatch = useDispatch();

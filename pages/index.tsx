@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import ControlModal from '../components/home/ControlModal';
 import ViewModal from '../components/home/ViewModal';
 import RecentNotification from '../components/home/RecentNotification';
-import Layout from '../layout/Layout';
+import Layout from '../components/layout/Layout';
 import { RootState } from '../reducers';
 import wrapper from '../store/configureStore';
 import { loadProfileRequest } from '../actions/user';
@@ -39,13 +39,13 @@ const Home = () => {
     }, [dispatch, myFarm]);
 
     return (
-        <Layout title="HOME">
+        <Layout title="home">
             <>
                 {isFarmListVisible ? (
                     <MyFarmList />
                 ) : (
                     <>
-                        <SideImg />
+                        {/* <SideImg /> */}
                         <RecentNotification />
                         <UserCurrentDashboard />
                         {isControlModalVisible && <ControlModal />}
@@ -57,18 +57,18 @@ const Home = () => {
     );
 };
 
-const SideImg = styled.img.attrs({
-    src: 'https://media.giphy.com/media/QBpgbQa08wJ1uPvF6P/giphy.gif',
-    // src: '/images/farmer.png',
-})`
-    position: absolute;
-    top: 200px;
-    right: -400px;
-    z-index: -1;
-    @media screen and (max-width: 1570px) {
-        display: none;
-    }
-`;
+// const SideImg = styled.img.attrs({
+//     src: 'https://media.giphy.com/media/QBpgbQa08wJ1uPvF6P/giphy.gif',
+//     // src: '/images/farmer.png',
+// })`
+//     position: absolute;
+//     top: 200px;
+//     right: -400px;
+//     z-index: -1;
+//     @media screen and (max-width: 1570px) {
+//         display: none;
+//     }
+// `;
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
     const cookies = nookies.get(context);

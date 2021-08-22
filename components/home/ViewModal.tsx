@@ -14,7 +14,7 @@ const ViewModal = () => {
     const dispatch = useDispatch();
     const scrollRef = useRef<HTMLDivElement>(null);
 
-    const { viewList, loadViewLoading, loadViewDone } = useSelector((state: RootState) => state.farm);
+    const { viewList, loadViewLoading, loadViewDone } = useSelector((state: RootState) => state.myFarm);
 
     const [currentImage, setCurrentImage] = useState<FarmView | null>(null);
     const [init, setInit] = useState(false);
