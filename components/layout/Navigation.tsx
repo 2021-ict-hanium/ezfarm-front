@@ -8,25 +8,25 @@ type Props = {
 const Navigation = ({ page }: Props) => (
     <Navbar>
         <ul>
-            <Tap name="HOME" selected={page}>
+            <Tap name="home" selected={page}>
                 <span />
                 <Link href="/">
                     <div>Home</div>
                 </Link>
             </Tap>
-            <Tap name="MyFarm" selected={page}>
+            <Tap name="myFarm" selected={page}>
                 <span />
-                <Link href="/myFarmHouse">
-                    <div>My farmhouse</div>
+                <Link href="/myFarm">
+                    <div>My farm</div>
                 </Link>
             </Tap>
-            <Tap name="OtherFarm" selected={page}>
+            <Tap name="farmComparison" selected={page}>
                 <span />
-                <Link href="/otherFarmHouse">
-                    <div>Other farmhouse</div>
+                <Link href="/farmComparison">
+                    <div>Farm comparison</div>
                 </Link>
             </Tap>
-            <Tap name="Notification" selected={page}>
+            <Tap name="notification" selected={page}>
                 <span />
                 <Link href="/notification">
                     <div>Notification</div>

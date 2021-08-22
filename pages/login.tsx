@@ -1,7 +1,7 @@
 import { useRouter } from 'next/dist/client/router';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import Layout from '../layout/Layout';
+import Layout from '../components/layout/Layout';
 import { RootState } from '../reducers';
 import SignUpModal from '../components/auth/SignUpModal';
 import SignInForm from '../components/auth/SignInForm';

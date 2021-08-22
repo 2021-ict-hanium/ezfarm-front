@@ -3,7 +3,7 @@ import Head from 'next/head';
 import styled from 'styled-components';
 import Header from './Header';
 import Navigation from './Navigation';
-import Global from '../styles/Global';
+import Global from '../../styles/Global';
 
 type Props = {
     children: ReactChild;

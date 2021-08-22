@@ -6,13 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from '../components/otherfarmhouse/SearchBar';
 import { loadAllMyfarmRequest } from '../actions/myFarm';
 import { loadProfileRequest } from '../actions/user';
-import Layout from '../layout/Layout';
+import Layout from '../components/layout/Layout';
 import wrapper from '../store/configureStore';
 import OtherFarmList from '../components/otherfarmhouse/OtherFarmList';
 import { RootState } from '../reducers';
 import { loadFavoriteFarmRequest } from '../actions/otherFarm';
 
-const OtherFarmHouse = () => {
+const FarmComparison = () => {
     const dispatch = useDispatch();
     const { favoriteFarmList, otherFarmList, addFavoriteFarmDone, removeFavoriteFarmDone } = useSelector(
         (state: RootState) => state.otherFarm,
@@ -28,7 +28,7 @@ const OtherFarmHouse = () => {
     }, [addFavoriteFarmDone, removeFavoriteFarmDone]);
     console.log(favoriteFarmList);
     return (
-        <Layout title="OtherFarm">
+        <Layout title="farmComparison">
             <>
                 <SearchBar />
                 <OtherFarmList title="즐겨찾기 목록" favoritefarmList={favoriteFarmList} />
@@ -49,4 +49,4 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
     }
 });
 
-export default OtherFarmHouse;
+export default FarmComparison;
