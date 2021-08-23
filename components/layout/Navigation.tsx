@@ -42,6 +42,10 @@ const Navbar = styled.nav`
     display: flex;
     flex-direction: column;
     margin-top: 105px;
+    ul {
+        display: flex;
+        flex-direction: column;
+    }
 `;
 
 const Tap = styled.li<{ selected?: string; name?: string }>`

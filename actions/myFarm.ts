@@ -1,4 +1,4 @@
-import { FarmController, FarmView, MyFarmDashboard, MyfarmFormData, MyFarmInfo } from '../interfaces/data/myFarm';
+import { IFarmController, IFarmView, IMyFarmDashboard, IMyfarmFormData, IMyFarmInfo } from '../interfaces/data/myFarm';
 
 export const ADD_MYFARM_REQUEST = 'ADD_MYFARM_REQUEST' as const;
 export const ADD_MYFARM_SUCCESS = 'ADD_MYFARM_SUCCESS' as const;
@@ -32,19 +32,24 @@ export const MODIFY_CONTROLLER_SUCCESS = 'MODIFY_CONTROLLER_SUCCESS' as const;
 export const MODIFY_CONTROLLER_FAILURE = 'MODIFY_CONTROLLER_FAILURE' as const;
 export const MODIFY_CONTROLLER_CLEAR = 'MODIFY_CONTROLLER_CLEAR' as const;
 
-export const LOAD_VIEW_REQUEST = 'LOAD_VIEW_REQUEST' as const;
-export const LOAD_VIEW_SUCCESS = 'LOAD_VIEW_SUCCESS' as const;
-export const LOAD_VIEW_FAILURE = 'LOAD_VIEW_FAILURE' as const;
+export const LOAD_FARM_VIEW_REQUEST = 'LOAD_FARM_VIEW_REQUEST' as const;
+export const LOAD_FARM_VIEW_SUCCESS = 'LOAD_FARM_VIEW_SUCCESS' as const;
+export const LOAD_FARM_VIEW_FAILURE = 'LOAD_FARM_VIEW_FAILURE' as const;
 
 export const CHANGE_MYFARM = 'CHANGE_MYFARM' as const;
 
-export const addMyfarmRequest = (data: MyfarmFormData) => ({
+export const addMyfarmRequest = (data: IMyfarmFormData) => ({
     type: ADD_MYFARM_REQUEST,
     data,
 });
 
 export const addMyfarmSuccess = () => ({
-    type: ADD_MYFARM,
+    type: ADD_MYFARM_SUCCESS,
+});
+
+export const addMyfarmFailure = (error: string) => ({
+    type: ADD_MYFARM_FAILURE,
+    error,
 });
 
 export const addMyfarmClear = () => ({
@@ -56,7 +61,7 @@ export const loadAllMyfarmRequest = (token: string) => ({
     token,
 });
 
-export const loadAllMyfarmSuccess = (data: Array<MyFarmInfo>) => ({
+export const loadAllMyfarmSuccess = (data: IMyFarmInfo[]) => ({
     type: LOAD_ALL_MYFARM_SUCCESS,
     data,
 });
@@ -71,7 +76,7 @@ export const loadMyfarmDashboardRequest = (farmId: number) => ({
     farmId,
 });
 
-export const loadMyfarmDashboardSuccess = (data: MyFarmDashboard) => ({
+export const loadMyfarmDashboardSuccess = (data: IMyFarmDashboard) => ({
     type: LOAD_MYFARM_DASHBOARD_SUCCESS,
     data,
 });
@@ -81,7 +86,7 @@ export const loadMyfarmDashboardFailure = (error: string) => ({
     error,
 });
 
-export const modifyMyfarmRequest = (farmId: number, data: MyfarmFormData) => ({
+export const modifyMyfarmRequest = (farmId: number, data: IMyfarmFormData) => ({
     type: MODIFY_MYFARM_REQUEST,
     farmId,
     data,
@@ -123,7 +128,7 @@ export const loadControllerRequest = (farmId: number) => ({
     farmId,
 });
 
-export const loadControllerSuccess = (data: FarmController) => ({
+export const loadControllerSuccess = (data: IFarmController) => ({
     type: LOAD_CONTROLLER_SUCCESS,
     data,
 });
@@ -133,7 +138,7 @@ export const loadControllerFailure = (error: string) => ({
     error,
 });
 
-export const modifyControllerRequest = (data: FarmController) => ({
+export const modifyControllerRequest = (data: IFarmController) => ({
     type: MODIFY_CONTROLLER_REQUEST,
     data,
 });
@@ -151,18 +156,18 @@ export const modifyControllerClear = () => ({
     type: MODIFY_CONTROLLER_CLEAR,
 });
 
-export const loadViewRequest = (farmId: number) => ({
-    type: LOAD_VIEW_REQUEST,
+export const loadFarmViewRequest = (farmId: number) => ({
+    type: LOAD_FARM_VIEW_REQUEST,
     farmId,
 });
 
-export const loadViewSuccess = (data: FarmView[]) => ({
-    type: LOAD_VIEW_SUCCESS,
+export const loadFarmViewSuccess = (data: IFarmView) => ({
+    type: LOAD_FARM_VIEW_SUCCESS,
     data,
 });
 
-export const loadViewFailure = (error: string) => ({
-    type: LOAD_VIEW_FAILURE,
+export const loadFarmViewFailure = (error: string) => ({
+    type: LOAD_FARM_VIEW_FAILURE,
     error,
 });
 

@@ -1,39 +1,45 @@
-import { ReactChild } from 'react';
+import React, { ReactChild } from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 import Header from './Header';
 import Navigation from './Navigation';
-import Global from '../../styles/Global';
+import ProfileModifyModal from '../ProfileModifyModal';
+import { RootState } from '../../reducers';
 
 type Props = {
-    children: ReactChild;
+    children: React.ReactNode;
     title: string;
     isNavigation?: boolean;
 };
 
-const Layout = ({ children, title, isNavigation }: Props) => (
-    <>
-        <Global />
-        <Head>
-            <title>{title}</title>
-            <meta charSet="utf-8" />
-            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        </Head>
-        <Header />
-        <main>
-            <CoverImg />
-            {isNavigation ? (
-                <Navigation page={title} />
-            ) : (
-                <Hr>
-                    <span className="line" />
-                    <span className="circle" />
-                </Hr>
-            )}
-            <MainComponent>{children}</MainComponent>
-        </main>
-    </>
-);
+const Layout = ({ children, title, isNavigation }: Props) => {
+    const { isProfileModifyModalVisible } = useSelector((state: RootState) => state.modal);
+
+    return (
+        <>
+            <Head>
+                <meta charSet="utf-8" />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <title>{title}</title>
+            </Head>
+            <Header />
+            <main>
+                <CoverImg />
+                {isNavigation ? (
+                    <Navigation page={title} />
+                ) : (
+                    <Hr>
+                        <span className="line" />
+                        <span className="circle" />
+                    </Hr>
+                )}
+                <MainComponent>{children}</MainComponent>
+                {isProfileModifyModalVisible && <ProfileModifyModal />}
+            </main>
+        </>
+    );
+};
 
 Layout.defaultProps = {
     isNavigation: true,

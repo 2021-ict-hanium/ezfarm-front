@@ -19,33 +19,11 @@ export const SampleMyfarmDashboard = {
     tmp: '35.8',
 };
 
-export const SampleViewList: FarmView[] = [
-    {
-        cropCondition: 66,
-        imageUrl: 'https://placeimg.com/300/200/any',
-        measureTime: 1,
-    },
-    {
-        cropCondition: 65,
-        imageUrl: 'https://placeimg.com/300/200/any',
-        measureTime: 2,
-    },
-    {
-        cropCondition: 66,
-        imageUrl: 'https://placeimg.com/300/200/any',
-        measureTime: 3,
-    },
-    {
-        cropCondition: 67,
-        imageUrl: 'https://placeimg.com/300/200/any',
-        measureTime: 4,
-    },
-    {
-        cropCondition: 65,
-        imageUrl: 'https://placeimg.com/300/200/any',
-        measureTime: 5,
-    },
-];
+export const SampleViewList: FarmView = {
+    cropCondition: 66,
+    imageUrl: 'https://placeimg.com/300/200/any',
+    measureTime: 1,
+};
 
 export const SampleChartData = [
     {

@@ -23,14 +23,14 @@ import {
     loadMyfarmDashboardFailure,
     loadMyfarmDashboardRequest,
     loadMyfarmDashboardSuccess,
-    loadViewFailure,
-    loadViewRequest,
-    loadViewSuccess,
     removeMyfarmClear,
     changeMyfarm,
+    loadFarmViewFailure,
+    loadFarmViewRequest,
+    loadFarmViewSuccess,
 } from '../../actions/myFarm';
 
-export type MyFarmAction =
+export type IMyFarmAction =
     | ReturnType<typeof addMyfarmRequest>
     | ReturnType<typeof addMyfarmSuccess>
     | ReturnType<typeof addMyfarmFailure>
@@ -56,7 +56,7 @@ export type MyFarmAction =
     | ReturnType<typeof modifyControllerSuccess>
     | ReturnType<typeof modifyControllerFailure>
     | ReturnType<typeof modifyControllerClear>
-    | ReturnType<typeof loadViewRequest>
-    | ReturnType<typeof loadViewSuccess>
-    | ReturnType<typeof loadViewFailure>
+    | ReturnType<typeof loadFarmViewRequest>
+    | ReturnType<typeof loadFarmViewSuccess>
+    | ReturnType<typeof loadFarmViewFailure>
     | ReturnType<typeof changeMyfarm>;

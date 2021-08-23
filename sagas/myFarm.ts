@@ -14,13 +14,13 @@ import {
     loadMyfarmDashboardFailure,
     loadMyfarmDashboardRequest,
     loadMyfarmDashboardSuccess,
-    loadViewFailure,
-    loadViewRequest,
-    loadViewSuccess,
+    loadFarmViewFailure,
+    loadFarmViewRequest,
+    loadFarmViewSuccess,
     LOAD_ALL_MYFARM_REQUEST,
     LOAD_CONTROLLER_REQUEST,
     LOAD_MYFARM_DASHBOARD_REQUEST,
-    LOAD_VIEW_REQUEST,
+    LOAD_FARM_VIEW_REQUEST,
     modifyControllerFailure,
     modifyControllerRequest,
     modifyControllerSuccess,
@@ -35,10 +35,10 @@ import {
     REMOVE_MYFARM_REQUEST,
 } from '../actions/myFarm';
 import { getToken } from '.';
-import { FarmController, MyFarmDashboard, MyfarmFormData, MyFarmInfo } from '../interfaces/data/myFarm';
 import { SampleViewList } from '../utils/sample';
+import { IFarmController, IMyFarmDashboard, IMyfarmFormData, IMyFarmInfo } from '../interfaces/data/myFarm';
 
-function addMyfarmAPI(data: MyfarmFormData) {
+function addMyfarmAPI(data: IMyfarmFormData) {
     return axios({
         method: 'POST',
         url: '/api/farm/me',
@@ -66,7 +66,7 @@ function loadAllMyfarmAPI(token: string) {
 
 function* loadAllMyfarm(action: ReturnType<typeof loadAllMyfarmRequest>) {
     try {
-        const result: AxiosResponse<Array<MyFarmInfo>> = yield call(loadAllMyfarmAPI, action.token);
+        const result: AxiosResponse<IMyFarmInfo[]> = yield call(loadAllMyfarmAPI, action.token);
         yield put(loadAllMyfarmSuccess(result.data));
     } catch (err) {
         yield put(loadAllMyfarmFailure(err.message));
@@ -83,7 +83,7 @@ function loadMyfarmDashboardAPI(farmId: number) {
 
 function* loadMyfarmDashboard(action: ReturnType<typeof loadMyfarmDashboardRequest>) {
     try {
-        const result: AxiosResponse<MyFarmDashboard> = yield call(loadMyfarmDashboardAPI, action.farmId);
+        const result: AxiosResponse<IMyFarmDashboard> = yield call(loadMyfarmDashboardAPI, action.farmId);
         yield put(loadMyfarmDashboardSuccess(result.data));
         // yield delay(1000);
         // yield put(loadMyfarmDashboardSuccess(SampleMyfarmDashboard));
@@ -92,7 +92,7 @@ function* loadMyfarmDashboard(action: ReturnType<typeof loadMyfarmDashboardReque
     }
 }
 
-function modifyMyfarmAPI(farmId: number, data: MyfarmFormData) {
+function modifyMyfarmAPI(farmId: number, data: IMyfarmFormData) {
     return axios({
         method: 'PATCH',
         url: `/api/farm/me/${farmId}`,
@@ -138,14 +138,14 @@ function loadControllerAPI(farmId: number) {
 
 function* loadController(action: ReturnType<typeof loadControllerRequest>) {
     try {
-        const result: AxiosResponse<FarmController> = yield call(loadControllerAPI, action.farmId);
+        const result: AxiosResponse<IFarmController> = yield call(loadControllerAPI, action.farmId);
         yield put(loadControllerSuccess(result.data));
     } catch (err) {
         yield put(loadControllerFailure(err.message));
     }
 }
 
-function modifyControllerAPI(data: FarmController) {
+function modifyControllerAPI(data: IFarmController) {
     return axios({
         method: 'POST',
         url: '/api/remote',
@@ -163,7 +163,7 @@ function* modifyController(action: ReturnType<typeof modifyControllerRequest>) {
     }
 }
 
-function loadViewAPI(farmId: number) {
+function loadFarmViewAPI(farmId: number) {
     return axios({
         method: 'GET',
         url: `/api/screen/${farmId}`,
@@ -171,14 +171,14 @@ function loadViewAPI(farmId: number) {
     });
 }
 
-function* loadView(action: ReturnType<typeof loadViewRequest>) {
+function* loadFarmView(action: ReturnType<typeof loadFarmViewRequest>) {
     try {
         // const result: AxiosResponse<FarmView[]> = yield call(loadViewAPI, action.farmId);
         // yield put(loadViewSuccess(result.data));
         yield delay(1000);
-        yield put(loadViewSuccess(SampleViewList));
+        yield put(loadFarmViewSuccess(SampleViewList));
     } catch (err) {
-        yield put(loadViewFailure(err.message));
+        yield put(loadFarmViewFailure(err.message));
     }
 }
 
@@ -211,7 +211,7 @@ function* watchModifyController() {
 }
 
 function* watchLoadView() {
-    yield takeLatest(LOAD_VIEW_REQUEST, loadView);
+    yield takeLatest(LOAD_FARM_VIEW_REQUEST, loadFarmView);
 }
 
 export default function* myFarmSaga() {
