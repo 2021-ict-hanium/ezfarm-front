@@ -1,18 +1,17 @@
 import 'antd/dist/antd.css';
 import type { AppProps } from 'next/app';
-import { useSelector } from 'react-redux';
-import ProfileModifyModal from '../components/ProfileModifyModal';
-import { RootState } from '../reducers';
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
 import wrapper from '../store/configureStore';
+import Global from '../styles/GlobalStyle';
+import theme from '../styles/theme';
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
-    const { isProfileModifyModalVisible } = useSelector((state: RootState) => state.modal);
-
-    return (
-        <>
-            <Component {...pageProps} />
-            {isProfileModifyModalVisible && <ProfileModifyModal />}
-        </>
-    );
-};
+const MyApp = ({ Component, pageProps }: AppProps) => (
+    <>
+        <Global />
+        <ThemeProvider theme={theme}>
+            <Component />
+        </ThemeProvider>
+    </>
+);
 export default wrapper.withRedux(MyApp);

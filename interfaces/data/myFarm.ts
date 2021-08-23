@@ -1,13 +1,14 @@
-export interface IChartData {
-    avgTmp: Array<any>;
-    avgIlluminance: Array<any>;
-    avgHumidity: Array<any>;
-    avgCo2: Array<any>;
-    avgPh: Array<any>;
-    avgMos: Array<any>;
+export interface IMyFarmDashboard {
+    co2: string;
+    humidity: string;
+    illuminance: string;
+    measureDate: string;
+    mos: string;
+    ph: string;
+    tmp: string;
 }
 
-export interface MyfarmFormData {
+export interface IMyfarmFormData {
     name: string;
     address: string;
     phoneNumber: string;
@@ -18,22 +19,20 @@ export interface MyfarmFormData {
     main: boolean;
 }
 
-export interface MyFarmInfo extends MyfarmFormData {
+export interface IMyFarmInfo extends IMyfarmFormData {
     id: number;
     createdDate: string;
 }
 
-export interface MyFarmDashboard {
-    co2: string;
-    humidity: string;
-    illuminance: string;
-    measureDate: string;
-    mos: string;
-    ph: string;
-    tmp: string;
+export interface IChartData {
+    avgTmp: Array<any>;
+    avgIlluminance: Array<any>;
+    avgHumidity: Array<any>;
+    avgCo2: Array<any>;
+    avgPh: Array<any>;
+    avgMos: Array<any>;
 }
-
-export interface IMyFarmList {
+export interface IFarmTable {
     key: string;
     type: string;
     name: string;
@@ -42,7 +41,7 @@ export interface IMyFarmList {
     main: boolean;
 }
 
-export interface FarmController {
+export interface IFarmController {
     remoteId: number;
     co2: string;
     illuminance: string;
@@ -50,18 +49,18 @@ export interface FarmController {
     water: string;
 }
 
-export interface FarmView {
+export interface IFarmView {
     cropCondition: number;
     imageUrl: string;
     measureTime: number;
 }
 
-export interface MyFarmState {
-    myFarmList: MyFarmInfo[] | null;
-    myFarm: MyFarmInfo | null;
-    myFarmDashboard: MyFarmDashboard | null;
-    farmController: FarmController | null;
-    viewList: FarmView[] | null;
+export interface IMyFarmState {
+    myFarmList: IMyFarmInfo[] | null;
+    myFarm: IMyFarmInfo | null;
+    myFarmDashboard: IMyFarmDashboard | null;
+    farmController: IFarmController | null;
+    farmView: IFarmView | null;
     addMyfarmLoading: boolean; // 농가 생성
     addMyfarmDone: boolean;
     addMyfarmError: null | string;
@@ -83,7 +82,7 @@ export interface MyFarmState {
     modifyControllerLoading: boolean; // 컨트롤러 수정
     modifyControllerDone: boolean;
     modifyControllerError: null | string;
-    loadViewLoading: boolean; // 농가 화면
-    loadViewDone: boolean;
-    loadViewError: null | string;
+    loadFarmViewLoading: boolean; // 농가 화면
+    loadFarmViewDone: boolean;
+    loadFarmViewError: null | string;
 }

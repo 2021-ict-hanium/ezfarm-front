@@ -12,12 +12,12 @@ import {
     LOAD_CONTROLLER_FAILURE,
     LOAD_CONTROLLER_REQUEST,
     LOAD_CONTROLLER_SUCCESS,
+    LOAD_FARM_VIEW_FAILURE,
+    LOAD_FARM_VIEW_REQUEST,
+    LOAD_FARM_VIEW_SUCCESS,
     LOAD_MYFARM_DASHBOARD_FAILURE,
     LOAD_MYFARM_DASHBOARD_REQUEST,
     LOAD_MYFARM_DASHBOARD_SUCCESS,
-    LOAD_VIEW_FAILURE,
-    LOAD_VIEW_REQUEST,
-    LOAD_VIEW_SUCCESS,
     MODIFY_CONTROLLER_CLEAR,
     MODIFY_CONTROLLER_FAILURE,
     MODIFY_CONTROLLER_REQUEST,
@@ -31,15 +31,15 @@ import {
     REMOVE_MYFARM_REQUEST,
     REMOVE_MYFARM_SUCCESS,
 } from '../actions/myFarm';
-import { MyFarmAction } from '../interfaces/act/myFarm';
-import { MyFarmState, MyFarmInfo } from '../interfaces/data/myFarm';
+import { IMyFarmAction } from '../interfaces/act/myFarm';
+import { IMyFarmState, IMyFarmInfo } from '../interfaces/data/myFarm';
 
-export const initialState: MyFarmState = {
+export const initialState: IMyFarmState = {
     myFarm: null,
     myFarmDashboard: null,
     myFarmList: null,
     farmController: null,
-    viewList: null,
+    farmView: null,
     addMyfarmLoading: false, // 농가 생성
     addMyfarmDone: false,
     addMyfarmError: null,
@@ -61,13 +61,13 @@ export const initialState: MyFarmState = {
     modifyControllerLoading: false,
     modifyControllerDone: false,
     modifyControllerError: null,
-    loadViewLoading: false,
-    loadViewDone: false,
-    loadViewError: null,
+    loadFarmViewLoading: false,
+    loadFarmViewDone: false,
+    loadFarmViewError: null,
 };
 
-const reducer = (state = initialState, action: MyFarmAction) =>
-    produce(state, (draft: MyFarmState) => {
+const reducer = (state = initialState, action: IMyFarmAction) =>
+    produce(state, (draft: IMyFarmState) => {
         switch (action.type) {
             case ADD_MYFARM_REQUEST:
                 draft.addMyfarmLoading = true;
@@ -96,7 +96,7 @@ const reducer = (state = initialState, action: MyFarmAction) =>
                 draft.loadAllMyfarmLoading = false;
                 draft.loadAllMyfarmDone = true;
                 draft.myFarmList = action.data;
-                draft.myFarm = action.data.filter((ele: MyFarmInfo) => ele.main)[0] || null;
+                draft.myFarm = action.data.filter((ele: IMyFarmInfo) => ele.main)[0] || null;
                 break;
             case LOAD_ALL_MYFARM_FAILURE:
                 draft.loadAllMyfarmLoading = false;
@@ -184,22 +184,22 @@ const reducer = (state = initialState, action: MyFarmAction) =>
                 draft.modifyControllerDone = false;
                 draft.modifyControllerError = null;
                 break;
-            case LOAD_VIEW_REQUEST:
-                draft.loadViewLoading = true;
-                draft.loadViewDone = false;
-                draft.loadViewError = null;
+            case LOAD_FARM_VIEW_REQUEST:
+                draft.loadFarmViewLoading = true;
+                draft.loadFarmViewDone = false;
+                draft.loadFarmViewError = null;
                 break;
-            case LOAD_VIEW_SUCCESS:
-                draft.loadViewLoading = false;
-                draft.loadViewDone = true;
-                draft.viewList = action.data;
+            case LOAD_FARM_VIEW_SUCCESS:
+                draft.loadFarmViewLoading = false;
+                draft.loadFarmViewDone = true;
+                draft.farmView = action.data;
                 break;
-            case LOAD_VIEW_FAILURE:
-                draft.loadViewLoading = false;
-                draft.loadViewError = action.error;
+            case LOAD_FARM_VIEW_FAILURE:
+                draft.loadFarmViewLoading = false;
+                draft.loadFarmViewError = action.error;
                 break;
             case CHANGE_MYFARM:
-                draft.myFarm = (draft.myFarmList as Array<MyFarmInfo>).find((ele) => ele.id === action.farmId) || null;
+                draft.myFarm = (draft.myFarmList as IMyFarmInfo[]).find((ele) => ele.id === action.farmId) || null;
                 break;
             default:
                 break;

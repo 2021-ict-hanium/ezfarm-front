@@ -47,7 +47,7 @@ const Header = () => {
                     <Logo />
                 </a>
             </Link>
-            <UserTap>
+            {/* <UserTap>
                 {me && (
                     <>
                         {me.imageUrl ? <Avatar src={me.imageUrl} /> : <Avatar icon={<UserOutlined />} />}
@@ -59,7 +59,7 @@ const Header = () => {
                         </Dropdown>
                     </>
                 )}
-            </UserTap>
+            </UserTap> */}
         </Wrapper>
     );
 };

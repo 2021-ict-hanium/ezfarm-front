@@ -32,7 +32,7 @@ export interface IFarmSearch extends IfarmSearchCond {
     size: number;
 }
 export interface OtherFarmState {
-    favoriteFarmList: null | IOtherFarmList[];
+    favoriteFarmList: null | IFavoriteFarmList[];
     otherFarmList: null | IOtherFarmList[];
     loadOtherFarmLoading: boolean;
     loadOtherFarmDone: boolean;
