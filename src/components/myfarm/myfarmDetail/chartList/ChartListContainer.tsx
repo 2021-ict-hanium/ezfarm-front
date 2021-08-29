@@ -41,7 +41,7 @@ const ChartListContainer = ({ vaildDate }: Props) => {
         const res = await axios({
             method: 'POST',
             // url: `${baseURL}api/facility/daily-avg/${farmId}`,
-            url: `${baseURL}api/facility/${urlName(strTerm)}-avg/102`,
+            url: `${baseURL}api/facility/${urlName(strTerm)}-avg/${farmId}`,
             headers: { Authorization: `Bearer ${getToken()}` },
             data,
         });
@@ -68,7 +68,7 @@ const ChartListContainer = ({ vaildDate }: Props) => {
             openFarmList={openFarmList}
             isLoading={isLoading}
             chartData={chartData as IChartData}
-            farmName={myFarm.name}
+            farmName={myFarm?.name}
         />
     );
 };

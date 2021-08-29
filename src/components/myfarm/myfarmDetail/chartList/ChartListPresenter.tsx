@@ -33,24 +33,35 @@ const ChartListPresenter = ({
     <>
         <Topbar>
             <div>
-                <Radio.Group onChange={onChangeTerm} value={term}>
-                    <Radio value="DAY">일간</Radio>
-                    <Radio value="WEEK">주간</Radio>
-                    <Radio value="MONTH">월간</Radio>
-                </Radio.Group>
-                {term === 'DAY' && <DatePicker onChange={onChangeDate} picker="month" disabledDate={disabledDate} />}
-                {term === 'WEEK' && <DatePicker onChange={onChangeDate} picker="quarter" disabledDate={disabledDate} />}
-                {term === 'MONTH' && <DatePicker onChange={onChangeDate} picker="year" disabledDate={disabledDate} />}
+                {farmName && (
+                    <>
+                        <Radio.Group onChange={onChangeTerm} value={term}>
+                            <Radio value="DAY">일간</Radio>
+                            <Radio value="WEEK">주간</Radio>
+                            <Radio value="MONTH">월간</Radio>
+                        </Radio.Group>
+                        {term === 'DAY' && (
+                            <DatePicker onChange={onChangeDate} picker="month" disabledDate={disabledDate} />
+                        )}
+                        {term === 'WEEK' && (
+                            <DatePicker onChange={onChangeDate} picker="quarter" disabledDate={disabledDate} />
+                        )}
+                        {term === 'MONTH' && (
+                            <DatePicker onChange={onChangeDate} picker="year" disabledDate={disabledDate} />
+                        )}
+                        <button
+                            type="button"
+                            className="search"
+                            onClick={() => {
+                                searchData(term, selectDate);
+                            }}
+                        >
+                            데이터 조회
+                        </button>
+                    </>
+                )}
             </div>
-            <button
-                type="button"
-                className="search"
-                onClick={() => {
-                    searchData(term, selectDate);
-                }}
-            >
-                데이터 조회
-            </button>
+
             <div className="currentFarm">
                 현재 선택된 농가<span>{farmName}</span>
             </div>

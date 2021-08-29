@@ -17,7 +17,7 @@ import {
     removeFavoriteFarmSuccess,
     REMOVE_FAVORITE_FARM_REQUEST,
 } from '../../actions/otherFarm';
-import { IFarmList, IFarmSearch } from '../../interfaces/data/otherFarm';
+import { IFarmList, IFarmSearch, IFavoriteFarmList } from '../../interfaces/data/otherFarm';
 import { getToken } from '.';
 
 function loadOtherFarmAPI(data: IFarmSearch) {
@@ -50,7 +50,7 @@ function loadFavoriteFarmAPI() {
 
 function* loadFavoriteFarm() {
     try {
-        const result: AxiosResponse<IFarmList[]> = yield call(loadFavoriteFarmAPI);
+        const result: AxiosResponse<IFavoriteFarmList[]> = yield call(loadFavoriteFarmAPI);
         yield put(loadFavoriteFarmSuccess(result.data));
     } catch (err) {
         console.log(err);

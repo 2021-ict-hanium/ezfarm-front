@@ -23,7 +23,7 @@ const MyfarmDetailContainer = () => {
             headers: { Authorization: `Bearer ${getToken()}` },
         });
         setVaildData(res.data);
-    }, [myFarm.id]);
+    }, [myFarm]);
 
     useEffect(() => {
         if (myFarm) {

@@ -1,4 +1,4 @@
-import { IfarmSearchCond, IOtherFarmList } from '../interfaces/data/otherFarm';
+import { IfarmSearchCond, IFavoriteFarmList, IOtherFarmList } from '../interfaces/data/otherFarm';
 
 export const LOAD_OTHER_FARM_REQUEST = 'LOAD_OTHER_FARM_REQUEST' as const;
 export const LOAD_OTHER_FARM_SUCCESS = 'LOAD_OTHER_FARM_SUCCESS' as const;
@@ -37,7 +37,7 @@ export const loadOtherFarmFailure = (error: string) => ({
 export const loadFavoriteFarmRequest = () => ({
     type: LOAD_FAVORITE_FARM_REQUEST,
 });
-export const loadFavoriteFarmSuccess = (data: IOtherFarmList[]) => ({
+export const loadFavoriteFarmSuccess = (data: IFavoriteFarmList[]) => ({
     type: LOAD_FAVORITE_FARM_SUCCESS,
     data,
 });

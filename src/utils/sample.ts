@@ -1,4 +1,4 @@
-import { FarmView } from '../interfaces/data/myFarm';
+import { IFarmView } from '../interfaces/data/myFarm';
 
 export const SampleUser = {
     id: 1,
@@ -19,7 +19,7 @@ export const SampleMyfarmDashboard = {
     tmp: '35.8',
 };
 
-export const SampleViewList: FarmView = {
+export const SampleViewList: IFarmView = {
     cropCondition: 66,
     imageUrl: 'https://placeimg.com/300/200/any',
     measureTime: 1,

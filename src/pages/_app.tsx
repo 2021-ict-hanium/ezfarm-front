@@ -2,7 +2,8 @@ import 'antd/dist/antd.css';
 import type { AppProps } from 'next/app';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import wrapper from '../store/create';
+import wrapper from '../redux/create';
+
 import Global from '../styles/GlobalStyle';
 import theme from '../styles/theme';
 

@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import nookies from 'nookies';
+
 import { END } from 'redux-saga';
 import { loadAllMyfarmRequest } from '../actions/myFarm';
 import { loadProfileRequest } from '../actions/user';
-import wrapper from '../store/create';
+
 import FarmComparisonContainer from '../components/farmComparison/FarmComparisonContainer';
+import wrapper from '../redux/create';
 
 const FarmComparison = () => <FarmComparisonContainer />;
 

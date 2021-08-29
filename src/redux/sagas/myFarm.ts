@@ -82,7 +82,7 @@ function* loadAllMyfarm(action: ReturnType<typeof loadAllMyfarmRequest>) {
 function loadMyfarmDashboardAPI(farmId: number) {
     return axios({
         method: 'GET',
-        url: `/api/facility/${farmId}`,
+        url: `/api/facility/recent`,
         headers: { Authorization: `Bearer  ${getToken()}` },
     });
 }

@@ -8,6 +8,7 @@ import { Container, Topbar, SelectedBtn } from '../../myfarm/myfarmDetail/chartL
 import { FarmInfo } from '../../myfarm/myfarmDetail/style';
 import { IOtherFarmList } from '../../../interfaces/data/otherFarm';
 import { koreanization } from '../../../utils/utils';
+import MyFarmListContainer from '../../myfarmlist/MyFarmListContainer';
 
 type Props = {
     selectFarm: (v: number | null) => void;
@@ -21,6 +22,8 @@ type Props = {
     isLoading: boolean;
     chartData: IChartData;
     otherFarm: IOtherFarmList;
+    myFarm: any;
+    isFarmListVisible: boolean;
 };
 
 const Wrapper = styled.div`
@@ -45,6 +48,8 @@ const ComparisonPresenter = ({
     isLoading,
     chartData,
     otherFarm,
+    myFarm,
+    isFarmListVisible,
 }: Props) => (
     <>
         <FarmInfo>{`농가 이름 : ${otherFarm.name}(${koreanization(otherFarm.farmType)}) | 작물 : ${koreanization(
@@ -85,7 +90,7 @@ const ComparisonPresenter = ({
                     데이터 조회
                 </button>
                 <div className="currentFarm">
-                    현재 선택된 농가<span>{otherFarm.name}</span>
+                    현재 선택된 농가<span>{myFarm?.name}</span>
                 </div>
                 <SelectedBtn onClick={openFarmList}>농가선택</SelectedBtn>
             </Topbar>
@@ -129,6 +134,7 @@ const ComparisonPresenter = ({
 <Chart dataKey="PH" data={} />
 <Chart dataKey="급액EC" data={} /> */}
             </Container>
+            {isFarmListVisible && <MyFarmListContainer />}
         </Wrapper>
     </>
 );

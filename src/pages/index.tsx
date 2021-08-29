@@ -4,7 +4,7 @@ import nookies from 'nookies';
 import { loadAllMyfarmRequest } from '../actions/myFarm';
 import { loadProfileRequest } from '../actions/user';
 import HomeContainer from '../components/home/HomeContainer';
-import wrapper from '../store/create';
+import wrapper from '../redux/create';
 
 const Home = () => <HomeContainer />;
 
