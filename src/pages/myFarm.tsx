@@ -3,8 +3,9 @@ import nookies from 'nookies';
 import { END } from 'redux-saga';
 import { loadAllMyfarmRequest } from '../actions/myFarm';
 import { loadProfileRequest } from '../actions/user';
-import wrapper from '../store/create';
+
 import MyFarmContainer from '../components/myfarm/MyFarmContainer';
+import wrapper from '../redux/create';
 
 const MyFarm = () => <MyFarmContainer />;
 

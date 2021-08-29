@@ -31,7 +31,7 @@ const FarmModifyModalContainer = ({ farmInfo }: Props) => {
     }, [dispatch]);
     const [name, changeName] = useInput(farmInfo.name);
     const [address, changeAddress] = useInput(farmInfo.address);
-    const [phoneNumber, changePhoneNumber] = useInput(farmInfo.phoneNumber);
+    const [phoneNumber, changePhoneNumber] = useInput(farmInfo?.phoneNumber as string);
     const [farmType, changeFarmType] = useInput(farmInfo.farmType);
     const [cropType, changeCropType] = useInput(farmInfo.cropType);
     const [area, changeArea] = useInput(farmInfo.area);

@@ -55,6 +55,51 @@ export const urlName = (term: string) => {
     if (term === 'MONTH') return 'monthly';
 };
 
+export const generateChartData2 = (data1: Array<any>, data2: Array<any>) => {
+    const chartData: IChartData = {
+        avgCo2: [],
+        avgHumidity: [],
+        avgIlluminance: [],
+        avgMos: [],
+        avgPh: [],
+        avgTmp: [],
+    };
+    console.log(data1, data2);
+    for (let i = 0; i < data1.length; i += 1) {
+        chartData.avgCo2.push({
+            name: data1[i].measureDate,
+            내농가: data1[i].avgCo2,
+            타농가: data2[i].avgCo2,
+        });
+        chartData.avgHumidity.push({
+            name: data1[i].measureDate,
+            내농가: data1[i].avgHumidity,
+            타농가: data2[i].avgHumidity,
+        });
+        chartData.avgIlluminance.push({
+            name: data1[i].measureDate,
+            내농가: data1[i].avgIlluminance,
+            타농가: data2[i].avgIlluminance,
+        });
+        chartData.avgMos.push({
+            name: data1[i].measureDate,
+            내농가: data1[i].avgMos,
+            타농가: data2[i].avgMos,
+        });
+        chartData.avgPh.push({
+            name: data1[i].measureDate,
+            내농가: data1[i].avgPh,
+            타농가: data2[i].avgPh,
+        });
+        chartData.avgTmp.push({
+            name: data1[i].measureDate,
+            내농가: data1[i].avgTmp,
+            타농가: data2[i].avgTmp,
+        });
+    }
+    return chartData;
+};
+
 export const generateChartData = (data: Array<any>) => {
     const chartData: IChartData = {
         avgCo2: [],

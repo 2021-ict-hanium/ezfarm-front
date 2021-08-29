@@ -1,12 +1,19 @@
 import axios from 'axios';
 import moment from 'moment';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { farmListOpen } from '../../../actions/modal';
 import { IChartData } from '../../../interfaces/data/myFarm';
 import { IOtherFarmList, IVaildDate } from '../../../interfaces/data/otherFarm';
+import { RootState } from '../../../redux/modules/reducer';
 import { getToken } from '../../../redux/sagas';
-import { baseURL, generateChartData, getFacilityRequestParams, urlName } from '../../../utils/utils';
+import {
+    baseURL,
+    generateChartData,
+    generateChartData2,
+    getFacilityRequestParams,
+    urlName,
+} from '../../../utils/utils';
 import ComparisonPresenter from './ComparisonPresenter';
 
 type Props = {
@@ -17,14 +24,16 @@ type Props = {
 const ComparisonContainer = ({ selectFarm, otherFarm }: Props) => {
     const [vaildDate, setVaildData] = useState<IVaildDate | null>(null);
 
+    const { myFarm } = useSelector((state: RootState) => state.myFarm);
+
     const loadVaildDate = useCallback(async () => {
         const res = await axios({
             method: 'GET',
-            url: `${baseURL}api/facility/search-condition/${otherFarm.farmId}`,
+            url: `${baseURL}api/facility/search-condition/${myFarm.id}`,
             headers: { Authorization: `Bearer ${getToken()}` },
         });
         setVaildData(res.data);
-    }, [otherFarm.farmId]);
+    }, [myFarm]);
 
     useEffect(() => {
         if (otherFarm) {
@@ -54,17 +63,29 @@ const ComparisonContainer = ({ selectFarm, otherFarm }: Props) => {
             current > moment((vaildDate as IVaildDate).endDate),
         [vaildDate],
     );
-    const facilityRequest = async (strTerm: string, farmId: string, data: any) => {
-        const res = await axios({
-            method: 'POST',
-            // url: `${baseURL}api/facility/daily-avg/${farmId}`,
-            url: `${baseURL}api/facility/${urlName(strTerm)}-avg/102`,
-            headers: { Authorization: `Bearer ${getToken()}` },
-            data,
-        });
-        const newChartData = generateChartData(res.data);
-        setChartData(newChartData);
-    };
+    const facilityRequest = useCallback(
+        async (strTerm: string, _, data: any) => {
+            const res1 = await axios({
+                method: 'POST',
+                // url: `${baseURL}api/facility/daily-avg/${farmId}`,
+                url: `${baseURL}api/facility/${urlName(strTerm)}-avg/${myFarm.id}`,
+                headers: { Authorization: `Bearer ${getToken()}` },
+                data,
+            });
+            console.log(otherFarm);
+            const res2 = await axios({
+                method: 'POST',
+                // url: `${baseURL}api/facility/daily-avg/${farmId}`,
+                url: `${baseURL}api/facility/${urlName(strTerm)}-avg/${otherFarm.farmId}`,
+                headers: { Authorization: `Bearer ${getToken()}` },
+                data,
+            });
+            console.log(res2.data);
+            // const newChartData: IChartData = generateChartData2(res1.data, res2.data);
+            // setChartData(newChartData);
+        },
+        [myFarm, otherFarm],
+    );
 
     const searchData = useCallback(
         (strTerm, strSelectDate) => {
@@ -72,11 +93,12 @@ const ComparisonContainer = ({ selectFarm, otherFarm }: Props) => {
             const data = getFacilityRequestParams(strTerm, strSelectDate);
             facilityRequest(strTerm, String(otherFarm.farmId), data);
         },
-        [otherFarm, selectDate],
+        [otherFarm, selectDate, facilityRequest],
     );
-
+    const { isFarmListVisible } = useSelector((state: RootState) => state.modal);
     return (
         <ComparisonPresenter
+            myFarm={myFarm}
             selectFarm={selectFarm}
             term={term}
             onChangeTerm={onChangeTerm}
@@ -88,6 +110,7 @@ const ComparisonContainer = ({ selectFarm, otherFarm }: Props) => {
             isLoading={isLoading}
             chartData={chartData as IChartData}
             otherFarm={otherFarm}
+            isFarmListVisible={isFarmListVisible}
         />
     );
 };

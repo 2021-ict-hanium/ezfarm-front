@@ -14,9 +14,12 @@ const FarmComparisonContainer = () => {
 
     const [otherFarm, setOtherFarm] = useState<IOtherFarmList | null>(null);
 
-    const selectFarm = useCallback((farmId: number | null) => {
-        setOtherFarm(otherFarmList.find((ele: IOtherFarmList) => ele.farmId === farmId));
-    }, []);
+    const selectFarm = useCallback(
+        (farmId: number | null) => {
+            setOtherFarm(otherFarmList.find((ele: IOtherFarmList) => ele.farmId === farmId));
+        },
+        [otherFarmList],
+    );
 
     useEffect(() => {
         dispatch(loadFavoriteFarmRequest());
@@ -32,7 +35,7 @@ const FarmComparisonContainer = () => {
             favoriteFarmList={favoriteFarmList}
             otherFarmList={otherFarmList}
             selectFarm={selectFarm}
-            otherFarm={otherFarm}
+            otherFarm={otherFarm as IOtherFarmList}
         />
     );
 };

@@ -14,11 +14,14 @@ type Props = {
 
 const MyfarmDetailPresenter = ({ myFarm, currentView, handleClick, vaildDate }: Props) => (
     <>
-        <FarmInfo>{`농가 이름 : ${myFarm.name}(${koreanization(myFarm.farmType)}) | 작물 : ${koreanization(
-            myFarm.cropType,
-        )} | 시작일 : ${myFarm.startDate} ${
-            fromDateToNow(myFarm.startDate) > 0 ? `(${fromDateToNow(myFarm.startDate)}일째)` : ''
-        }`}</FarmInfo>
+        <FarmInfo>
+            {myFarm &&
+                `농가 이름 : ${myFarm.name}(${koreanization(myFarm.farmType)}) | 작물 : ${koreanization(
+                    myFarm.cropType,
+                )} | 시작일 : ${myFarm.startDate} ${
+                    fromDateToNow(myFarm.startDate) > 0 ? `(${fromDateToNow(myFarm.startDate)}일째)` : ''
+                }`}
+        </FarmInfo>
         <Wrapper>
             <Tab>
                 <button
