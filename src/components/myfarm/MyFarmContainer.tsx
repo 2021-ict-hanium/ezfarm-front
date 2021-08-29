@@ -1,5 +1,5 @@
-import { useSelector } from '../../src/node_modules/react-redux';
-import { RootState } from '../../src/reducers';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/modules/reducer';
 import MyFarmPresenter from './MyFarmPresenter';
 
 const MyFarmContainer = () => {

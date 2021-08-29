@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { Avatar, Menu, Dropdown } from '../../src/node_modules/antd';
-import { UserOutlined, DownOutlined } from '../../src/node_modules/@ant-design/icons';
+import { Avatar, Menu, Dropdown } from 'antd';
+import { UserOutlined, DownOutlined } from '@ant-design/icons';
 
-import React, { useCallback, useState } from '../../src/node_modules/@types/react';
-import styled from '../../src/node_modules/@types/styled-components';
-import { useDispatch, useSelector } from '../../src/node_modules/react-redux';
-import Link from '../../src/node_modules/next/link';
-import { RootState } from '../../src/reducers';
+import React, { useCallback, useState } from 'react';
+import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import Link from 'next/link';
+import { RootState } from '../../redux/modules/reducer';
 import { logOutRequest } from '../../actions/user';
 import { profileModifyModalOpen } from '../../actions/modal';
 

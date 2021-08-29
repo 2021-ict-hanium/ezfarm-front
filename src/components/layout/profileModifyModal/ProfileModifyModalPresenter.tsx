@@ -1,7 +1,7 @@
-import { CloseOutlined, UploadOutlined } from '../../../src/node_modules/@ant-design/icons';
-import { Button } from '../../../src/node_modules/antd';
-import image from '../../../src/node_modules/antd/lib/image';
-import React, { RefObject } from '../../../src/node_modules/@types/react';
+import { CloseOutlined, UploadOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
+import image from 'antd/lib/image';
+import React, { RefObject } from 'react';
 import { IOnSubmit, ISetState } from '../../../interfaces/data/common';
 import { Me } from '../../../interfaces/data/user';
 import { CompleteBtn } from '../../common/Btn';

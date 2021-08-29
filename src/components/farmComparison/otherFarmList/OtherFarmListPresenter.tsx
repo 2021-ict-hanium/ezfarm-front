@@ -1,7 +1,6 @@
-import { Table } from '../../../src/node_modules/antd';
-import { ColumnsType } from '../../../src/node_modules/antd/lib/table';
-import { title } from 'process';
-import React from '../../../src/node_modules/@types/react';
+import { Table } from 'antd';
+import { ColumnsType } from 'antd/lib/table';
+import React from 'react';
 import { IFarmList, IFavoriteFarmList, IOtherFarmList } from '../../../interfaces/data/otherFarm';
 import Loading from '../../common/Loading';
 import { Container, Wrapper } from './style';
@@ -12,6 +11,7 @@ type Props = {
     loadFavoriteFarmLoading: boolean;
     loadOtherFarmLoading: boolean;
     farmList: IOtherFarmList[];
+    title: string;
 };
 
 const OtherFarmListPresenter = ({
@@ -20,6 +20,7 @@ const OtherFarmListPresenter = ({
     loadFavoriteFarmLoading,
     farmList,
     loadOtherFarmLoading,
+    title,
 }: Props) => (
     <Wrapper>
         <header>{title}</header>

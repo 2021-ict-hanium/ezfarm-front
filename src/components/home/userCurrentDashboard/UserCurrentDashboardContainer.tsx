@@ -1,8 +1,8 @@
-import React, { useCallback } from '../../../src/node_modules/@types/react';
-import { useDispatch, useSelector } from '../../../src/node_modules/react-redux';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { controlModalOpen, viewModalOpen, farmListOpen } from '../../../actions/modal';
 import { loadFarmViewRequest } from '../../../actions/myFarm';
-import { RootState } from '../../../src/reducers';
+import { RootState } from '../../../redux/modules/reducer';
 import UserCurrentDashboardPresenter from './UserCurrentDashboardPresenter';
 
 const UserCurrentDashboardContainer = () => {

@@ -1,26 +1,43 @@
 import axios from 'axios';
 import moment from 'moment';
-import { useState, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { farmListOpen } from '../../../../actions/modal';
-import { IChartData } from '../../../../interfaces/data/myFarm';
-import { IVaildDate } from '../../../../interfaces/data/otherFarm';
-import { RootState } from '../../../../redux/modules/reducer';
-import { getToken } from '../../../../redux/sagas';
-import { baseURL, urlName, generateChartData, getFacilityRequestParams } from '../../../../utils/utils';
-import ChartListPresenter from './ChartListPresenter';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { farmListOpen } from '../../../actions/modal';
+import { IChartData } from '../../../interfaces/data/myFarm';
+import { IOtherFarmList, IVaildDate } from '../../../interfaces/data/otherFarm';
+import { getToken } from '../../../redux/sagas';
+import { baseURL, generateChartData, getFacilityRequestParams, urlName } from '../../../utils/utils';
+import ComparisonPresenter from './ComparisonPresenter';
 
 type Props = {
-    vaildDate?: IVaildDate;
+    selectFarm: (farmId: number | null) => void;
+    otherFarm: IOtherFarmList;
 };
 
-const ChartListContainer = ({ vaildDate }: Props) => {
+const ComparisonContainer = ({ selectFarm, otherFarm }: Props) => {
+    const [vaildDate, setVaildData] = useState<IVaildDate | null>(null);
+
+    const loadVaildDate = useCallback(async () => {
+        const res = await axios({
+            method: 'GET',
+            url: `${baseURL}api/facility/search-condition/${otherFarm.farmId}`,
+            headers: { Authorization: `Bearer ${getToken()}` },
+        });
+        setVaildData(res.data);
+    }, [otherFarm.farmId]);
+
+    useEffect(() => {
+        if (otherFarm) {
+            loadVaildDate();
+        }
+    }, [otherFarm, loadVaildDate]);
+
     const dispatch = useDispatch();
     const [term, setTerm] = useState('DAY');
     const [selectDate, setSelectDate] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [chartData, setChartData] = useState<IChartData | null>(null);
-    const { myFarm } = useSelector((state: RootState) => state.myFarm);
+
     const openFarmList = useCallback(() => {
         dispatch(farmListOpen());
     }, [dispatch]);
@@ -53,12 +70,14 @@ const ChartListContainer = ({ vaildDate }: Props) => {
         (strTerm, strSelectDate) => {
             if (!selectDate) return;
             const data = getFacilityRequestParams(strTerm, strSelectDate);
-            facilityRequest(strTerm, myFarm.id, data);
+            facilityRequest(strTerm, String(otherFarm.farmId), data);
         },
-        [myFarm, selectDate],
+        [otherFarm, selectDate],
     );
+
     return (
-        <ChartListPresenter
+        <ComparisonPresenter
+            selectFarm={selectFarm}
             term={term}
             onChangeTerm={onChangeTerm}
             onChangeDate={onChangeDate}
@@ -68,16 +87,9 @@ const ChartListContainer = ({ vaildDate }: Props) => {
             openFarmList={openFarmList}
             isLoading={isLoading}
             chartData={chartData as IChartData}
-            farmName={myFarm.name}
+            otherFarm={otherFarm}
         />
     );
 };
 
-ChartListContainer.defaultProps = {
-    vaildDate: {
-        startDate: '2020-01-01',
-        endDate: '2020-12-31',
-    },
-};
-
-export default ChartListContainer;
+export default ComparisonContainer;

@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from '../../src/node_modules/@types/react';
-import { useDispatch, useSelector } from '../../src/node_modules/react-redux';
+import { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { loadFavoriteFarmRequest } from '../../actions/otherFarm';
-import { RootState } from '../../src/reducers';
+import { IOtherFarmList } from '../../interfaces/data/otherFarm';
+import { RootState } from '../../redux/modules/reducer';
 import FarmComparisonPresenter from './FarmComparisonPresenter';
 
 const FarmComparisonContainer = () => {
@@ -10,6 +11,13 @@ const FarmComparisonContainer = () => {
     const { favoriteFarmList, otherFarmList, addFavoriteFarmDone, removeFavoriteFarmDone } = useSelector(
         (state: RootState) => state.otherFarm,
     );
+
+    const [otherFarm, setOtherFarm] = useState<IOtherFarmList | null>(null);
+
+    const selectFarm = useCallback((farmId: number | null) => {
+        setOtherFarm(otherFarmList.find((ele: IOtherFarmList) => ele.farmId === farmId));
+    }, []);
+
     useEffect(() => {
         dispatch(loadFavoriteFarmRequest());
     }, []);
@@ -19,7 +27,14 @@ const FarmComparisonContainer = () => {
             dispatch(loadFavoriteFarmRequest());
         }
     }, [dispatch, addFavoriteFarmDone, removeFavoriteFarmDone]);
-    return <FarmComparisonPresenter favoriteFarmList={favoriteFarmList} otherFarmList={otherFarmList} />;
+    return (
+        <FarmComparisonPresenter
+            favoriteFarmList={favoriteFarmList}
+            otherFarmList={otherFarmList}
+            selectFarm={selectFarm}
+            otherFarm={otherFarm}
+        />
+    );
 };
 
 export default FarmComparisonContainer;

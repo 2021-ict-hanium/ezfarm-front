@@ -1,7 +1,7 @@
-import React, { ChangeEvent, FormEvent, useCallback, useState } from '../../../../src/node_modules/@types/react';
-import { useDispatch, useSelector } from '../../../../src/node_modules/react-redux';
+import React, { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { signUpRequest } from '../../../../actions/user';
-import { RootState } from '../../../../src/reducers';
+import { RootState } from '../../../../redux/modules/reducer';
 import SignupFormPresenter from './SignupFormPresenter';
 
 const SignupFormContainer = () => {

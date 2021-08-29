@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from '../../src/node_modules/recharts';
-import styled from '../../src/node_modules/@types/styled-components';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import styled from 'styled-components';
 
 type Props = {
     dataKey: string;

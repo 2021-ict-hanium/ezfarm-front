@@ -1,15 +1,15 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/jsx-no-undef */
-import { Space } from '../../src/node_modules/antd';
-import { ColumnsType } from '../../src/node_modules/antd/lib/table';
-import React, { useState, useCallback, useEffect } from '../../src/node_modules/@types/react';
-import { useDispatch, useSelector } from '../../src/node_modules/react-redux';
+import { Space } from 'antd';
+import { ColumnsType } from 'antd/lib/table';
+import React, { useState, useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { farmListClose, farmModifyModalOpen, farmEnrollModalOpen } from '../../actions/modal';
 import { removeMyfarmRequest, loadAllMyfarmRequest, removeMyfarmClear, changeMyfarm } from '../../actions/myFarm';
 import { IFarmTable, IMyFarmInfo } from '../../interfaces/data/myFarm';
-import { RootState } from '../../src/reducers';
-import { getToken } from '../../src/sagas';
-import { koreanization } from '../../src/utils/utils';
+import { RootState } from '../../redux/modules/reducer';
+import { getToken } from '../../redux/sagas';
+import { koreanization } from '../../utils/utils';
 import MyFarmListPresenter from './MyFarmListPresenter';
 
 const MyFarmListContainer = () => {
@@ -86,13 +86,6 @@ const MyFarmListContainer = () => {
             key: 'cropType',
             align: 'center',
         },
-
-        {
-            title: '전화번호',
-            dataIndex: 'phoneNumber',
-            key: 'phoneNumber',
-            align: 'center',
-        },
         {
             title: '주소',
             dataIndex: 'address',
@@ -155,7 +148,7 @@ const MyFarmListContainer = () => {
     useEffect(() => {
         if (loadAllMyfarmDone) {
             const newFarmTable: IFarmTable[] = myFarmList.map(
-                ({ id, main, farmType, name, cropType, startDate, address, phoneNumber }: IMyFarmInfo) => ({
+                ({ id, main, farmType, name, cropType, startDate, address }: IMyFarmInfo) => ({
                     key: String(id),
                     main,
                     farmType: koreanization(farmType),
@@ -163,7 +156,6 @@ const MyFarmListContainer = () => {
                     cropType: koreanization(cropType),
                     startDate,
                     address,
-                    phoneNumber,
                 }),
             );
             setFarmTable(newFarmTable);

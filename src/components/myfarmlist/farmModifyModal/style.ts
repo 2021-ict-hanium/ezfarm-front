@@ -1,5 +1,5 @@
-import styled from '../../../src/node_modules/@types/styled-components';
-import { Inputwrapper } from '../../../src/styles/styles';
+import styled from 'styled-components';
+import { Inputwrapper } from '../../../styles/styles';
 
 export const Form = styled.form`
     /* border: 1px solid black; */

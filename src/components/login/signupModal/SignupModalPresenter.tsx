@@ -1,4 +1,4 @@
-import React from '../../../src/node_modules/@types/react';
+import React from 'react';
 import Modal from '../../common/Modal';
 import SuccessModal from '../../common/SuccessModal';
 import SignupFormContainer from './signupForm/SignupFormContainer';

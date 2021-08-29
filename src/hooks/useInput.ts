@@ -1,5 +1,5 @@
-import { RadioChangeEvent } from '../src/node_modules/antd/lib/radio';
-import { useState, useCallback } from '../src/node_modules/@types/react';
+import { RadioChangeEvent } from 'antd/lib/radio';
+import { useState, useCallback } from 'react';
 
 const useInput = (initValue: string) => {
     const [value, setter] = useState(initValue);

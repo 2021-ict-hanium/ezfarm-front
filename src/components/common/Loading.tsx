@@ -1,6 +1,6 @@
-import { Spin } from '../../src/node_modules/antd';
-import React from '../../src/node_modules/@types/react';
-import styled from '../../src/node_modules/@types/styled-components';
+import { Spin } from 'antd';
+import React from 'react';
+import styled from 'styled-components';
 
 const Loading = () => (
     <Overlay>

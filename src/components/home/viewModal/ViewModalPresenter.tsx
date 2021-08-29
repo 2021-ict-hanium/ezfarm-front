@@ -1,4 +1,4 @@
-import React from '../../../src/node_modules/@types/react';
+import React from 'react';
 import { IFarmView } from '../../../interfaces/data/myFarm';
 import Modal from '../../common/Modal';
 import { ImgTime, Stick, Wrapper } from './style';

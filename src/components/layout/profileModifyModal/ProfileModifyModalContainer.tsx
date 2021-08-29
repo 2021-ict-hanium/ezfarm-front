@@ -1,10 +1,10 @@
-import { useCallback, useState, useRef, ChangeEvent, FormEvent, useEffect } from '../../../src/node_modules/@types/react';
-import { useDispatch, useSelector } from '../../../src/node_modules/react-redux';
+import { useCallback, useState, useRef, ChangeEvent, FormEvent, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { profileModifyModalClose } from '../../../actions/modal';
 import { modifyProfileClear, loadProfileRequest, modifyProfileRequest } from '../../../actions/user';
 import useInput from '../../../hooks/useInput';
-import { RootState } from '../../../src/reducers';
-import { getToken } from '../../../src/sagas';
+import { RootState } from '../../../redux/modules/reducer';
+import { getToken } from '../../../redux/sagas';
 import ProfileModifyModalPresenter from './ProfileModifyModalPresenter';
 
 const ProfileModifyModalContainer = () => {

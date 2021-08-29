@@ -1,4 +1,4 @@
-import React from '../../../src/node_modules/@types/react';
+import React from 'react';
 import { IMyFarmDashboard } from '../../../interfaces/data/myFarm';
 import DashboardItem from './DashboardItem';
 import { ButtonTap, Dashboard, Wrapper } from './style';
@@ -39,7 +39,7 @@ const UserCurrentDashboardPresenter = ({ openControlModal, openViewModal, openFa
                         value={myFarmDashboard ? `${myFarmDashboard?.co2}ppm` : ''}
                     />
                     <DashboardItem eng="pH" kor="급액" value={myFarmDashboard ? myFarmDashboard?.ph : ''} />
-                    <DashboardItem eng="EC" kor="토양수분" value={myFarmDashboard ? `${myFarmDashboard?.mos}%` : ''} />
+                    <DashboardItem eng="pF" kor="토양수분" value={myFarmDashboard ? `${myFarmDashboard?.mos}` : ''} />
                 </div>
             </Dashboard>
             <ButtonTap>

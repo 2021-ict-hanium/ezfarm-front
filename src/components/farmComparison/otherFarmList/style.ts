@@ -1,4 +1,4 @@
-import styled from '../../../src/node_modules/@types/styled-components';
+import styled from 'styled-components';
 
 export const Wrapper = styled.section`
     width: 900px;

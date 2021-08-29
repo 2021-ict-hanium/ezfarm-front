@@ -1,7 +1,6 @@
-import { DatePicker, Radio, RadioChangeEvent } from '../../../../src/node_modules/antd';
-import React from '../../../../src/node_modules/@types/react';
+import { DatePicker, Radio, RadioChangeEvent } from 'antd';
+import React from 'react';
 import { IChartData } from '../../../../interfaces/data/myFarm';
-import myFarm from '../../../../src/reducers/myFarm';
 import Loading from '../../../common/Loading';
 import Chart from '../../../common/Chart';
 import { Container, SelectedBtn, Topbar } from './style';
@@ -16,6 +15,7 @@ type Props = {
     openFarmList: () => void;
     isLoading: boolean;
     chartData: IChartData;
+    farmName: string;
 };
 
 const ChartListPresenter = ({
@@ -28,6 +28,7 @@ const ChartListPresenter = ({
     openFarmList,
     isLoading,
     chartData,
+    farmName,
 }: Props) => (
     <>
         <Topbar>
@@ -51,7 +52,7 @@ const ChartListPresenter = ({
                 데이터 조회
             </button>
             <div className="currentFarm">
-                현재 선택된 농가<span>{myFarm.name}</span>
+                현재 선택된 농가<span>{farmName}</span>
             </div>
             <SelectedBtn onClick={openFarmList}>농가선택</SelectedBtn>
         </Topbar>

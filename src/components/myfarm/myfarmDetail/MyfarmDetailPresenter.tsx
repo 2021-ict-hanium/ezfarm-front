@@ -1,7 +1,8 @@
-import React from '../../../src/node_modules/@types/react';
+import React from 'react';
 import { IMyFarmInfo } from '../../../interfaces/data/myFarm';
 import { IVaildDate } from '../../../interfaces/data/otherFarm';
-import { fromDateToNow, koreanization } from '../../../src/utils/utils';
+import { fromDateToNow, koreanization } from '../../../utils/utils';
+import ChartListContainer from './chartList/ChartListContainer';
 import { FarmInfo, Tab, Wrapper } from './style';
 
 type Props = {

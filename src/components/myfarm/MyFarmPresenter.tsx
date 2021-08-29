@@ -1,4 +1,4 @@
-import React from '../../src/node_modules/@types/react';
+import React from 'react';
 import Layout from '../layout/Layout';
 import MyFarmListContainer from '../myfarmlist/MyFarmListContainer';
 import MyfarmDetailContainer from './myfarmDetail/MyfarmDetailContainer';

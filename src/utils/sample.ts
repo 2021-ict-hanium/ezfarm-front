@@ -1,4 +1,4 @@
-import { FarmView } from '../../interfaces/data/myFarm';
+import { FarmView } from '../interfaces/data/myFarm';
 
 export const SampleUser = {
     id: 1,

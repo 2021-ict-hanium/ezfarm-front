@@ -1,7 +1,7 @@
-import { useRouter } from '../../src/node_modules/next/dist/client/router';
-import { useEffect } from '../../src/node_modules/@types/react';
-import { useSelector } from '../../src/node_modules/react-redux';
-import { RootState } from '../../src/reducers';
+import { useRouter } from 'next/dist/client/router';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/modules/reducer';
 import LoginPresenter from './LoginPresenter';
 
 const LoginContainer = () => {

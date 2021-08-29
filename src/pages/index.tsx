@@ -1,10 +1,10 @@
 import React from 'react';
 import { END } from 'redux-saga';
 import nookies from 'nookies';
-import { loadAllMyfarmRequest } from '../../actions/myFarm';
-import { loadProfileRequest } from '../../actions/user';
-import HomeContainer from '../../components/home/HomeContainer';
-import wrapper from '../store/configureStore';
+import { loadAllMyfarmRequest } from '../actions/myFarm';
+import { loadProfileRequest } from '../actions/user';
+import HomeContainer from '../components/home/HomeContainer';
+import wrapper from '../store/create';
 
 const Home = () => <HomeContainer />;
 

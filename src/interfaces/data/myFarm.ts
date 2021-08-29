@@ -11,7 +11,7 @@ export interface IMyFarmDashboard {
 export interface IMyfarmFormData {
     name: string;
     address: string;
-    phoneNumber: string;
+    phoneNumber?: string;
     farmType: string;
     cropType: string;
     area: string;

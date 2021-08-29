@@ -35,8 +35,14 @@ import {
     REMOVE_MYFARM_REQUEST,
 } from '../../actions/myFarm';
 import { getToken } from '.';
-import { SampleViewList } from '../utils/sample';
-import { IFarmController, IMyFarmDashboard, IMyfarmFormData, IMyFarmInfo } from '../../interfaces/data/myFarm';
+import { SampleViewList } from '../../utils/sample';
+import {
+    IFarmController,
+    IFarmView,
+    IMyFarmDashboard,
+    IMyfarmFormData,
+    IMyFarmInfo,
+} from '../../interfaces/data/myFarm';
 
 function addMyfarmAPI(data: IMyfarmFormData) {
     return axios({
@@ -85,8 +91,6 @@ function* loadMyfarmDashboard(action: ReturnType<typeof loadMyfarmDashboardReque
     try {
         const result: AxiosResponse<IMyFarmDashboard> = yield call(loadMyfarmDashboardAPI, action.farmId);
         yield put(loadMyfarmDashboardSuccess(result.data));
-        // yield delay(1000);
-        // yield put(loadMyfarmDashboardSuccess(SampleMyfarmDashboard));
     } catch (err) {
         yield put(loadMyfarmDashboardFailure(err.message));
     }
@@ -166,17 +170,18 @@ function* modifyController(action: ReturnType<typeof modifyControllerRequest>) {
 function loadFarmViewAPI(farmId: number) {
     return axios({
         method: 'GET',
-        url: `/api/screen/${farmId}`,
+        url: `/api/screen/live`,
         headers: { Authorization: `Bearer ${getToken()}` },
+        params: {
+            farmId,
+        },
     });
 }
 
 function* loadFarmView(action: ReturnType<typeof loadFarmViewRequest>) {
     try {
-        // const result: AxiosResponse<FarmView[]> = yield call(loadViewAPI, action.farmId);
-        // yield put(loadViewSuccess(result.data));
-        yield delay(1000);
-        yield put(loadFarmViewSuccess(SampleViewList));
+        const result: AxiosResponse<IFarmView> = yield call(loadFarmViewAPI, action.farmId);
+        yield put(loadFarmViewSuccess(result.data));
     } catch (err) {
         yield put(loadFarmViewFailure(err.message));
     }

@@ -1,10 +1,10 @@
-import axios from '../../../src/node_modules/axios';
-import { useState, useEffect } from '../../../src/node_modules/@types/react';
-import { useSelector } from '../../../src/node_modules/react-redux';
+import axios from 'axios';
+import { useState, useEffect, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { IVaildDate } from '../../../interfaces/data/otherFarm';
-import { RootState } from '../../../src/reducers';
-import { getToken } from '../../../src/sagas';
-import { baseURL } from '../../../src/utils/utils';
+import { RootState } from '../../../redux/modules/reducer';
+import { getToken } from '../../../redux/sagas';
+import { baseURL } from '../../../utils/utils';
 import MyfarmDetailPresenter from './MyfarmDetailPresenter';
 
 const MyfarmDetailContainer = () => {
@@ -16,21 +16,20 @@ const MyfarmDetailContainer = () => {
         setCurrentView(e.target.name);
     };
 
-    const loadVaildDate = async () => {
-        // const res = await axios.get(`${baseURL}//api/facility/search-condition/${myFarm.id}`);
+    const loadVaildDate = useCallback(async () => {
         const res = await axios({
             method: 'GET',
-            url: `${baseURL}api/facility/search-condition/102`,
+            url: `${baseURL}api/facility/search-condition/${myFarm.id}`,
             headers: { Authorization: `Bearer ${getToken()}` },
         });
         setVaildData(res.data);
-    };
+    }, [myFarm.id]);
 
     useEffect(() => {
         if (myFarm) {
             loadVaildDate();
         }
-    }, [myFarm]);
+    }, [myFarm, loadVaildDate]);
     return (
         <MyfarmDetailPresenter
             myFarm={myFarm}

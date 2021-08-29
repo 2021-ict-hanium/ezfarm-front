@@ -1,8 +1,8 @@
-import { useRouter } from '../../src/node_modules/next/dist/client/router';
-import React, { useEffect } from '../../src/node_modules/@types/react';
-import { useDispatch, useSelector } from '../../src/node_modules/react-redux';
+import { useRouter } from 'next/dist/client/router';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { loadMyfarmDashboardRequest } from '../../actions/myFarm';
-import { RootState } from '../../src/reducers';
+import { RootState } from '../../redux/modules/reducer';
 import HomePresenter from './HomePresenter';
 
 const HomeContainer = () => {

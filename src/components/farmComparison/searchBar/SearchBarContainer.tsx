@@ -1,8 +1,8 @@
-import { useState, useCallback, useEffect } from '../../../src/node_modules/@types/react';
-import { useDispatch, useSelector } from '../../../src/node_modules/react-redux';
+import { useState, useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { loadOtherFarmRequest } from '../../../actions/otherFarm';
 import { IfarmSearchCond } from '../../../interfaces/data/otherFarm';
-import { RootState } from '../../../src/reducers';
+import { RootState } from '../../../redux/modules/reducer';
 import SearchBarPresenter from './SearchBarPresenter';
 
 const SearchBarContainer = () => {
