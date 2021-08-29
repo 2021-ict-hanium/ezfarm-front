@@ -1,4 +1,4 @@
-import React from '../../../src/node_modules/@types/react';
+import React from 'react';
 import RecentNotificationPresenter from './RecentNotificationPresenter';
 
 const RecentNotificationContainer = () => {

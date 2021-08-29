@@ -1,4 +1,4 @@
-import React from '../../../../src/node_modules/@types/react';
+import React from 'react';
 import { IOnSubmit, ISetState } from '../../../../interfaces/data/common';
 import { CompleteBtn } from '../../../common/Btn';
 import Loading from '../../../common/Loading';

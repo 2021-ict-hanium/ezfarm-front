@@ -1,9 +1,9 @@
-import { useCallback, FormEvent } from '../../../../src/node_modules/@types/react';
-import { useDispatch, useSelector } from '../../../../src/node_modules/react-redux';
+import { useCallback, FormEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { modifyControllerRequest } from '../../../../actions/myFarm';
 import useInput from '../../../../hooks/useInput';
 import useSwitch from '../../../../hooks/useSwitch';
-import { RootState } from '../../../../src/reducers';
+import { RootState } from '../../../../redux/modules/reducer';
 import ControlFormPresenter from './ControlFormPresenter';
 
 const ControlFormContainer = () => {

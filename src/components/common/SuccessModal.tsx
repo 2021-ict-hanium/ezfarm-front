@@ -1,5 +1,5 @@
-import React from '../../src/node_modules/@types/react';
-import styled from '../../src/node_modules/@types/styled-components';
+import React from 'react';
+import styled from 'styled-components';
 import { CompleteBtn } from './Btn';
 import Modal from './Modal';
 

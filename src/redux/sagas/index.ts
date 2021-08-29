@@ -4,7 +4,7 @@ import axios from 'axios';
 import userSaga from './user';
 import myFarmSaga from './myFarm';
 import otherFarm from './otherFarm';
-import { baseURL } from '../utils/utils';
+import { baseURL } from '../../utils/utils';
 
 axios.defaults.baseURL = baseURL;
 axios.defaults.withCredentials = true;

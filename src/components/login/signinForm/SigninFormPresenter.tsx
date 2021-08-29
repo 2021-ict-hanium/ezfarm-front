@@ -1,4 +1,4 @@
-import React from '../../../src/node_modules/@types/react';
+import React from 'react';
 import { ISetState, IOnSubmit } from '../../../interfaces/data/common';
 import Loading from '../../common/Loading';
 import ErrorMessage from '../../common/ErrorMessage';

@@ -1,4 +1,4 @@
-import { useState, useCallback } from '../src/node_modules/@types/react';
+import { useState, useCallback } from 'react';
 
 const useSwitch = (initValue: boolean) => {
     const [value, setter] = useState(initValue);

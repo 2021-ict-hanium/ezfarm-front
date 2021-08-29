@@ -1,9 +1,9 @@
-import { useCallback, FormEvent } from '../../../src/node_modules/@types/react';
-import { useDispatch, useSelector } from '../../../src/node_modules/react-redux';
+import { useCallback, FormEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { signUpModalOpen } from '../../../actions/modal';
 import { logInRequest } from '../../../actions/user';
 import useInput from '../../../hooks/useInput';
-import { RootState } from '../../../src/reducers';
+import { RootState } from '../../../redux/modules/reducer';
 import SigninFormPresenter from './SigninFormPresenter';
 
 const SigninFormContainer = () => {

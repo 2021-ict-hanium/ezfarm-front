@@ -1,6 +1,6 @@
-import { Checkbox, DatePicker, Radio, RadioChangeEvent } from '../../../src/node_modules/antd';
-import { CheckboxChangeEvent } from '../../../src/node_modules/antd/lib/checkbox';
-import React from '../../../src/node_modules/@types/react';
+import { Checkbox, DatePicker, Radio, RadioChangeEvent } from 'antd';
+import { CheckboxChangeEvent } from 'antd/lib/checkbox';
+import React from 'react';
 import { IOnSubmit, ISetState } from '../../../interfaces/data/common';
 import { CompleteBtn } from '../../common/Btn';
 import Loading from '../../common/Loading';

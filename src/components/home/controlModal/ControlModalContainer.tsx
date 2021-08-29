@@ -1,8 +1,8 @@
-import React, { useCallback } from '../../../src/node_modules/@types/react';
-import { useDispatch, useSelector } from '../../../src/node_modules/react-redux';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { controlModalClose } from '../../../actions/modal';
 import { modifyControllerClear } from '../../../actions/myFarm';
-import { RootState } from '../../../src/reducers';
+import { RootState } from '../../../redux/modules/reducer';
 import ControlModalPresenter from './ControlModalPresenter';
 
 const ControlModalContainer = () => {

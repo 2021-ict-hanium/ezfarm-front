@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React from '../../src/node_modules/@types/react';
-import styled from '../../src/node_modules/@types/styled-components';
+import React from 'react';
+import styled from 'styled-components';
 
 type Props = {
     title?: string;

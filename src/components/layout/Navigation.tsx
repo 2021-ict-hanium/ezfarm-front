@@ -1,5 +1,5 @@
-import Link from '../../src/node_modules/next/link';
-import styled from '../../src/node_modules/@types/styled-components';
+import Link from 'next/link';
+import styled from 'styled-components';
 
 type Props = {
     page: string;
@@ -58,7 +58,6 @@ const Tap = styled.li<{ selected?: string; name?: string }>`
         width: 200px;
         height: 10px;
         background-color: #ffffff;
-        z-index: -1;
         box-shadow: 0 0.2rem 0.3rem 0.1rem rgba(85, 85, 85, 0.25);
     }
     div {

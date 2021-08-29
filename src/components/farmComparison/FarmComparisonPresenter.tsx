@@ -1,19 +1,32 @@
-import React from '../../src/node_modules/@types/react';
+import React from 'react';
 import { IFavoriteFarmList, IOtherFarmList } from '../../interfaces/data/otherFarm';
 import Layout from '../layout/Layout';
+import ComparisonContainer from './comparison/ComparisonContainer';
 import OtherFarmListContainer from './otherFarmList/OtherFarmListContainer';
 import SearchBarContainer from './searchBar/SearchBarContainer';
 
 type Props = {
     favoriteFarmList: IFavoriteFarmList[];
     otherFarmList: IOtherFarmList[];
+    selectFarm: (farmId: number | null) => void;
+    otherFarm: IOtherFarmList;
 };
 
-const FarmComparisonPresenter = ({ favoriteFarmList, otherFarmList }: Props) => (
+const FarmComparisonPresenter = ({ favoriteFarmList, otherFarmList, selectFarm, otherFarm }: Props) => (
     <Layout title="farmComparison">
-        <SearchBarContainer />
-        <OtherFarmListContainer title="즐겨찾기 목록" favoritefarmList={favoriteFarmList} />
-        <OtherFarmListContainer title="농가 검색" farmList={otherFarmList} />
+        {otherFarm ? (
+            <ComparisonContainer selectFarm={selectFarm} otherFarm={otherFarm} />
+        ) : (
+            <>
+                <SearchBarContainer />
+                <OtherFarmListContainer
+                    title="즐겨찾기 목록"
+                    favoritefarmList={favoriteFarmList}
+                    selectFarm={selectFarm}
+                />
+                <OtherFarmListContainer title="농가 검색" farmList={otherFarmList} selectFarm={selectFarm} />
+            </>
+        )}
     </Layout>
 );
 export default FarmComparisonPresenter;

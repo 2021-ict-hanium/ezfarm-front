@@ -1,12 +1,12 @@
-import { CheckboxChangeEvent } from '../../../src/node_modules/antd/lib/checkbox';
-import moment from '../../../src/node_modules/moment';
-import { FormEvent, useCallback, useState } from '../../../src/node_modules/@types/react';
-import { useDispatch, useSelector } from '../../../src/node_modules/react-redux';
+import { CheckboxChangeEvent } from 'antd/lib/checkbox';
+import moment from 'moment';
+import { FormEvent, useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { farmEnrollModalClose } from '../../../actions/modal';
 import { loadAllMyfarmRequest, addMyfarmClear, addMyfarmRequest } from '../../../actions/myFarm';
 import useInput from '../../../hooks/useInput';
-import { RootState } from '../../../src/reducers';
-import { getToken } from '../../../src/sagas';
+import { RootState } from '../../../redux/modules/reducer';
+import { getToken } from '../../../redux/sagas';
 import FarmEnrollModalPresenter from './FarmEnrollModalPresenter';
 
 const FarmEnrollModalContainer = () => {

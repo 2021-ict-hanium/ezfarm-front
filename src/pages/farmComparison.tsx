@@ -2,10 +2,10 @@
 import React from 'react';
 import nookies from 'nookies';
 import { END } from 'redux-saga';
-import { loadAllMyfarmRequest } from '../../actions/myFarm';
-import { loadProfileRequest } from '../../actions/user';
-import wrapper from '../store/configureStore';
-import FarmComparisonContainer from '../../components/farmComparison/FarmComparisonContainer';
+import { loadAllMyfarmRequest } from '../actions/myFarm';
+import { loadProfileRequest } from '../actions/user';
+import wrapper from '../store/create';
+import FarmComparisonContainer from '../components/farmComparison/FarmComparisonContainer';
 
 const FarmComparison = () => <FarmComparisonContainer />;
 

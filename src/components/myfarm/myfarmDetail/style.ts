@@ -1,4 +1,4 @@
-import styled from '../../../src/node_modules/@types/styled-components';
+import styled from 'styled-components';
 
 export const FarmInfo = styled.div`
     margin: 70px auto 20px 0;
@@ -9,8 +9,11 @@ export const FarmInfo = styled.div`
 
 export const Wrapper = styled.div`
     width: 1100px;
-    height: 600px;
-    padding-bottom: 0px;
+    /* height: 600px; */
+    padding: 30px;
+    background: white;
+    border-radius: 30px;
+    position: relative;
 `;
 
 export const Tab = styled.div`

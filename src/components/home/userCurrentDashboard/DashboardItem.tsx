@@ -1,4 +1,4 @@
-import styled from '../../../src/node_modules/@types/styled-components';
+import styled from 'styled-components';
 
 type Props = {
     eng: string;
@@ -107,7 +107,7 @@ const Wave = styled.div<{ type: string }>`
             border: 1px solid #f99696;
             background: #fff1f1;`;
         }
-        if (props.type === 'EC') {
+        if (props.type === 'pF') {
             return `animation: drift 4s infinite linear;
             border: 1px solid #ffa3e0;
             background: #fff0fa;`;

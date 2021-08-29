@@ -1,6 +1,6 @@
-import { Table } from '../../src/node_modules/antd';
-import { ColumnsType } from '../../src/node_modules/antd/lib/table';
-import React from '../../src/node_modules/@types/react';
+import { Table } from 'antd';
+import { ColumnsType } from 'antd/lib/table';
+import React from 'react';
 import { IFarmTable, IMyFarmInfo } from '../../interfaces/data/myFarm';
 import { CompleteBtn } from '../common/Btn';
 import Loading from '../common/Loading';

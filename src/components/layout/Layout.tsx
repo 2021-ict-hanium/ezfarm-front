@@ -1,11 +1,11 @@
-import React, { ReactChild } from '../../src/node_modules/@types/react';
-import Head from '../../src/node_modules/next/head';
-import styled from '../../src/node_modules/@types/styled-components';
-import { useSelector } from '../../src/node_modules/react-redux';
+import React from 'react';
+import Head from 'next/head';
+import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 import Header from './Header';
 import Navigation from './Navigation';
-import ProfileModifyModal from '../ProfileModifyModal';
-import { RootState } from '../../src/reducers';
+import ProfileModifyModalContainer from './profileModifyModal/ProfileModifyModalContainer';
+import { RootState } from '../../redux/modules/reducer';
 
 type Props = {
     children: React.ReactNode;
@@ -24,8 +24,7 @@ const Layout = ({ children, title, isNavigation }: Props) => {
                 <title>{title}</title>
             </Head>
             <Header />
-            <main>
-                <CoverImg />
+            <Main>
                 {isNavigation ? (
                     <Navigation page={title} />
                 ) : (
@@ -35,8 +34,8 @@ const Layout = ({ children, title, isNavigation }: Props) => {
                     </Hr>
                 )}
                 <MainComponent>{children}</MainComponent>
-                {isProfileModifyModalVisible && <ProfileModifyModal />}
-            </main>
+                {isProfileModifyModalVisible && <ProfileModifyModalContainer />}
+            </Main>
         </>
     );
 };
@@ -44,6 +43,14 @@ const Layout = ({ children, title, isNavigation }: Props) => {
 Layout.defaultProps = {
     isNavigation: true,
 };
+
+const Main = styled.main`
+    background: url('/images/ezfarm_bg.png');
+    height: min-content;
+    min-height: 100vh;
+    width: min-content;
+    min-width: 1920px;
+`;
 
 const Hr = styled.div`
     position: relative;
@@ -65,17 +72,6 @@ const Hr = styled.div`
         background-color: #ffffff;
     }
     animation: left-to-right-slide 0.9s;
-`;
-
-const CoverImg = styled.img.attrs({
-    src: '/images/ezfarm_bg.png',
-})`
-    position: absolute;
-    top: 0;
-    width: 100%;
-    min-width: 1150px;
-    height: 100%;
-    z-index: -50;
 `;
 
 const MainComponent = styled.div`

@@ -1,13 +1,13 @@
-import { applyMiddleware, createStore, compose, Store } from 'redux';
-import { MakeStore, createWrapper, Context } from 'next-redux-wrapper';
+import { applyMiddleware, createStore, compose } from 'redux';
+import { MakeStore, createWrapper } from 'next-redux-wrapper';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import createSagaMiddleware, { Task } from 'redux-saga';
+import createSagaMiddleware from 'redux-saga';
 
-import rootSaga from '../sagas';
-import rootReducer from '../reducers';
-import { UserState } from '../../interfaces/data/user';
-import { IMyFarmState } from '../../interfaces/data/myFarm';
-import { OtherFarmState } from '../../interfaces/data/otherFarm';
+import rootSaga from './sagas';
+import rootReducer from './modules/reducer';
+import { UserState } from '../interfaces/data/user';
+import { IMyFarmState } from '../interfaces/data/myFarm';
+import { OtherFarmState } from '../interfaces/data/otherFarm';
 
 export interface CombinedState {
     index: string;

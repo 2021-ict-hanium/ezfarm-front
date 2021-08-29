@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { ExclamationCircleOutlined } from '../../src/node_modules/@ant-design/icons';
-import styled from '../../src/node_modules/@types/styled-components';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
 
 type ErrorMessageProps = {
     message: string;

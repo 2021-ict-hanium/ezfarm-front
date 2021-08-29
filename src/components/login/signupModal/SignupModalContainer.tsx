@@ -1,8 +1,8 @@
-import { useCallback } from '../../../src/node_modules/@types/react';
-import { useDispatch, useSelector } from '../../../src/node_modules/react-redux';
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { signUpModalClose } from '../../../actions/modal';
 import { signUpClear } from '../../../actions/user';
-import { RootState } from '../../../src/reducers';
+import { RootState } from '../../../redux/modules/reducer';
 import SignupModalPresenter from './SignupModalPresenter';
 
 const SignupModalContainer = () => {

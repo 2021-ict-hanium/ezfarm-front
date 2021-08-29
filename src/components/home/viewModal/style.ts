@@ -1,4 +1,4 @@
-import styled from '../../../src/node_modules/@types/styled-components';
+import styled from 'styled-components';
 
 export const Stick = styled.span<{ wt: number }>`
     position: absolute;

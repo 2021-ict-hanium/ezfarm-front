@@ -1,8 +1,8 @@
-import { useCallback, useEffect } from '../../../src/node_modules/@types/react';
-import { useDispatch, useSelector } from '../../../src/node_modules/react-redux';
+import { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { viewModalClose } from '../../../actions/modal';
 import { loadFarmViewRequest } from '../../../actions/myFarm';
-import { RootState } from '../../../src/reducers';
+import { RootState } from '../../../redux/modules/reducer';
 import ViewModalPresenter from './ViewModalPresenter';
 
 const ViewModalContainer = () => {

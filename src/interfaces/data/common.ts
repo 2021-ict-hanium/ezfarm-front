@@ -1,4 +1,4 @@
-import { FormEvent } from '../../src/node_modules/@types/react';
+import { FormEvent } from 'react';
 
 export interface IOnSubmit {
     (e: FormEvent<HTMLFormElement>): void;

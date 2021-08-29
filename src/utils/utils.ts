@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/display-name */
 
-import { IChartData } from '../../interfaces/data/myFarm';
+import { IChartData } from '../interfaces/data/myFarm';
 
 /* eslint-disable import/prefer-default-export */
 export const baseURL = 'https://api.hanium-ezfarm.com/';

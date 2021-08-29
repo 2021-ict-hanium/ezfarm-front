@@ -1,6 +1,6 @@
-import { Select } from '../../../src/node_modules/antd';
-import { SelectValue } from '../../../src/node_modules/antd/lib/select';
-import React from '../../../src/node_modules/@types/react';
+import { Select } from 'antd';
+import { SelectValue } from 'antd/lib/select';
+import React from 'react';
 import { SearchBtn, Wrapper } from './style';
 
 type Props = {

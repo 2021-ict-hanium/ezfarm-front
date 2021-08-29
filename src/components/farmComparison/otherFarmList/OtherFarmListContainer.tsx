@@ -1,18 +1,24 @@
 /* eslint-disable react/display-name */
-import { ColumnsType } from '../../../src/node_modules/antd/lib/table';
-import { useDispatch, useSelector } from '../../../src/node_modules/react-redux';
+import { Space } from 'antd';
+import { ColumnsType } from 'antd/lib/table';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { farmListClose } from '../../../actions/modal';
+import { changeMyfarm } from '../../../actions/myFarm';
 import { addFavoriteFarmRequest, removeFavoriteFarmRequest } from '../../../actions/otherFarm';
 import { IFavoriteFarmList, IOtherFarmList, IFarmList } from '../../../interfaces/data/otherFarm';
-import { RootState } from '../../../src/reducers';
+import { RootState } from '../../../redux/modules/reducer';
+import myFarm from '../../../redux/sagas/myFarm';
 import OtherFarmListPresenter from './OtherFarmListPresenter';
 
 type Props = {
     title: string;
     favoritefarmList?: IFavoriteFarmList[];
     farmList?: IOtherFarmList[];
+    selectFarm: (v: number) => void;
 };
 
-const OtherFarmListContainer = ({ title, favoritefarmList, farmList }: Props) => {
+const OtherFarmListContainer = ({ title, favoritefarmList, farmList, selectFarm }: Props) => {
     const dispatch = useDispatch();
     const { loadOtherFarmLoading, loadFavoriteFarmLoading } = useSelector((state: RootState) => state.otherFarm);
     const Favorite = (farmId: number) => {
@@ -77,6 +83,24 @@ const OtherFarmListContainer = ({ title, favoritefarmList, farmList }: Props) =>
             key: 'name',
             align: 'center',
         },
+        {
+            title: '',
+            key: 'action',
+            align: 'left',
+            render: (_, { farmId }) => (
+                <Space size="middle">
+                    <span
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => {
+                            selectFarm(farmId);
+                        }}
+                        className="optionBtn"
+                    >
+                        조회
+                    </span>
+                </Space>
+            ),
+        },
     ];
     return (
         <OtherFarmListPresenter
@@ -85,6 +109,7 @@ const OtherFarmListContainer = ({ title, favoritefarmList, farmList }: Props) =>
             farmTableColumns={farmTableColumns}
             loadFavoriteFarmLoading={loadFavoriteFarmLoading}
             loadOtherFarmLoading={loadOtherFarmLoading}
+            title={title}
         />
     );
 };

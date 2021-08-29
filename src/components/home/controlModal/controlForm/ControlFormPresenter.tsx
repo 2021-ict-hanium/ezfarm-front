@@ -1,6 +1,6 @@
-import { Switch } from '../../../../src/node_modules/antd';
-import { SwitchChangeEventHandler } from '../../../../src/node_modules/antd/lib/switch';
-import React, { FormEvent } from '../../../../src/node_modules/@types/react';
+import { Switch } from 'antd';
+import { SwitchChangeEventHandler } from 'antd/lib/switch';
+import React, { FormEvent } from 'react';
 import { CompleteBtn } from '../../../common/Btn';
 import ErrorMessage from '../../../common/ErrorMessage';
 import { Form, InputWrapper } from './style';
